@@ -118,25 +118,6 @@ export default function Home() {
               — Full Stack Developer / AI Explorer.
             </span>
           </h1>
-          <a
-            href={profile.instagram.url}
-            target="_blank"
-            rel="noreferrer"
-            className="hero-instagram"
-            data-scroll-reveal
-            aria-label={`Buka Instagram ${profile.instagram.handle}`}
-          >
-            {/* Public Simple Icons asset is served directly. */}
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="https://cdn.simpleicons.org/instagram/E4405F"
-              alt=""
-              width={18}
-              height={18}
-            />
-            {profile.instagram.handle}
-            <span aria-hidden="true">↗</span>
-          </a>
           <p
             className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl"
             data-scroll-reveal
@@ -165,20 +146,53 @@ export default function Home() {
             data-scroll-reveal
           >
             <a
+              href={profile.instagram.url}
+              target="_blank"
+              rel="noreferrer"
+              className="social-icon"
+              aria-label={`Instagram ${profile.instagram.handle}`}
+              title={`Instagram ${profile.instagram.handle}`}
+            >
+              {/* Public Simple Icons asset is served directly. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.simpleicons.org/instagram/E4405F"
+                alt=""
+                width={19}
+                height={19}
+              />
+            </a>
+            <a
               href={profile.github.url}
               target="_blank"
               rel="noreferrer"
               className="social-icon"
-              aria-label="GitHub"
+              aria-label={`GitHub ${profile.github.handle}`}
+              title={`GitHub ${profile.github.handle}`}
             >
-              GH
+              {/* Public Simple Icons asset is served directly. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.simpleicons.org/github/8F8F8A"
+                alt=""
+                width={19}
+                height={19}
+              />
             </a>
             <a
               href={`mailto:${profile.email}`}
               className="social-icon"
-              aria-label="Email"
+              aria-label={`Kirim email ke ${profile.email}`}
+              title={profile.email}
             >
-              ✉
+              {/* Public Simple Icons asset is served directly. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.simpleicons.org/gmail/EA4335"
+                alt=""
+                width={19}
+                height={19}
+              />
             </a>
           </div>
 
