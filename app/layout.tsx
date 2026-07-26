@@ -1,50 +1,86 @@
 import type { Metadata } from "next";
-import { headers } from "next/headers";
 import "./globals.css";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { JsonLd } from "@/components/seo/json-ld";
+import { AmbientSky } from "@/components/ui/ambient-sky";
+import { RouteTransition } from "@/components/ui/route-transition";
+import { getSiteUrl } from "@/lib/site-url";
 
-export async function generateMetadata(): Promise<Metadata> {
-  const requestHeaders = await headers();
-  const host = requestHeaders.get("host") ?? "haqqiannazili.dev";
-  const protocol =
-    requestHeaders.get("x-forwarded-proto") ??
-    (host.startsWith("localhost") ? "http" : "https");
-  const siteUrl = new URL(`${protocol}://${host}`);
+export function generateMetadata(): Metadata {
+  const siteUrl = getSiteUrl();
 
   return {
     metadataBase: siteUrl,
     title: {
-      default: "Haqqi AnnaZili - Developer & AI Explorer",
-      template: "%s - Haqqi AnnaZili",
+      default: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
+      template: "%s | Haqqi AnnaZili",
     },
     description:
-      "Portofolio Haqqi AnnaZili: developer muda yang membangun produk web, otomasi, dan solusi berbasis AI.",
+      "Portfolio Haqqi AnnaZili, Full Stack Developer dan AI Explorer dari Jakarta yang mempelajari SIJA di SMKN 69 Jakarta.",
+    applicationName: "Haqqi AnnaZili Portfolio",
+    authors: [{ name: "Haqqi AnnaZili", url: new URL("/", siteUrl) }],
+    creator: "Haqqi AnnaZili",
+    publisher: "Haqqi AnnaZili",
+    category: "technology",
+    keywords: [
+      "Haqqi AnnaZili",
+      "Haqqi Annazili",
+      "Haqqi Anna Zili",
+      "Full Stack Developer Jakarta",
+      "AI Explorer Indonesia",
+      "SMKN 69 Jakarta",
+      "SMK Negeri 69 Jakarta",
+      "SIJA SMKN 69 Jakarta",
+      "Sistem Informasi Jaringan dan Aplikasi",
+      "portfolio developer Indonesia",
+    ],
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        noimageindex: false,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+        "max-video-preview": -1,
+      },
+    },
+    verification: process.env.GOOGLE_SITE_VERIFICATION
+      ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+      : undefined,
     icons: {
       icon: "/favicon.svg",
       shortcut: "/favicon.svg",
     },
     openGraph: {
-      title: "Haqqi AnnaZili - Developer & AI Explorer",
+      title: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
       description:
-        "Membangun pengalaman digital yang cepat, berguna, dan terasa manusiawi.",
+        "Portfolio Haqqi AnnaZili tentang web development, AI, proyek, sertifikat, dan perjalanan SIJA di SMKN 69 Jakarta.",
       type: "website",
       locale: "id_ID",
+      url: siteUrl,
+      siteName: "Haqqi AnnaZili Portfolio",
       images: [
         {
           url: new URL("/og.png", siteUrl),
           width: 1728,
           height: 909,
-          alt: "Haqqi AnnaZili - Developer & AI Explorer",
+          alt: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Haqqi AnnaZili - Developer & AI Explorer",
+      title: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
       description:
-        "Membangun pengalaman digital yang cepat, berguna, dan terasa manusiawi.",
+        "Portfolio Haqqi AnnaZili tentang web development, AI, dan perjalanan SIJA di SMKN 69 Jakarta.",
       images: [new URL("/og.png", siteUrl)],
+    },
+    other: {
+      "geo.region": "ID-JK",
+      "geo.placename": "Jakarta",
     },
   };
 }
@@ -54,13 +90,35 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const siteUrl = getSiteUrl();
+  const websiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": new URL("/#website", siteUrl).toString(),
+    url: siteUrl.toString(),
+    name: "Haqqi AnnaZili Portfolio",
+    alternateName: "Portfolio Haqqi AnnaZili",
+    description:
+      "Portfolio pribadi Haqqi AnnaZili tentang pengembangan web, AI, proyek, sertifikat, dan perjalanan di SMKN 69 Jakarta.",
+    inLanguage: ["id-ID", "en"],
+    publisher: {
+      "@type": "Person",
+      name: "Haqqi AnnaZili",
+      url: siteUrl.toString(),
+    },
+  };
+
   return (
     <html lang="id" suppressHydrationWarning>
       <body>
+        <JsonLd data={websiteJsonLd} />
+        <AmbientSky />
         <div className="site-shell">
           <SiteHeader />
-          <main>{children}</main>
-          <SiteFooter />
+          <RouteTransition>
+            <main>{children}</main>
+            <SiteFooter />
+          </RouteTransition>
         </div>
       </body>
     </html>

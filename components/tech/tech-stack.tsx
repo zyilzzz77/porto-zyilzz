@@ -2,7 +2,7 @@ import { technologies } from "@/data/portfolio";
 
 export function TechStack() {
   return (
-    <div className="mt-28">
+    <div className="mt-8">
       <div className="flex flex-wrap gap-2">
         {technologies.map((technology) => (
           <a
@@ -11,6 +11,7 @@ export function TechStack() {
             target="_blank"
             rel="noreferrer"
             className="tech-tile"
+            data-scroll-reveal
             aria-label={`${technology.name} - buka situs resmi`}
           >
             <span

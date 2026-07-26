@@ -8,7 +8,7 @@ export function CertificateCard({
   const destination = certificate.verifyUrl ?? certificate.file ?? certificate.image;
 
   return (
-    <article className="card">
+    <article className="card" data-scroll-reveal>
       <a href={destination} target="_blank" rel="noreferrer" className="block">
         {/* Static certificate assets are served directly to avoid Worker image-proxy failures. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}

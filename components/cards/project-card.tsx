@@ -9,11 +9,12 @@ const statusClass = {
   Live: "bg-emerald-400",
   Building: "bg-amber-300",
   Exploration: "bg-sky-300",
+  "Temporarily Offline": "bg-zinc-400",
 };
 
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   return (
-    <article className="card group">
+    <article className="card group" data-scroll-reveal>
       <div className="card-media">
         <span className="absolute left-5 top-5 z-10 font-mono text-xs text-[var(--muted)]">
           0{index + 1} / {project.category}
@@ -25,20 +26,27 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         </div>
       </div>
       <div className="p-6 sm:p-7">
-        <div className="flex items-center justify-between gap-4">
-          <h3 className="text-xl font-semibold tracking-[-0.025em]">
+        <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">
+          <h3 className="break-words text-xl font-semibold tracking-[-0.025em]">
             {project.title}
           </h3>
-          <span className="flex shrink-0 items-center gap-2 text-xs text-[var(--muted)]">
-            <span className={`h-1.5 w-1.5 rounded-full ${statusClass[project.status]}`} />
+          <span className="flex shrink-0 items-center gap-2 rounded-full border border-[var(--line)] px-2.5 py-1 text-[0.68rem] text-[var(--muted)]">
+            <span
+              className={`h-1.5 w-1.5 rounded-full ${statusClass[project.status]}`}
+            />
             {project.status}
           </span>
         </div>
         <p className="mt-4 leading-7 text-[var(--muted)]">
           {project.description}
         </p>
+        {project.availabilityNote ? (
+          <p className="mt-4 border-l border-[var(--line)] pl-3 text-xs leading-5 text-[var(--muted)]">
+            {project.availabilityNote}
+          </p>
+        ) : null}
         <div className="mt-6 flex flex-wrap gap-2">
-          {project.stack.map((item) => (
+          {project.tags.map((item) => (
             <span className="skill-chip" key={item}>
               {item}
             </span>

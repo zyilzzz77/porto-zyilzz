@@ -5,6 +5,10 @@ export const profile = {
   location: "Jakarta, Indonesia",
   role: "Developer & AI Explorer",
   email: "enzilaja@gmail.com",
+  whatsapp: {
+    display: "+62 838-7274-9541",
+    url: "https://wa.me/6283872749541",
+  },
   instagram: {
     handle: "@zlyzyzz",
     url: "https://www.instagram.com/zlyzyzz/",
@@ -120,44 +124,55 @@ export const technologies = [
 
 export const projects: Project[] = [
   {
-    slug: "finance-telegram-bot",
-    title: "Finance Telegram Bot",
+    slug: "archivejkt48-app",
+    title: "archivejkt48.app",
     description:
-      "Asisten percakapan untuk merangkum informasi keuangan dan menghadirkan pembaruan penting langsung di Telegram.",
-    category: "Automation",
-    status: "Building",
-    stack: ["Python", "Telegram API", "Data"],
+      "Platform arsip digital yang saya rancang untuk mengorganisasi dan menyimpan koleksi foto serta video member JKT48 dari berbagai generasi dalam satu pengalaman penelusuran yang terstruktur.",
+    category: "Digital Archive",
+    status: "Temporarily Offline",
+    tags: ["Media Archive", "Search & Filtering", "Responsive Web"],
+    availabilityNote:
+      "Demo sedang tidak tersedia karena masa layanan server belum diperpanjang.",
   },
   {
-    slug: "gdrive-telegram-assistant",
-    title: "Google Drive Assistant",
+    slug: "bikinqrisdinamis-app",
+    title: "bikinqrisdinamis.app",
     description:
-      "Alur kerja berbasis bot untuk membantu pencarian, pengelolaan, dan distribusi berkas Drive dengan lebih praktis.",
-    category: "Productivity",
-    status: "Exploration",
-    stack: ["Python", "Google Drive API", "Bot"],
+      "Aplikasi web eksperimental untuk mengimplementasikan alur pembayaran berbasis QRIS dinamis, mulai dari pembuatan transaksi hingga pengelolaan status pembayaran melalui integrasi payment gateway.",
+    category: "Payment Integration",
+    status: "Temporarily Offline",
+    tags: ["Dynamic QRIS", "Payment Gateway", "Transaction Flow"],
+    availabilityNote:
+      "Demo sedang tidak tersedia karena masa layanan server belum diperpanjang.",
   },
   {
-    slug: "jadwal-sholat",
-    title: "Jadwal Sholat Web",
+    slug: "inversave-space",
+    title: "inversave.space",
     description:
-      "Pengalaman web yang tenang dan responsif untuk melihat waktu ibadah harian dengan informasi yang mudah dipindai.",
-    category: "Web App",
-    status: "Live",
-    stack: ["Next.js", "API", "Responsive UI"],
-  },
-  {
-    slug: "media-downloader-bot",
-    title: "Media Downloader Bot",
-    description:
-      "Eksperimen otomasi untuk menerima tautan, memproses media, dan mengirimkan hasilnya kembali melalui antarmuka chat.",
-    category: "Automation",
-    status: "Building",
-    stack: ["Python", "Telegram API", "Media"],
+      "Web utility untuk memproses tautan dan mengunduh video dari berbagai platform media sosial melalui alur yang sederhana, cepat, dan responsif.",
+    category: "Media Utility",
+    status: "Temporarily Offline",
+    tags: ["Media Processing", "Social Platforms", "Download Workflow"],
+    availabilityNote:
+      "Demo sedang tidak tersedia karena masa layanan server belum diperpanjang.",
   },
 ];
 
 export const experiences: Experience[] = [
+  {
+    period: "2025 - Sekarang",
+    title: "Student - SIJA",
+    organization: "SMKN 69 Jakarta",
+    logo: "/logos/smkn-69-jakarta.png",
+    logoAlt: "Logo SMK Negeri 69 Jakarta",
+    href: "/experience/smkn-69-jakarta",
+    description:
+      "Mempelajari Sistem Informatika, Jaringan, dan Aplikasi dengan fokus yang semakin kuat pada software development.",
+    highlights: [
+      "Mengembangkan fondasi pemrograman dan sistem",
+      "Aktif mengerjakan tugas berbasis proyek",
+    ],
+  },
   {
     period: "2026 - Sekarang",
     title: "Independent Developer",
@@ -178,19 +193,6 @@ export const experiences: Experience[] = [
     highlights: [
       "Menyelesaikan enam kredensial course",
       "Menerapkan pembelajaran melalui notebook dan proyek mandiri",
-    ],
-  },
-  {
-    period: "2025 - Sekarang",
-    title: "Student - SIJA",
-    organization: "SMKN 69 Jakarta",
-    logo: "/logos/smkn-69-jakarta.png",
-    logoAlt: "Logo SMK Negeri 69 Jakarta",
-    description:
-      "Mempelajari Sistem Informatika, Jaringan, dan Aplikasi dengan fokus yang semakin kuat pada software development.",
-    highlights: [
-      "Mengembangkan fondasi pemrograman dan sistem",
-      "Aktif mengerjakan tugas berbasis proyek",
     ],
   },
 ];

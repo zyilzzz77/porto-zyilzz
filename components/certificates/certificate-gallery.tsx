@@ -30,6 +30,7 @@ export function CertificateGallery({
         className="mt-10 flex flex-wrap gap-2"
         role="group"
         aria-label="Filter sertifikat"
+        data-scroll-reveal
       >
         {filters.map((filter) => (
           <button

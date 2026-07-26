@@ -3,8 +3,9 @@ export type Project = {
   title: string;
   description: string;
   category: string;
-  status: "Live" | "Building" | "Exploration";
-  stack: string[];
+  status: "Live" | "Building" | "Exploration" | "Temporarily Offline";
+  tags: string[];
+  availabilityNote?: string;
 };
 
 export type Experience = {
@@ -13,6 +14,7 @@ export type Experience = {
   organization: string;
   logo?: string;
   logoAlt?: string;
+  href?: string;
   description: string;
   highlights: string[];
 };

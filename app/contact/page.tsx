@@ -3,14 +3,29 @@ import { profile } from "@/data/portfolio";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Hubungi Haqqi AnnaZili untuk kolaborasi dan percakapan.",
+  description:
+    "Hubungi Haqqi AnnaZili melalui email atau WhatsApp untuk kolaborasi, peluang, dan percakapan seputar teknologi.",
+  alternates: {
+    canonical: "/contact",
+  },
+  openGraph: {
+    title: "Hubungi Haqqi AnnaZili",
+    description:
+      "Kontak resmi Haqqi AnnaZili untuk kolaborasi dan percakapan seputar teknologi.",
+    type: "website",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {
+  const whatsappUrl = `${profile.whatsapp.url}?text=${encodeURIComponent(
+    "Halo Haqqi, saya melihat portfolio Anda dan ingin berdiskusi.",
+  )}`;
+
   return (
     <section className="section-pad flex min-h-[82vh] items-center pt-36">
       <div className="content-wrap">
-        <div className="cta-panel">
+        <div className="cta-panel" data-scroll-reveal>
           <p className="eyebrow">Contact</p>
           <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
             Mari mengubah ide
@@ -20,20 +35,54 @@ export default function ContactPage() {
             Terbuka untuk kolaborasi, proyek belajar, peluang, atau sekadar
             bertukar ide tentang teknologi dan AI.
           </p>
-          <a
-            href={`mailto:${profile.email}`}
-            className="button button-primary mt-9"
-          >
-            Kirim email <span aria-hidden="true">↗</span>
-          </a>
-          <div className="mt-14 border-t border-[var(--line)] pt-6">
-            <p className="text-sm text-[var(--muted)]">Email</p>
+
+          <div className="mt-9 flex flex-wrap gap-3">
             <a
               href={`mailto:${profile.email}`}
-              className="mt-2 inline-block text-lg font-semibold hover:text-[var(--accent)]"
+              className="button button-primary"
             >
-              {profile.email}
+              Kirim email <span aria-hidden="true">↗</span>
             </a>
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="button button-whatsapp"
+              aria-label={`Chat WhatsApp ${profile.whatsapp.display}`}
+            >
+              {/* Public Simple Icons asset is served directly. */}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="https://cdn.simpleicons.org/whatsapp/FFFFFF"
+                alt=""
+                width={19}
+                height={19}
+              />
+              Chat WhatsApp <span aria-hidden="true">↗</span>
+            </a>
+          </div>
+
+          <div className="mt-12 grid gap-6 border-t border-[var(--line)] pt-6 sm:grid-cols-2">
+            <div>
+              <p className="text-sm text-[var(--muted)]">Email</p>
+              <a
+                href={`mailto:${profile.email}`}
+                className="mt-2 inline-block text-lg font-semibold hover:text-[var(--accent)]"
+              >
+                {profile.email}
+              </a>
+            </div>
+            <div>
+              <p className="text-sm text-[var(--muted)]">WhatsApp</p>
+              <a
+                href={whatsappUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="mt-2 inline-block text-lg font-semibold hover:text-[#25d366]"
+              >
+                {profile.whatsapp.display}
+              </a>
+            </div>
           </div>
         </div>
       </div>

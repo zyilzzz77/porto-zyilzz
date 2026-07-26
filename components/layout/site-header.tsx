@@ -24,9 +24,9 @@ export function SiteHeader() {
   }
 
   return (
-    <header className="absolute inset-x-0 top-4 z-50 px-4 sm:top-6">
-      <div className="mx-auto max-w-[640px] rounded-full border border-[var(--line)] bg-[color-mix(in_srgb,var(--surface)_88%,transparent)] p-1.5 shadow-xl shadow-black/10 backdrop-blur-xl">
-        <div className="flex items-center justify-between sm:justify-center sm:gap-2">
+    <header className="absolute inset-x-0 top-4 z-50 px-4 sm:top-5">
+      <div className="mx-auto w-full max-w-[640px] rounded-full border border-[var(--line)] bg-[color-mix(in_srgb,var(--surface)_88%,transparent)] p-1 shadow-lg shadow-black/10 backdrop-blur-xl sm:w-fit sm:max-w-[calc(100%_-_2rem)]">
+        <div className="flex items-center justify-between sm:justify-center sm:gap-1">
           <Link
             href="/"
             className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--text)] font-mono text-[0.68rem] font-black tracking-[-0.08em] text-[var(--background)] sm:hidden"
@@ -45,7 +45,7 @@ export function SiteHeader() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`rounded-full px-3.5 py-2 text-[0.82rem] transition ${
+                  className={`rounded-full px-3 py-1.5 text-[0.8rem] transition ${
                     active
                       ? "bg-[var(--surface-strong)] text-[var(--text)]"
                       : "text-[var(--muted)] hover:text-[var(--text)]"
@@ -60,14 +60,14 @@ export function SiteHeader() {
           <div className="flex items-center gap-1">
             <Link
               href="/contact"
-              className="hidden rounded-full bg-[var(--text)] px-4 py-2 text-[0.82rem] font-semibold text-[var(--background)] sm:block"
+              className="hidden rounded-full bg-[var(--text)] px-3.5 py-1.5 text-[0.8rem] font-semibold text-[var(--background)] sm:block"
             >
               Contact
             </Link>
             <button
               type="button"
               onClick={toggleTheme}
-              className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] text-xs text-[var(--text)]"
+              className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] text-[0.68rem] text-[var(--text)]"
               aria-label={`Gunakan mode ${theme === "dark" ? "terang" : "gelap"}`}
             >
               {theme === "dark" ? "☼" : "◐"}

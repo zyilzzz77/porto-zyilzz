@@ -17,7 +17,10 @@ export function SectionHeading({
   action,
 }: SectionHeadingProps) {
   return (
-    <div className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
+    <div
+      className="flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between"
+      data-scroll-reveal
+    >
       <div>
         <p className="eyebrow">{eyebrow}</p>
         <h2 className="mt-4 max-w-2xl text-balance text-4xl font-semibold tracking-[-0.045em] sm:text-5xl">

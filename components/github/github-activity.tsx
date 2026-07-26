@@ -102,7 +102,7 @@ export async function GitHubActivity() {
   return (
     <section className="section-pad pb-16">
       <div className="github-wrap">
-        <div>
+        <div data-scroll-reveal>
           <h2 className="text-4xl font-semibold tracking-[-0.045em]">
             GitHub Activity
           </h2>
@@ -122,6 +122,7 @@ export async function GitHubActivity() {
           target="_blank"
           rel="noreferrer"
           className="github-panel mt-10 block"
+          data-scroll-reveal
           aria-label={`Buka profil GitHub ${profile.github.handle}`}
         >
           {activity.days.length > 0 ? (
