@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Script from "next/script";
 import "./globals.css";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
@@ -6,6 +7,25 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { AmbientSky } from "@/components/ui/ambient-sky";
 import { RouteTransition } from "@/components/ui/route-transition";
 import { getSiteUrl } from "@/lib/site-url";
+
+const themeInitializationScript = `
+  (() => {
+    const storageKey = "haqqi-portfolio-theme";
+    const systemTheme = window.matchMedia("(prefers-color-scheme: light)").matches
+      ? "light"
+      : "dark";
+
+    try {
+      const savedTheme = window.localStorage.getItem(storageKey);
+      document.documentElement.dataset.theme =
+        savedTheme === "light" || savedTheme === "dark"
+          ? savedTheme
+          : systemTheme;
+    } catch {
+      document.documentElement.dataset.theme = systemTheme;
+    }
+  })();
+`;
 
 export function generateMetadata(): Metadata {
   const siteUrl = getSiteUrl();
@@ -109,8 +129,16 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="id" suppressHydrationWarning>
+    <html
+      lang="id"
+      data-theme="dark"
+      data-scroll-behavior="smooth"
+      suppressHydrationWarning
+    >
       <body>
+        <Script id="theme-initialization" strategy="beforeInteractive">
+          {themeInitializationScript}
+        </Script>
         <JsonLd data={websiteJsonLd} />
         <AmbientSky />
         <div className="site-shell">

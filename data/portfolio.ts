@@ -124,6 +124,16 @@ export const technologies = [
 
 export const projects: Project[] = [
   {
+    slug: "exisel-web-id",
+    title: "exisel.web.id",
+    description:
+      "Website ekstrakurikuler terpadu yang membantu siswa menemukan informasi ekskul, bertanya melalui ExsiBot, melakukan absensi dengan barcode, dan mendaftar kegiatan dalam satu platform.",
+    category: "School Platform",
+    status: "Live",
+    tags: ["Extracurricular Directory", "ExsiBot", "Barcode Attendance", "Registration"],
+    href: "https://exisel.web.id/",
+  },
+  {
     slug: "archivejkt48-app",
     title: "archivejkt48.app",
     description:
@@ -198,6 +208,15 @@ export const experiences: Experience[] = [
 ];
 
 export const certificates: Certificate[] = [
+  {
+    slug: "ai-ready-asean-youth",
+    title: "AI Ready ASEAN - AI Learning Modules for Youth",
+    issuer: "ASEAN Foundation",
+    issuedAt: "12 Agustus 2026",
+    category: "AI & Data",
+    image: "/certificates/ai-ready-asean-youth-preview.png",
+    file: "/certificates/ai-ready-asean-youth.pdf",
+  },
   {
     slug: "genai-azure",
     title: "Membangun Aplikasi Gen AI dengan Microsoft Azure",

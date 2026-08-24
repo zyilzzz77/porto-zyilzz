@@ -5,14 +5,14 @@ import { projects } from "@/data/portfolio";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Proyek web Haqqi AnnaZili: archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+    "Proyek web Haqqi AnnaZili: exisel.web.id, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: {
     title: "Projects Haqqi AnnaZili",
     description:
-      "Archive media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video sosial media karya Haqqi AnnaZili.",
+      "Platform ekstrakurikuler sekolah, arsip media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video karya Haqqi AnnaZili.",
     type: "website",
     url: "/projects",
   },
@@ -30,13 +30,14 @@ export default function ProjectsPage() {
             Projects <span className="text-[var(--muted)]">& experiments.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Tiga produk web yang saya bangun untuk mengeksplorasi pengarsipan
-            media, integrasi pembayaran, dan pemrosesan konten digital.
+            Empat produk web yang saya bangun untuk kebutuhan sekolah,
+            pengarsipan media, integrasi pembayaran, dan pemrosesan konten
+            digital.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            Seluruh demo sedang offline sementara karena masa layanan server
-            belum diperpanjang. Dokumentasi proyek tetap tersedia sebagai
-            bagian dari perjalanan pengembangan saya.
+            exisel.web.id dapat dicoba langsung. Beberapa demo proyek lainnya
+            sedang offline sementara karena masa layanan server belum
+            diperpanjang.
           </p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

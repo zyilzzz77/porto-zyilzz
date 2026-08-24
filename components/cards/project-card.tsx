@@ -45,12 +45,25 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             {project.availabilityNote}
           </p>
         ) : null}
-        <div className="mt-6 flex flex-wrap gap-2">
-          {project.tags.map((item) => (
-            <span className="skill-chip" key={item}>
-              {item}
-            </span>
-          ))}
+        <div className="mt-6 flex items-end justify-between gap-4">
+          <div className="flex flex-wrap gap-2">
+            {project.tags.map((item) => (
+              <span className="skill-chip" key={item}>
+                {item}
+              </span>
+            ))}
+          </div>
+          {project.href ? (
+            <a
+              href={project.href}
+              target="_blank"
+              rel="noreferrer"
+              className="shrink-0 text-sm font-semibold text-[var(--soft)] transition hover:text-[var(--text)]"
+              aria-label={`Kunjungi ${project.title}`}
+            >
+              Kunjungi <span aria-hidden="true">↗</span>
+            </a>
+          ) : null}
         </div>
       </div>
     </article>

@@ -5,6 +5,10 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import { profile } from "@/data/portfolio";
 
+type Theme = "dark" | "light";
+
+const themeStorageKey = "haqqi-portfolio-theme";
+
 const navigation = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
@@ -16,7 +20,6 @@ const navigation = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
 
   useEffect(() => {
     document.body.classList.toggle("mobile-menu-open", menuOpen);
@@ -44,10 +47,64 @@ export function SiteHeader() {
     };
   }, [menuOpen]);
 
+  useEffect(() => {
+    const systemTheme = window.matchMedia("(prefers-color-scheme: light)");
+
+    function readSavedTheme(): Theme | null {
+      try {
+        const savedTheme = window.localStorage.getItem(themeStorageKey);
+        return savedTheme === "dark" || savedTheme === "light"
+          ? savedTheme
+          : null;
+      } catch {
+        return null;
+      }
+    }
+
+    function applySystemTheme(event: MediaQueryListEvent) {
+      if (!readSavedTheme()) {
+        document.documentElement.dataset.theme = event.matches
+          ? "light"
+          : "dark";
+      }
+    }
+
+    function syncThemeAcrossTabs(event: StorageEvent) {
+      if (event.key !== themeStorageKey) {
+        return;
+      }
+
+      const syncedTheme =
+        event.newValue === "dark" || event.newValue === "light"
+          ? event.newValue
+          : systemTheme.matches
+            ? "light"
+            : "dark";
+
+      document.documentElement.dataset.theme = syncedTheme;
+    }
+
+    systemTheme.addEventListener("change", applySystemTheme);
+    window.addEventListener("storage", syncThemeAcrossTabs);
+
+    return () => {
+      systemTheme.removeEventListener("change", applySystemTheme);
+      window.removeEventListener("storage", syncThemeAcrossTabs);
+    };
+  }, []);
+
   function toggleTheme() {
-    const nextTheme = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
+    const currentTheme =
+      document.documentElement.dataset.theme === "light" ? "light" : "dark";
+    const nextTheme: Theme = currentTheme === "dark" ? "light" : "dark";
+
     document.documentElement.dataset.theme = nextTheme;
+
+    try {
+      window.localStorage.setItem(themeStorageKey, nextTheme);
+    } catch {
+      // The theme still changes for this visit when storage is unavailable.
+    }
   }
 
   function isActive(href: string) {
@@ -97,12 +154,25 @@ export function SiteHeader() {
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--line)] text-[0.68rem] text-[var(--text)]"
-                aria-label={`Gunakan mode ${
-                  theme === "dark" ? "terang" : "gelap"
-                }`}
+                className="theme-toggle"
+                aria-label="Ganti tema terang atau gelap"
+                title="Ganti tema"
               >
-                {theme === "dark" ? "☼" : "◐"}
+                <svg
+                  className="theme-toggle-icon theme-toggle-sun"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <circle cx="12" cy="12" r="3.25" />
+                  <path d="M12 2.25v2M12 19.75v2M2.25 12h2M19.75 12h2M5.1 5.1l1.4 1.4M17.5 17.5l1.4 1.4M18.9 5.1l-1.4 1.4M6.5 17.5l-1.4 1.4" />
+                </svg>
+                <svg
+                  className="theme-toggle-icon theme-toggle-moon"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path d="M20.1 15.25A8.55 8.55 0 0 1 8.75 3.9a8.6 8.6 0 1 0 11.35 11.35Z" />
+                </svg>
               </button>
               <button
                 type="button"
