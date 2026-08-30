@@ -209,6 +209,15 @@ export const experiences: Experience[] = [
 
 export const certificates: Certificate[] = [
   {
+    slug: "graphic-design-uiux-series",
+    title: "Graphic Design & UI/UX Series (Online Event)",
+    issuer: "Komunitas Desain & UI/UX",
+    issuedAt: "26-27 Agustus 2026",
+    category: "Programming",
+    image: "/certificates/graphic-design-uiux-series-preview.png",
+    file: "/certificates/graphic-design-uiux-series.pdf",
+  },
+  {
     slug: "ai-ready-asean-youth",
     title: "AI Ready ASEAN - AI Learning Modules for Youth",
     issuer: "ASEAN Foundation",

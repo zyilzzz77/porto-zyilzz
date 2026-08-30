@@ -7,6 +7,7 @@ import { GitHubActivity } from "@/components/github/github-activity";
 import { JsonLd } from "@/components/seo/json-ld";
 import { TechStack } from "@/components/tech/tech-stack";
 import { SectionHeading } from "@/components/ui/section-heading";
+import { HeroHeading } from "@/components/ui/hero-heading";
 import {
   certificates,
   experiences,
@@ -108,16 +109,9 @@ export default function Home() {
             />
           </a>
 
-          <h1
-            className="hero-title max-w-5xl text-balance font-semibold text-[var(--text)]"
-            data-scroll-reveal
-          >
-            Hi, I&apos;m Haqqi AnnaZili
-            <span className="text-[var(--muted)]">
-              {" "}
-              — Full Stack Developer / AI Explorer.
-            </span>
-          </h1>
+          <div data-scroll-reveal>
+            <HeroHeading />
+          </div>
           <p
             className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl"
             data-scroll-reveal
@@ -208,7 +202,10 @@ export default function Home() {
             description="Tiga aplikasi web pilihan yang mengeksplorasi pengarsipan media, integrasi pembayaran, dan pemrosesan konten digital."
             action={{ href: "/projects", label: "Semua proyek" }}
           />
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+            data-scroll-reveal-stagger
+          >
             {projects.slice(0, 4).map((project, index) => (
               <ProjectCard key={project.slug} project={project} index={index} />
             ))}
@@ -224,7 +221,7 @@ export default function Home() {
             description="Setiap fase memperluas cara saya melihat masalah - dari kode, sistem, hingga dampaknya untuk pengguna."
             action={{ href: "/experience", label: "Lihat perjalanan" }}
           />
-          <div className="journey-grid">
+          <div className="journey-grid" data-scroll-reveal-stagger>
             {experiences.slice(0, 3).map((experience, index) => (
               <ExperienceCard
                 key={experience.title}
@@ -245,7 +242,10 @@ export default function Home() {
             description="Kursus pilihan yang memperkuat fondasi saya di pemrograman, cloud, machine learning, dan generative AI."
             action={{ href: "/certificates", label: "Semua sertifikat" }}
           />
-          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+          <div
+            className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+            data-scroll-reveal-stagger
+          >
             {certificates.slice(0, 3).map((certificate) => (
               <CertificateCard
                 key={certificate.slug}

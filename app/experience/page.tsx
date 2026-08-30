@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ExperienceCard } from "@/components/cards/experience-card";
 import { experiences } from "@/data/portfolio";
+import { Typewriter } from "@/components/ui/typewriter";
 
 export const metadata: Metadata = {
   title: "Journey & Pendidikan",
@@ -33,7 +34,18 @@ export default function ExperiencePage() {
             <p className="eyebrow">Journey / Learning in public</p>
             <h1 className="mt-5 max-w-3xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
               Perjalanan yang
-              <span className="text-[var(--muted)]"> terus bertumbuh.</span>
+              <span className="text-[var(--muted)]">
+                {" "}
+                <Typewriter
+                  words={[
+                    "terus bertumbuh.",
+                    "tak pernah final.",
+                    "bisa dilalui.",
+                    "penuh rasa ingin tahu.",
+                  ]}
+                  className="text-[var(--text)]"
+                />
+              </span>
             </h1>
           </div>
 

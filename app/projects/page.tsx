@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/cards/project-card";
 import { projects } from "@/data/portfolio";
+import { Typewriter } from "@/components/ui/typewriter";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -27,7 +28,15 @@ export default function ProjectsPage() {
             Archive / {String(projects.length).padStart(2, "0")} projects
           </p>
           <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
-            Projects <span className="text-[var(--muted)]">& experiments.</span>
+            Projects
+            <span className="text-[var(--muted)]">
+              {" "}
+              &{" "}
+              <Typewriter
+                words={["experiments.", "production.", "learning.", "shipped."]}
+                className="text-[var(--text)]"
+              />
+            </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
             Empat produk web yang saya bangun untuk kebutuhan sekolah,

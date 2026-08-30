@@ -63,6 +63,22 @@ export function RouteTransition({ children }: RouteTransitionProps) {
     );
 
     function registerRevealElements() {
+      const staggerGroups = document.querySelectorAll<HTMLElement>(
+        "[data-scroll-reveal-stagger]",
+      );
+
+      staggerGroups.forEach((group) => {
+        const children = group.querySelectorAll<HTMLElement>(
+          "[data-scroll-reveal]",
+        );
+        children.forEach((child, index) => {
+          child.style.setProperty(
+            "--scroll-reveal-index",
+            String(Math.min(index, 3)),
+          );
+        });
+      });
+
       const elements = document.querySelectorAll<HTMLElement>(
         "[data-scroll-reveal]",
       );
@@ -77,10 +93,17 @@ export function RouteTransition({ children }: RouteTransitionProps) {
           element.classList.add("is-scroll-visible");
         }
 
-        element.style.setProperty(
-          "--scroll-reveal-delay",
-          `${Math.min(index % 4, 3) * 45}ms`,
-        );
+        if (!element.style.getPropertyValue("--scroll-reveal-delay")) {
+          const inStaggerGroup = !!element.closest<HTMLElement>(
+            "[data-scroll-reveal-stagger]",
+          );
+          if (!inStaggerGroup) {
+            element.style.setProperty(
+              "--scroll-reveal-delay",
+              `${Math.min(index % 4, 3) * 45}ms`,
+            );
+          }
+        }
         element.classList.add("scroll-reveal");
         observedElements.add(element);
         revealObserver.observe(element);

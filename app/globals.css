@@ -90,12 +90,8 @@ body::before {
 }
 
 [data-theme="light"] body::before {
-  background-image:
-    linear-gradient(rgba(8, 127, 189, 0.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(8, 127, 189, 0.045) 1px, transparent 1px),
-    radial-gradient(circle at 76% 16%, rgba(8, 127, 189, 0.11), transparent 24%);
-  background-size: 56px 56px, 56px 56px, auto;
-  opacity: 0.72;
+  background-image: none;
+  opacity: 0;
 }
 
 ::selection {
@@ -1438,6 +1434,36 @@ body.is-route-entering .page-stage {
   transform: translateY(-3px) scale(1);
 }
 
+[data-scroll-reveal-stagger] > [data-scroll-reveal] {
+  --scroll-reveal-delay: calc(
+    var(--scroll-reveal-stagger-step, 260ms) * var(--scroll-reveal-index, 0)
+  );
+  transition-delay: var(--scroll-reveal-delay, 0ms);
+}
+
+.typewriter-caret {
+  animation: typewriter-blink 1s steps(1, end) infinite;
+  background: currentColor;
+  border-radius: 1px;
+  display: inline-block;
+  height: 0.95em;
+  margin-left: 0.08em;
+  transform: translateY(0.08em);
+  vertical-align: -0.05em;
+  width: 0.08em;
+}
+
+@keyframes typewriter-blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -1455,6 +1481,11 @@ body.is-route-entering .page-stage {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  .typewriter-caret {
+    animation: none;
+    opacity: 0;
   }
 
   .ambient-star-field {
