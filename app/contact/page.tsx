@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { JsonLd } from "@/components/seo/json-ld";
 import { profile } from "@/data/portfolio";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -18,12 +20,32 @@ export const metadata: Metadata = {
 };
 
 export default function ContactPage() {
+  const siteUrl = getSiteUrl();
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl.toString(),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Contact",
+        item: new URL("/contact", siteUrl).toString(),
+      },
+    ],
+  };
   const whatsappUrl = `${profile.whatsapp.url}?text=${encodeURIComponent(
     "Halo Haqqi, saya melihat portfolio Anda dan ingin berdiskusi.",
   )}`;
 
   return (
     <section className="section-pad flex min-h-[82vh] items-center pt-36">
+      <JsonLd data={breadcrumbJsonLd} />
       <div className="content-wrap">
         <div className="cta-panel" data-scroll-reveal>
           <p className="eyebrow">Contact</p>

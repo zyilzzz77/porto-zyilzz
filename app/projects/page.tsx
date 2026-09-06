@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { ProjectCard } from "@/components/cards/project-card";
+import { JsonLd } from "@/components/seo/json-ld";
 import { projects } from "@/data/portfolio";
 import { Typewriter } from "@/components/ui/typewriter";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -20,8 +22,29 @@ export const metadata: Metadata = {
 };
 
 export default function ProjectsPage() {
+  const siteUrl = getSiteUrl();
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl.toString(),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Projects",
+        item: new URL("/projects", siteUrl).toString(),
+      },
+    ],
+  };
+
   return (
     <section className="section-pad pt-36 sm:pt-44">
+      <JsonLd data={breadcrumbJsonLd} />
       <div className="content-wrap">
         <div data-scroll-reveal>
           <p className="eyebrow">

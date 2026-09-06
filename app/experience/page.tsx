@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import { ExperienceCard } from "@/components/cards/experience-card";
+import { JsonLd } from "@/components/seo/json-ld";
 import { experiences } from "@/data/portfolio";
 import { Typewriter } from "@/components/ui/typewriter";
+import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: "Journey & Pendidikan",
@@ -26,8 +28,29 @@ export const metadata: Metadata = {
 };
 
 export default function ExperiencePage() {
+  const siteUrl = getSiteUrl();
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      {
+        "@type": "ListItem",
+        position: 1,
+        name: "Home",
+        item: siteUrl.toString(),
+      },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Journey",
+        item: new URL("/experience", siteUrl).toString(),
+      },
+    ],
+  };
+
   return (
     <section className="experience-page section-pad pt-28 sm:pt-36">
+      <JsonLd data={breadcrumbJsonLd} />
       <div className="content-wrap">
         <div className="experience-page-hero" data-scroll-reveal>
           <div>

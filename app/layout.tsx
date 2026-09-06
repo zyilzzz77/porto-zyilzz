@@ -33,11 +33,12 @@ export function generateMetadata(): Metadata {
   return {
     metadataBase: siteUrl,
     title: {
-      default: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
+      default:
+        "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
       template: "%s | Haqqi AnnaZili",
     },
     description:
-      "Portfolio Haqqi AnnaZili, Full Stack Developer dan AI Explorer dari Jakarta yang mempelajari SIJA di SMKN 69 Jakarta.",
+      "Portfolio Haqqi AnnaZili, siswa SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI melalui proyek dan sertifikat di Jakarta.",
     applicationName: "Haqqi AnnaZili Portfolio",
     authors: [{ name: "Haqqi AnnaZili", url: new URL("/", siteUrl) }],
     creator: "Haqqi AnnaZili",
@@ -45,14 +46,14 @@ export function generateMetadata(): Metadata {
     category: "technology",
     keywords: [
       "Haqqi AnnaZili",
-      "Haqqi Annazili",
-      "Haqqi Anna Zili",
-      "Full Stack Developer Jakarta",
-      "AI Explorer Indonesia",
-      "SMKN 69 Jakarta",
-      "SMK Negeri 69 Jakarta",
+      "Haqqi AnnaZili portfolio",
+      "Haqqi AnnaZili SMKN 69 Jakarta",
+      "Haqqi AnnaZili SIJA",
       "SIJA SMKN 69 Jakarta",
       "Sistem Informasi Jaringan dan Aplikasi",
+      "SMKN 69 Jakarta",
+      "SMK Negeri 69 Jakarta",
+      "web developer Jakarta",
       "portfolio developer Indonesia",
     ],
     robots: {
@@ -75,9 +76,9 @@ export function generateMetadata(): Metadata {
       shortcut: "/favicon.svg",
     },
     openGraph: {
-      title: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
+      title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
       description:
-        "Portfolio Haqqi AnnaZili tentang web development, AI, proyek, sertifikat, dan perjalanan SIJA di SMKN 69 Jakarta.",
+        "Portfolio Haqqi AnnaZili, siswa SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI melalui proyek dan sertifikat.",
       type: "website",
       locale: "id_ID",
       url: siteUrl,
@@ -87,15 +88,15 @@ export function generateMetadata(): Metadata {
           url: new URL("/og.png", siteUrl),
           width: 1728,
           height: 909,
-          alt: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
+          alt: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
         },
       ],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
+      title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
       description:
-        "Portfolio Haqqi AnnaZili tentang web development, AI, dan perjalanan SIJA di SMKN 69 Jakarta.",
+        "Portfolio Haqqi AnnaZili, siswa SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
       images: [new URL("/og.png", siteUrl)],
     },
     other: {

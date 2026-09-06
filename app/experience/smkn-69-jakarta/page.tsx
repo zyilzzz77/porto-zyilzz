@@ -240,6 +240,8 @@ export default function Smkn69JakartaPage() {
               alt="Area gedung dan lapangan SMK Negeri 69 Jakarta"
               width={1600}
               height={2130}
+              loading="lazy"
+              decoding="async"
             />
             <figcaption>
               Dokumentasi area sekolah · Jakarta Timur, 24 Juli 2026

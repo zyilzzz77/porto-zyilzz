@@ -13,31 +13,30 @@ import {
   experiences,
   profile,
   projects,
-  technologies,
 } from "@/data/portfolio";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: {
-    absolute: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
+    absolute:
+      "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
   },
   description:
-    "Portfolio resmi Haqqi AnnaZili, Full Stack Developer dan AI Explorer dari Jakarta serta siswa SIJA di SMKN 69 Jakarta.",
+    "Portfolio Haqqi AnnaZili, siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI melalui proyek dan sertifikat.",
   alternates: {
     canonical: "/",
   },
   keywords: [
     "Haqqi AnnaZili",
-    "Haqqi Annazili",
-    "Haqqi Anna Zili",
+    "Haqqi AnnaZili SIJA",
     "portfolio Haqqi AnnaZili",
-    "developer Jakarta",
     "siswa SIJA SMKN 69 Jakarta",
+    "web developer Jakarta",
   ],
   openGraph: {
-    title: "Haqqi AnnaZili — Full Stack Developer & AI Explorer",
+    title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
     description:
-      "Portfolio resmi Haqqi AnnaZili tentang pengembangan web, AI, proyek, sertifikat, dan perjalanan di SMKN 69 Jakarta.",
+      "Haqqi AnnaZili adalah siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
     type: "website",
     url: "/",
   },
@@ -50,14 +49,12 @@ export default function Home() {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": personId,
-    name: profile.name,
-    alternateName: ["Haqqi Annazili", "Haqqi Anna Zili", profile.github.handle],
+    name: "Haqqi AnnaZili",
     url: siteUrl.toString(),
     image: new URL("/og.png", siteUrl).toString(),
-    jobTitle: "Full Stack Developer & AI Explorer",
+    jobTitle: "SIJA Student & Web Developer",
     description:
-      "Haqqi AnnaZili adalah Full Stack Developer dan AI Explorer dari Jakarta yang mempelajari SIJA di SMKN 69 Jakarta.",
-    email: `mailto:${profile.email}`,
+      "Haqqi AnnaZili adalah siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
     sameAs: [profile.github.url, profile.instagram.url],
     address: {
       "@type": "PostalAddress",
@@ -70,7 +67,20 @@ export default function Home() {
       alternateName: "SMKN 69 Jakarta",
       url: "https://www.smkn69jkt.sch.id/",
     },
-    knowsAbout: technologies.map((technology) => technology.name),
+    alumniOf: {
+      "@type": "EducationalOrganization",
+      name: "SMK Negeri 69 Jakarta",
+      url: "https://www.smkn69jkt.sch.id/",
+    },
+    knowsAbout: [
+      "Web Development",
+      "Programming",
+      "Networking",
+      "Artificial Intelligence",
+      "Next.js",
+      "TypeScript",
+      "Python",
+    ],
   };
   const profilePageJsonLd = {
     "@context": "https://schema.org",
@@ -81,14 +91,27 @@ export default function Home() {
     description:
       "Profil, proyek, sertifikat, dan perjalanan belajar Haqqi AnnaZili.",
     dateModified: "2026-07-26",
+    inLanguage: "id-ID",
     mainEntity: {
       "@id": personId,
     },
   };
+  const projectListJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "Proyek web Haqqi AnnaZili",
+    itemListElement: projects.map((project, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: project.title,
+      description: project.description,
+      ...(project.href ? { url: project.href } : {}),
+    })),
+  };
 
   return (
     <>
-      <JsonLd data={[personJsonLd, profilePageJsonLd]} />
+      <JsonLd data={[personJsonLd, profilePageJsonLd, projectListJsonLd]} />
       <section className="hero-section section-pad">
         <div className="content-wrap relative">
           <a
@@ -191,6 +214,76 @@ export default function Home() {
           </div>
 
           <TechStack />
+        </div>
+      </section>
+
+      <section className="section-pad pt-0" aria-label="Tentang Haqqi AnnaZili">
+        <div className="content-wrap">
+          <SectionHeading
+            eyebrow="About"
+            title="Siapa Haqqi AnnaZili?"
+            description="Haqqi AnnaZili adalah siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, networking, dan teknologi AI."
+          />
+          <div
+            className="mt-8 grid gap-4 sm:grid-cols-3"
+            data-scroll-reveal-stagger
+          >
+            <div className="card p-6" data-scroll-reveal>
+              <h3 className="text-base font-semibold">Pendidikan</h3>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Siswa konsentrasi keahlian SIJA (Sistem Informasi, Jaringan,
+                dan Aplikasi) di{" "}
+                <Link
+                  href="/experience/smkn-69-jakarta"
+                  className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+                >
+                  SMKN 69 Jakarta
+                </Link>
+                , Jakarta, Indonesia.
+              </p>
+            </div>
+            <div className="card p-6" data-scroll-reveal>
+              <h3 className="text-base font-semibold">Bidang yang ditekuni</h3>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Web development, programming, networking, dan AI — dipraktikkan
+                lewat{" "}
+                <Link
+                  href="/projects"
+                  className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+                >
+                  proyek web
+                </Link>{" "}
+                dan{" "}
+                <Link
+                  href="/certificates"
+                  className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+                >
+                  sertifikat course
+                </Link>
+                .
+              </p>
+            </div>
+            <div className="card p-6" data-scroll-reveal>
+              <h3 className="text-base font-semibold">Perjalanan belajar</h3>
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
+                Mendokumentasikan progres lewat{" "}
+                <Link
+                  href="/experience"
+                  className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+                >
+                  halaman journey
+                </Link>{" "}
+                dan terbuka untuk kolaborasi via{" "}
+                <Link
+                  href="/contact"
+                  className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+                >
+                  kontak
+                </Link>
+                .
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 

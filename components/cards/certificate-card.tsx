@@ -17,6 +17,8 @@ export function CertificateCard({
           alt={`Sertifikat ${certificate.title} milik Haqqi AnnaZili`}
           width={1000}
           height={707}
+          loading="lazy"
+          decoding="async"
           className="certificate-image"
         />
       </a>
