@@ -8,14 +8,14 @@ import { getSiteUrl } from "@/lib/site-url";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Proyek web Haqqi AnnaZili: exisel.web.id, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+    "Proyek web Haqqi AnnaZili: exisel.web.id, mailtemps.space, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: {
     title: "Projects Haqqi AnnaZili",
     description:
-      "Platform ekstrakurikuler sekolah, arsip media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video karya Haqqi AnnaZili.",
+      "Platform ekstrakurikuler sekolah, layanan temp mail, arsip media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video karya Haqqi AnnaZili.",
     type: "website",
     url: "/projects",
   },
@@ -62,14 +62,14 @@ export default function ProjectsPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Empat produk web yang saya bangun untuk kebutuhan sekolah,
-            pengarsipan media, integrasi pembayaran, dan pemrosesan konten
-            digital.
+            Lima produk web yang saya bangun untuk kebutuhan sekolah, email
+            sekali pakai, pengarsipan media, integrasi pembayaran, dan
+            pemrosesan konten digital.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            exisel.web.id dapat dicoba langsung. Beberapa demo proyek lainnya
-            sedang offline sementara karena masa layanan server belum
-            diperpanjang.
+            exisel.web.id dan mailtemps.space dapat dicoba langsung. Beberapa
+            demo proyek lainnya sedang offline sementara karena masa layanan
+            server belum diperpanjang.
           </p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

@@ -131,7 +131,19 @@ export const projects: Project[] = [
     category: "School Platform",
     status: "Live",
     tags: ["Extracurricular Directory", "ExsiBot", "Barcode Attendance", "Registration"],
+    image: "/projects/exisel-web-id.png",
     href: "https://exisel.web.id/",
+  },
+  {
+    slug: "mailtemps-space",
+    title: "mailtemps.space",
+    description:
+      "Layanan temp mail gratis yang membuat alamat email sekali pakai tanpa registrasi; inbox sementara menerima email verifikasi, tidak memuat pelacak jarak jauh, dan otomatis kedaluwarsa.",
+    category: "Web Utility",
+    status: "Live",
+    tags: ["Temp Mail", "Disposable Email", "Receive-Only Inbox", "Auto Expiry"],
+    image: "/projects/mailtemps-space.png",
+    href: "https://mailtemps.space/",
   },
   {
     slug: "archivejkt48-app",
@@ -208,6 +220,15 @@ export const experiences: Experience[] = [
 ];
 
 export const certificates: Certificate[] = [
+  {
+    slug: "bitsmikro-innovative-vibecode",
+    title: "Champion Award - Bitsmikro Innovative Vibecode 2026",
+    issuer: "Universitas Mikroskil · Bitsmikro",
+    issuedAt: "2026",
+    category: "AI & Data",
+    image: "/certificates/sertifikat-haqqiannazili-preview.png",
+    file: "/certificates/sertifikat-haqqiannazili.pdf",
+  },
   {
     slug: "graphic-design-uiux-series",
     title: "Graphic Design & UI/UX Series (Online Event)",
@@ -288,5 +309,16 @@ export const certificates: Certificate[] = [
     image: "/certificates/cloud-genai-aws-dicoding-preview.png",
     file: "/certificates/cloud-genai-aws-dicoding.pdf",
     verifyUrl: "https://www.dicoding.com/certificates/98XW0MVG0XM3",
+  },
+  {
+    slug: "spec-driven-development-kiro",
+    title: "Spec-Driven Development dengan Kiro",
+    issuer: "Dicoding Indonesia",
+    issuedAt: "10 Juli 2026",
+    credential: "JLX1VOW0JZ72",
+    category: "Programming",
+    image: "/certificates/spec-driven-development-kiro-dicoding-preview.png",
+    file: "/certificates/spec-driven-development-kiro-dicoding.pdf",
+    verifyUrl: "https://www.dicoding.com/certificates/JLX1VOW0JZ72",
   },
 ];

@@ -5,6 +5,7 @@ export type Project = {
   category: string;
   status: "Live" | "Building" | "Exploration" | "Temporarily Offline";
   tags: string[];
+  image?: string;
   href?: string;
   availabilityNote?: string;
 };

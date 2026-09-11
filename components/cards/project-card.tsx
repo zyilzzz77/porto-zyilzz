@@ -19,11 +19,23 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
         <span className="absolute left-5 top-5 z-10 font-mono text-xs text-[var(--muted)]">
           0{index + 1} / {project.category}
         </span>
-        <div className="project-window" aria-hidden="true">
-          <div className="project-line accent" />
-          <div className="project-line w-4/5" />
-          <div className="project-line w-2/3" />
-        </div>
+        {project.image ? (
+          <img
+            src={project.image}
+            alt={`Preview ${project.title}`}
+            width={1600}
+            height={900}
+            loading="lazy"
+            decoding="async"
+            className="project-preview"
+          />
+        ) : (
+          <div className="project-window" aria-hidden="true">
+            <div className="project-line accent" />
+            <div className="project-line w-4/5" />
+            <div className="project-line w-2/3" />
+          </div>
+        )}
       </div>
       <div className="p-6 sm:p-7">
         <div className="flex flex-col items-start gap-3 sm:flex-row sm:items-center sm:justify-between">

@@ -1285,6 +1285,14 @@ body.is-route-entering .page-stage {
   width: 100%;
 }
 
+.project-preview {
+  height: 100%;
+  inset: 0;
+  object-fit: cover;
+  position: absolute;
+  width: 100%;
+}
+
 .cta-panel {
   background:
     radial-gradient(circle at 84% 10%, var(--decorative-glow), transparent 25%),
