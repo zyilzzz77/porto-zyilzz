@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { projects } from "@/data/portfolio";
 import { Typewriter } from "@/components/ui/typewriter";
 import { getContentUpdatedAt } from "@/lib/content-meta";
-import { ogImage } from "@/lib/seo";
+import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -14,21 +14,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/projects",
   },
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: "Projects Haqqi AnnaZili",
     description:
       "Platform ekstrakurikuler sekolah, layanan temp mail, arsip media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video karya Haqqi AnnaZili.",
-    type: "website",
     url: "/projects",
-    images: [ogImage],
-  },
-  twitter: {
-    card: "summary_large_image",
+  }),
+  twitter: pageTwitter({
     title: "Projects Haqqi AnnaZili",
     description:
       "Lima produk web karya Haqqi AnnaZili: exisel.web.id, mailtemps.space, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
-    images: [ogImage.url],
-  },
+  }),
 };
 
 export default function ProjectsPage() {
@@ -98,6 +94,7 @@ export default function ProjectsPage() {
               <Typewriter
                 words={["experiments.", "production.", "learning.", "shipped."]}
                 className="text-[var(--text)]"
+                startWithFirstWord
               />
             </span>
           </h1>

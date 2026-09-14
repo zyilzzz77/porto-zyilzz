@@ -3,6 +3,7 @@ import Link from "next/link";
 import { JsonLd } from "@/components/seo/json-ld";
 import { profile } from "@/data/portfolio";
 import { getContentUpdatedAt } from "@/lib/content-meta";
+import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     "SIJA SMKN 69 Jakarta",
     "Haqqi AnnaZili SMKN 69 Jakarta",
   ],
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: "SMKN 69 Jakarta: Profil, Lokasi & SIJA",
     description:
       "Profil SMK Negeri 69 Jakarta, lokasi, konsentrasi SIJA, dan perjalanan Haqqi AnnaZili sebagai siswa.",
@@ -34,14 +35,13 @@ export const metadata: Metadata = {
         alt: "Gedung dan area SMK Negeri 69 Jakarta",
       },
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
+  }),
+  twitter: pageTwitter({
     title: "SMKN 69 Jakarta: Profil, Lokasi & SIJA",
     description:
       "Profil SMK Negeri 69 Jakarta, lokasi, konsentrasi SIJA, dan perjalanan Haqqi AnnaZili sebagai siswa.",
     images: ["/school/smkn-69-jakarta-campus.webp"],
-  },
+  }),
 };
 
 const officialWebsite = "https://www.smkn69jkt.sch.id/";

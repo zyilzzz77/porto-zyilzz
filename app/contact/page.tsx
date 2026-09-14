@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/json-ld";
 import { profile } from "@/data/portfolio";
-import { ogImage } from "@/lib/seo";
+import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -11,21 +11,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/contact",
   },
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: "Hubungi Haqqi AnnaZili",
     description:
       "Kontak resmi Haqqi AnnaZili untuk kolaborasi dan percakapan seputar teknologi.",
-    type: "website",
     url: "/contact",
-    images: [ogImage],
-  },
-  twitter: {
-    card: "summary_large_image",
+  }),
+  twitter: pageTwitter({
     title: "Hubungi Haqqi AnnaZili",
     description:
       "Kontak resmi Haqqi AnnaZili untuk kolaborasi dan percakapan seputar teknologi.",
-    images: [ogImage.url],
-  },
+  }),
 };
 
 export default function ContactPage() {

@@ -6,7 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { AmbientSky } from "@/components/ui/ambient-sky";
 import { RouteTransition } from "@/components/ui/route-transition";
-import { ogImage } from "@/lib/seo";
+import { ogImage, siteName } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 const themeInitializationScript = `
@@ -88,7 +88,7 @@ export function generateMetadata(): Metadata {
       type: "website",
       locale: "id_ID",
       url: siteUrl,
-      siteName: "Haqqi AnnaZili Portfolio",
+      siteName,
       images: [ogImage],
     },
     twitter: {

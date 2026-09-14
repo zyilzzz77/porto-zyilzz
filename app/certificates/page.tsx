@@ -4,7 +4,7 @@ import { JsonLd } from "@/components/seo/json-ld";
 import { certificates } from "@/data/portfolio";
 import { Typewriter } from "@/components/ui/typewriter";
 import { getContentUpdatedAt } from "@/lib/content-meta";
-import { ogImage } from "@/lib/seo";
+import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -14,21 +14,17 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/certificates",
   },
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: "Sertifikat Haqqi AnnaZili",
     description:
       "Koleksi sertifikat course Haqqi AnnaZili di bidang AI, data, cloud, dan programming.",
-    type: "website",
     url: "/certificates",
-    images: [ogImage],
-  },
-  twitter: {
-    card: "summary_large_image",
+  }),
+  twitter: pageTwitter({
     title: "Sertifikat Haqqi AnnaZili",
     description:
       "Koleksi sertifikat course Haqqi AnnaZili di bidang AI, data, cloud, dan programming.",
-    images: [ogImage.url],
-  },
+  }),
 };
 
 export default function CertificatesPage() {
@@ -118,6 +114,7 @@ export default function CertificatesPage() {
                   "tapi jejak.",
                 ]}
                 className="text-[var(--text)]"
+                startWithFirstWord
               />
             </span>
           </h1>

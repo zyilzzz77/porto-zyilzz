@@ -15,7 +15,7 @@ import {
   projects,
 } from "@/data/portfolio";
 import { getContentUpdatedAt } from "@/lib/content-meta";
-import { ogImage } from "@/lib/seo";
+import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -35,21 +35,17 @@ export const metadata: Metadata = {
     "siswa SIJA SMKN 69 Jakarta",
     "web developer Jakarta",
   ],
-  openGraph: {
+  openGraph: pageOpenGraph({
     title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
     description:
       "Haqqi AnnaZili adalah siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
-    type: "website",
     url: "/",
-    images: [ogImage],
-  },
-  twitter: {
-    card: "summary_large_image",
+  }),
+  twitter: pageTwitter({
     title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
     description:
       "Siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
-    images: [ogImage.url],
-  },
+  }),
 };
 
 export default function Home() {

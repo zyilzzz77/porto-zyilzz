@@ -8,6 +8,7 @@ type TypewriterProps = {
   deleteSpeed?: number;
   holdDuration?: number;
   className?: string;
+  startWithFirstWord?: boolean;
 };
 
 type State = {
@@ -43,12 +44,17 @@ function reducer(state: State, action: Action): State {
   }
 }
 
-const initialState: State = {
-  text: "",
-  wordIndex: 0,
-  isDeleting: false,
-  hasStarted: false,
-};
+function createInitialState(
+  words: string[],
+  startWithFirstWord: boolean,
+): State {
+  return {
+    text: startWithFirstWord ? (words[0] ?? "") : "",
+    wordIndex: 0,
+    isDeleting: false,
+    hasStarted: false,
+  };
+}
 
 export function Typewriter({
   words,
@@ -56,8 +62,13 @@ export function Typewriter({
   deleteSpeed = 40,
   holdDuration = 1500,
   className,
+  startWithFirstWord = false,
 }: TypewriterProps) {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [state, dispatch] = useReducer(
+    reducer,
+    { words, startWithFirstWord },
+    (init) => createInitialState(init.words, init.startWithFirstWord),
+  );
   const containerRef = useRef<HTMLSpanElement | null>(null);
 
   useEffect(() => {
@@ -132,8 +143,6 @@ export function Typewriter({
     holdDuration,
   ]);
 
-  const isFirstRender = !state.hasStarted && state.text === "";
-
   return (
     <span
       ref={containerRef}
@@ -141,8 +150,8 @@ export function Typewriter({
       aria-live="polite"
       aria-label={words.join(", ")}
     >
-      <span aria-hidden="true">{isFirstRender ? "" : state.text}</span>
-      {!isFirstRender && (
+      <span aria-hidden="true">{state.text}</span>
+      {state.hasStarted && (
         <span className="typewriter-caret" aria-hidden="true" />
       )}
     </span>
