@@ -3,6 +3,7 @@ import { ExperienceCard } from "@/components/cards/experience-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { experiences } from "@/data/portfolio";
 import { Typewriter } from "@/components/ui/typewriter";
+import { ogImage } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -24,6 +25,14 @@ export const metadata: Metadata = {
       "Perjalanan Haqqi AnnaZili di SMKN 69 Jakarta, full-stack development, dan pembelajaran AI.",
     type: "website",
     url: "/experience",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Journey & Pendidikan Haqqi AnnaZili",
+    description:
+      "Perjalanan Haqqi AnnaZili sebagai siswa SIJA di SMKN 69 Jakarta, full-stack development, dan pembelajaran AI.",
+    images: [ogImage.url],
   },
 };
 

@@ -3,6 +3,8 @@ import { ProjectCard } from "@/components/cards/project-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { projects } from "@/data/portfolio";
 import { Typewriter } from "@/components/ui/typewriter";
+import { getContentUpdatedAt } from "@/lib/content-meta";
+import { ogImage } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -18,11 +20,20 @@ export const metadata: Metadata = {
       "Platform ekstrakurikuler sekolah, layanan temp mail, arsip media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video karya Haqqi AnnaZili.",
     type: "website",
     url: "/projects",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Projects Haqqi AnnaZili",
+    description:
+      "Lima produk web karya Haqqi AnnaZili: exisel.web.id, mailtemps.space, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+    images: [ogImage.url],
   },
 };
 
 export default function ProjectsPage() {
   const siteUrl = getSiteUrl();
+  const pageUrl = new URL("/projects", siteUrl).toString();
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -37,14 +48,43 @@ export default function ProjectsPage() {
         "@type": "ListItem",
         position: 2,
         name: "Projects",
-        item: new URL("/projects", siteUrl).toString(),
+        item: pageUrl,
       },
     ],
+  };
+  const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: "Proyek web Haqqi AnnaZili",
+    description:
+      "Kumpulan proyek web yang dibangun Haqqi AnnaZili, termasuk platform ekstrakurikuler, layanan temp mail, arsip media, dan integrasi pembayaran.",
+    inLanguage: "id-ID",
+    dateModified: getContentUpdatedAt().toISOString(),
+    isPartOf: {
+      "@id": new URL("/#website", siteUrl).toString(),
+    },
+    about: {
+      "@id": new URL("/#person", siteUrl).toString(),
+    },
+    mainEntity: {
+      "@type": "ItemList",
+      "@id": `${pageUrl}#itemlist`,
+      numberOfItems: projects.length,
+      itemListElement: projects.map((project, index) => ({
+        "@type": "ListItem",
+        position: index + 1,
+        name: project.title,
+        description: project.description,
+        ...(project.href ? { url: project.href } : {}),
+      })),
+    },
   };
 
   return (
     <section className="section-pad pt-36 sm:pt-44">
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={[breadcrumbJsonLd, collectionJsonLd]} />
       <div className="content-wrap">
         <div data-scroll-reveal>
           <p className="eyebrow">

@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { AmbientSky } from "@/components/ui/ambient-sky";
 import { RouteTransition } from "@/components/ui/route-transition";
+import { ogImage } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 const themeInitializationScript = `
@@ -68,9 +69,14 @@ export function generateMetadata(): Metadata {
         "max-video-preview": -1,
       },
     },
-    verification: process.env.GOOGLE_SITE_VERIFICATION
-      ? { google: process.env.GOOGLE_SITE_VERIFICATION }
-      : undefined,
+    verification: {
+      ...(process.env.GOOGLE_SITE_VERIFICATION
+        ? { google: process.env.GOOGLE_SITE_VERIFICATION }
+        : {}),
+      ...(process.env.BING_SITE_VERIFICATION
+        ? { other: { "msvalidate.01": process.env.BING_SITE_VERIFICATION } }
+        : {}),
+    },
     icons: {
       icon: "/favicon.svg",
       shortcut: "/favicon.svg",
@@ -83,21 +89,14 @@ export function generateMetadata(): Metadata {
       locale: "id_ID",
       url: siteUrl,
       siteName: "Haqqi AnnaZili Portfolio",
-      images: [
-        {
-          url: new URL("/og.png", siteUrl),
-          width: 1728,
-          height: 909,
-          alt: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
-        },
-      ],
+      images: [ogImage],
     },
     twitter: {
       card: "summary_large_image",
       title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
       description:
         "Portfolio Haqqi AnnaZili, siswa SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
-      images: [new URL("/og.png", siteUrl)],
+      images: [ogImage.url],
     },
     other: {
       "geo.region": "ID-JK",
@@ -112,21 +111,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   const siteUrl = getSiteUrl();
+  const personId = new URL("/#person", siteUrl).toString();
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     "@id": new URL("/#website", siteUrl).toString(),
     url: siteUrl.toString(),
     name: "Haqqi AnnaZili Portfolio",
-    alternateName: "Portfolio Haqqi AnnaZili",
+    alternateName: ["Portfolio Haqqi AnnaZili", "Haqqi AnnaZili"],
     description:
       "Portfolio pribadi Haqqi AnnaZili tentang pengembangan web, AI, proyek, sertifikat, dan perjalanan di SMKN 69 Jakarta.",
     inLanguage: ["id-ID", "en"],
-    publisher: {
-      "@type": "Person",
-      name: "Haqqi AnnaZili",
-      url: siteUrl.toString(),
-    },
+    copyrightHolder: { "@id": personId },
+    publisher: { "@id": personId },
+    about: { "@id": personId },
   };
 
   return (

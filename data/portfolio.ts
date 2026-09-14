@@ -2,6 +2,7 @@ import type { Certificate, Experience, Project } from "@/types";
 
 export const profile = {
   name: "Haqqi AnnaZili",
+  alternateNames: ["Haqqi Annazili", "Haqqi Anna Zili"],
   location: "Jakarta, Indonesia",
   role: "Developer & AI Explorer",
   email: "enzilaja@gmail.com",

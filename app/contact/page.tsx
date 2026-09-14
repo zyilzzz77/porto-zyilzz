@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { JsonLd } from "@/components/seo/json-ld";
 import { profile } from "@/data/portfolio";
+import { ogImage } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -16,6 +17,14 @@ export const metadata: Metadata = {
       "Kontak resmi Haqqi AnnaZili untuk kolaborasi dan percakapan seputar teknologi.",
     type: "website",
     url: "/contact",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Hubungi Haqqi AnnaZili",
+    description:
+      "Kontak resmi Haqqi AnnaZili untuk kolaborasi dan percakapan seputar teknologi.",
+    images: [ogImage.url],
   },
 };
 

@@ -14,6 +14,8 @@ import {
   profile,
   projects,
 } from "@/data/portfolio";
+import { getContentUpdatedAt } from "@/lib/content-meta";
+import { ogImage } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -39,18 +41,29 @@ export const metadata: Metadata = {
       "Haqqi AnnaZili adalah siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
     type: "website",
     url: "/",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
+    description:
+      "Siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
+    images: [ogImage.url],
   },
 };
 
 export default function Home() {
   const siteUrl = getSiteUrl();
   const personId = new URL("/#person", siteUrl).toString();
+  const credentials = certificates.filter((certificate) => certificate.verifyUrl);
   const personJsonLd = {
     "@context": "https://schema.org",
     "@type": "Person",
     "@id": personId,
-    name: "Haqqi AnnaZili",
+    name: profile.name,
+    alternateName: profile.alternateNames,
     url: siteUrl.toString(),
+    mainEntityOfPage: siteUrl.toString(),
     image: new URL("/og.png", siteUrl).toString(),
     jobTitle: "SIJA Student & Web Developer",
     description:
@@ -67,11 +80,7 @@ export default function Home() {
       alternateName: "SMKN 69 Jakarta",
       url: "https://www.smkn69jkt.sch.id/",
     },
-    alumniOf: {
-      "@type": "EducationalOrganization",
-      name: "SMK Negeri 69 Jakarta",
-      url: "https://www.smkn69jkt.sch.id/",
-    },
+    knowsLanguage: ["id", "en"],
     knowsAbout: [
       "Web Development",
       "Programming",
@@ -81,6 +90,16 @@ export default function Home() {
       "TypeScript",
       "Python",
     ],
+    award: certificates[0].title,
+    hasCredential: credentials.map((certificate) => ({
+      "@type": "EducationalOccupationalCredential",
+      name: certificate.title,
+      url: certificate.verifyUrl,
+      recognizedBy: {
+        "@type": "Organization",
+        name: certificate.issuer,
+      },
+    })),
   };
   const profilePageJsonLd = {
     "@context": "https://schema.org",
@@ -90,8 +109,11 @@ export default function Home() {
     name: "Portfolio Haqqi AnnaZili",
     description:
       "Profil, proyek, sertifikat, dan perjalanan belajar Haqqi AnnaZili.",
-    dateModified: "2026-07-26",
+    dateModified: getContentUpdatedAt().toISOString(),
     inLanguage: "id-ID",
+    isPartOf: {
+      "@id": new URL("/#website", siteUrl).toString(),
+    },
     mainEntity: {
       "@id": personId,
     },
@@ -99,6 +121,7 @@ export default function Home() {
   const projectListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
+    "@id": new URL("/#projects", siteUrl).toString(),
     name: "Proyek web Haqqi AnnaZili",
     itemListElement: projects.map((project, index) => ({
       "@type": "ListItem",
@@ -144,6 +167,19 @@ export default function Home() {
               reliable digital products
             </span>{" "}
             through full-stack engineering and applied AI.
+          </p>
+          <p
+            className="mt-3 max-w-2xl text-sm leading-7 text-[var(--muted)]"
+            data-scroll-reveal
+          >
+            Siswa konsentrasi keahlian SIJA di{" "}
+            <Link
+              href="/experience/smkn-69-jakarta"
+              className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+            >
+              SMKN 69 Jakarta
+            </Link>
+            .
           </p>
 
           <div className="mt-6 flex flex-wrap gap-3" data-scroll-reveal>

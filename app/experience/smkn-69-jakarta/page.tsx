@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { JsonLd } from "@/components/seo/json-ld";
+import { profile } from "@/data/portfolio";
+import { getContentUpdatedAt } from "@/lib/content-meta";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
@@ -32,6 +34,13 @@ export const metadata: Metadata = {
         alt: "Gedung dan area SMK Negeri 69 Jakarta",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "SMKN 69 Jakarta: Profil, Lokasi & SIJA",
+    description:
+      "Profil SMK Negeri 69 Jakarta, lokasi, konsentrasi SIJA, dan perjalanan Haqqi AnnaZili sebagai siswa.",
+    images: ["/school/smkn-69-jakarta-campus.webp"],
   },
 };
 
@@ -76,7 +85,12 @@ export default function Smkn69JakartaPage() {
     "@type": "School",
     "@id": schoolId,
     name: "SMK Negeri 69 Jakarta",
-    alternateName: ["SMKN 69 Jakarta", "SMK N 69 Jakarta"],
+    alternateName: [
+      "SMKN 69 Jakarta",
+      "SMK N 69 Jakarta",
+      "SMK 69 Jakarta",
+      "SMKN 69",
+    ],
     url: officialWebsite,
     sameAs: [officialWebsite, governmentProfile],
     identifier: {
@@ -113,14 +127,17 @@ export default function Smkn69JakartaPage() {
     description:
       "Profil SMKN 69 Jakarta, lokasi sekolah, program SIJA, dan perjalanan Haqqi AnnaZili sebagai siswa.",
     inLanguage: "id-ID",
-    dateModified: "2026-07-26",
+    dateModified: getContentUpdatedAt().toISOString(),
+    isPartOf: {
+      "@id": new URL("/#website", siteUrl).toString(),
+    },
     about: {
       "@id": schoolId,
     },
     author: {
       "@type": "Person",
       "@id": new URL("/#person", siteUrl).toString(),
-      name: "Haqqi AnnaZili",
+      name: profile.name,
       url: siteUrl.toString(),
     },
   };

@@ -2,10 +2,12 @@ import Link from "next/link";
 import { profile } from "@/data/portfolio";
 
 export function SiteFooter() {
+  const currentYear = new Date().getFullYear();
+
   return (
     <footer className="border-t border-[var(--line)] py-8">
       <div className="content-wrap flex flex-col gap-4 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-        <p>© 2026 Haqqi AnnaZili. Built with intention.</p>
+        <p>© {currentYear} Haqqi AnnaZili. Built with intention.</p>
         <div className="flex gap-5">
           <a
             href={profile.instagram.url}

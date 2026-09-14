@@ -1,15 +1,18 @@
 import type { MetadataRoute } from "next";
+import { getContentUpdatedAt } from "@/lib/content-meta";
 import { getSiteUrl } from "@/lib/site-url";
 
+export const revalidate = 86400;
+
 const routes = [
-  { path: "/", priority: 1, changeFrequency: "weekly" as const },
+  { path: "/", priority: 1, changeFrequency: "daily" as const },
   {
     path: "/experience/smkn-69-jakarta",
     priority: 0.9,
     changeFrequency: "monthly" as const,
   },
-  { path: "/experience", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/projects", priority: 0.8, changeFrequency: "monthly" as const },
+  { path: "/experience", priority: 0.8, changeFrequency: "monthly" as const },
   {
     path: "/certificates",
     priority: 0.7,
@@ -20,10 +23,11 @@ const routes = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
+  const lastModified = getContentUpdatedAt();
 
   return routes.map((route) => ({
     url: new URL(route.path, siteUrl).toString(),
-    lastModified: new Date("2026-07-26T00:00:00+07:00"),
+    lastModified,
     changeFrequency: route.changeFrequency,
     priority: route.priority,
     ...(route.path === "/experience/smkn-69-jakarta"
