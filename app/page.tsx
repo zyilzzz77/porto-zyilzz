@@ -60,7 +60,7 @@ export default function Home() {
     alternateName: profile.alternateNames,
     url: siteUrl.toString(),
     mainEntityOfPage: siteUrl.toString(),
-    image: new URL("/og.png", siteUrl).toString(),
+    image: new URL("/og.jpg", siteUrl).toString(),
     jobTitle: "SIJA Student & Web Developer",
     description:
       "Haqqi AnnaZili adalah siswa jurusan SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",

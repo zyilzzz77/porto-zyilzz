@@ -3,9 +3,10 @@ import type { Metadata } from "next";
 export const siteName = "Haqqi AnnaZili Portfolio";
 
 export const ogImage = {
-  url: "/og.png",
-  width: 1728,
-  height: 909,
+  url: "/og.jpg",
+  width: 1200,
+  height: 630,
+  type: "image/jpeg",
   alt: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
 };
 

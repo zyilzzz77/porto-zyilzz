@@ -29,9 +29,10 @@ export const metadata: Metadata = {
     url: "/experience/smkn-69-jakarta",
     images: [
       {
-        url: "/school/smkn-69-jakarta-campus.webp",
-        width: 1600,
-        height: 2130,
+        url: "/school/smkn-69-jakarta-campus-og.jpg",
+        width: 1200,
+        height: 630,
+        type: "image/jpeg",
         alt: "Gedung dan area SMK Negeri 69 Jakarta",
       },
     ],
@@ -40,7 +41,7 @@ export const metadata: Metadata = {
     title: "SMKN 69 Jakarta: Profil, Lokasi & SIJA",
     description:
       "Profil SMK Negeri 69 Jakarta, lokasi, konsentrasi SIJA, dan perjalanan Haqqi AnnaZili sebagai siswa.",
-    images: ["/school/smkn-69-jakarta-campus.webp"],
+    images: ["/school/smkn-69-jakarta-campus-og.jpg"],
   }),
 };
 
