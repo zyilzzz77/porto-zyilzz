@@ -231,6 +231,17 @@ export const certificates: Certificate[] = [
     file: "/certificates/sertifikat-haqqiannazili.pdf",
   },
   {
+    slug: "fundamental-associate-network-administrator-dta",
+    title: "Fundamental of Associate Network Administrator - Nasional",
+    issuer: "Digital Talent Scholarship · Komdigi",
+    issuedAt: "13 September 2026",
+    credential: "21212087840-13507/DTA/BLSDM.Komdigi/2026",
+    category: "Cloud",
+    image:
+      "/certificates/fundamental-associate-network-administrator-dta-preview.png",
+    file: "/certificates/fundamental-associate-network-administrator-dta.pdf",
+  },
+  {
     slug: "graphic-design-uiux-series",
     title: "Graphic Design & UI/UX Series (Online Event)",
     issuer: "Komunitas Desain & UI/UX",
