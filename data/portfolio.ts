@@ -231,6 +231,16 @@ export const certificates: Certificate[] = [
     file: "/certificates/sertifikat-haqqiannazili.pdf",
   },
   {
+    slug: "mooc-pelatihan-uiux-bkpm",
+    title: "MOOC Pelatihan UI/UX - Self Learning",
+    issuer: "Kementerian Investasi dan Hilirisasi · BKPM",
+    issuedAt: "16 September 2026",
+    credential: "8253/MOOC/KEMINVESHIL-BKPM/2026",
+    category: "Programming",
+    image: "/certificates/mooc-pelatihan-uiux-bkpm-preview.png",
+    file: "/certificates/mooc-pelatihan-uiux-bkpm.pdf",
+  },
+  {
     slug: "fundamental-associate-network-administrator-dta",
     title: "Fundamental of Associate Network Administrator - Nasional",
     issuer: "Digital Talent Scholarship · Komdigi",
