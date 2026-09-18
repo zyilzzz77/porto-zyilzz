@@ -324,14 +324,14 @@ export default function Home() {
           <SectionHeading
             eyebrow="Selected work"
             title="Produk yang pernah saya bangun."
-            description="Tiga aplikasi web pilihan yang mengeksplorasi pengarsipan media, integrasi pembayaran, dan pemrosesan konten digital."
+            description="Tiga produk web live: platform ekstrakurikuler sekolah, layanan email sekali pakai, dan media pembelajaran sejarah interaktif."
             action={{ href: "/projects", label: "Semua proyek" }}
           />
           <div
             className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
             data-scroll-reveal-stagger
           >
-            {projects.slice(0, 4).map((project, index) => (
+            {projects.slice(0, 3).map((project, index) => (
               <ProjectCard key={project.slug} project={project} index={index} />
             ))}
           </div>

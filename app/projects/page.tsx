@@ -10,20 +10,20 @@ import { getSiteUrl } from "@/lib/site-url";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Proyek web Haqqi AnnaZili: exisel.web.id, mailtemps.space, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+    "Proyek web Haqqi AnnaZili: exisel.web.id, mailtemps.space, Jejak Bangsa, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: pageOpenGraph({
     title: "Projects Haqqi AnnaZili",
     description:
-      "Platform ekstrakurikuler sekolah, layanan temp mail, arsip media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video karya Haqqi AnnaZili.",
+      "Platform ekstrakurikuler sekolah, layanan temp mail, media pembelajaran sejarah interaktif, arsip media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video karya Haqqi AnnaZili.",
     url: "/projects",
   }),
   twitter: pageTwitter({
     title: "Projects Haqqi AnnaZili",
     description:
-      "Lima produk web karya Haqqi AnnaZili: exisel.web.id, mailtemps.space, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+      "Enam produk web karya Haqqi AnnaZili: exisel.web.id, mailtemps.space, Jejak Bangsa, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
   }),
 };
 
@@ -99,14 +99,14 @@ export default function ProjectsPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Lima produk web yang saya bangun untuk kebutuhan sekolah, email
-            sekali pakai, pengarsipan media, integrasi pembayaran, dan
-            pemrosesan konten digital.
+            Enam produk web yang saya bangun untuk kebutuhan sekolah, email
+            sekali pakai, media pembelajaran sejarah, pengarsipan media,
+            integrasi pembayaran, dan pemrosesan konten digital.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            exisel.web.id dan mailtemps.space dapat dicoba langsung. Beberapa
-            demo proyek lainnya sedang offline sementara karena masa layanan
-            server belum diperpanjang.
+            exisel.web.id, mailtemps.space, dan Jejak Bangsa dapat dicoba
+            langsung. Beberapa demo proyek lainnya sedang offline sementara
+            karena masa layanan server belum diperpanjang.
           </p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

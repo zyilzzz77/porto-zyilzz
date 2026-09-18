@@ -147,6 +147,17 @@ export const projects: Project[] = [
     href: "https://mailtemps.space/",
   },
   {
+    slug: "jejak-bangsa",
+    title: "Jejak Bangsa",
+    description:
+      "Media pembelajaran sejarah interaktif tentang Pergerakan Nasional Indonesia 1900-1928, lengkap dengan materi singkat, kumpulan video, e-book 15 halaman, dan kuis 10 soal yang dinilai otomatis.",
+    category: "Learning Platform",
+    status: "Live",
+    tags: ["Interactive Learning", "History Material", "E-book", "Auto-Graded Quiz"],
+    image: "/projects/web-mapel-namsel.png",
+    href: "https://web-mapel-namsel.vercel.app/",
+  },
+  {
     slug: "archivejkt48-app",
     title: "archivejkt48.app",
     description:
