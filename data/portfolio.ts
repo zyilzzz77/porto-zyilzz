@@ -20,15 +20,29 @@ export const profile = {
   },
 };
 
-export const skills = [
-  "Next.js",
-  "TypeScript",
-  "Tailwind CSS",
+export const hardSkills = [
+  "Web Development",
+  "Frontend Development",
+  "Backend & API",
+  "TypeScript & JavaScript",
   "Python",
+  "Database (SQL & NoSQL)",
+  "Cloud & Deployment",
+  "Computer Networking",
   "Machine Learning",
   "Generative AI",
-  "Cloud",
   "Automation",
+];
+
+export const softSkills = [
+  "Problem Solving",
+  "Berpikir Kritis",
+  "Cepat Belajar",
+  "Manajemen Waktu",
+  "Kerja Sama Tim",
+  "Komunikasi",
+  "Teliti & Rapi",
+  "Adaptif",
 ];
 
 export const technologies = [
@@ -240,6 +254,14 @@ export const certificates: Certificate[] = [
     category: "AI & Data",
     image: "/certificates/sertifikat-haqqiannazili-preview.png",
     file: "/certificates/sertifikat-haqqiannazili.pdf",
+  },
+  {
+    slug: "ai-career-readiness-asean-foundation",
+    title: "AI Career Readiness Training",
+    issuer: "ASEAN Foundation · LinkedIn",
+    issuedAt: "22 September 2026",
+    category: "AI & Data",
+    image: "/certificates/ai-career-readiness-asean-foundation.png",
   },
   {
     slug: "mooc-pelatihan-uiux-bkpm",

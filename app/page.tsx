@@ -5,12 +5,14 @@ import { ExperienceCard } from "@/components/cards/experience-card";
 import { ProjectCard } from "@/components/cards/project-card";
 import { GitHubActivity } from "@/components/github/github-activity";
 import { JsonLd } from "@/components/seo/json-ld";
+import { SkillsSection } from "@/components/skills/skills-section";
 import { TechStack } from "@/components/tech/tech-stack";
 import { SectionHeading } from "@/components/ui/section-heading";
 import { HeroHeading } from "@/components/ui/hero-heading";
 import {
   certificates,
   experiences,
+  hardSkills,
   profile,
   projects,
 } from "@/data/portfolio";
@@ -78,13 +80,11 @@ export default function Home() {
     },
     knowsLanguage: ["id", "en"],
     knowsAbout: [
-      "Web Development",
+      ...hardSkills,
       "Programming",
-      "Networking",
       "Artificial Intelligence",
       "Next.js",
-      "TypeScript",
-      "Python",
+      "React",
     ],
     award: certificates[0].title,
     hasCredential: credentials.map((certificate) => ({
@@ -318,6 +318,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <SkillsSection />
 
       <section className="section-pad">
         <div className="content-wrap">
