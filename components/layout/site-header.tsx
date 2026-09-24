@@ -114,17 +114,8 @@ export function SiteHeader() {
   return (
     <>
       <header className="absolute inset-x-0 top-4 z-[70] px-4 sm:top-5">
-        <div className="mx-auto w-full max-w-[640px] rounded-full border border-[var(--line)] bg-[color-mix(in_srgb,var(--surface)_88%,transparent)] p-1 shadow-lg shadow-black/10 backdrop-blur-xl sm:w-fit sm:max-w-[calc(100%_-_2rem)]">
-          <div className="flex items-center justify-between sm:justify-center sm:gap-1">
-            <Link
-              href="/"
-              onClick={() => setMenuOpen(false)}
-              className="flex h-9 w-9 items-center justify-center rounded-full bg-[var(--text)] font-mono text-[0.68rem] font-black tracking-[-0.08em] text-[var(--background)] sm:hidden"
-              aria-label="Haqqi AnnaZili - Home"
-            >
-              HA
-            </Link>
-
+        <div className="ml-auto w-fit rounded-full border border-[var(--line)] bg-[color-mix(in_srgb,var(--surface)_88%,transparent)] p-1 shadow-lg shadow-black/10 backdrop-blur-xl sm:mx-auto sm:max-w-[calc(100%_-_2rem)]">
+          <div className="flex items-center gap-2 sm:gap-1">
             <nav
               className="hidden items-center gap-1 sm:flex"
               aria-label="Navigasi utama"
@@ -144,7 +135,7 @@ export function SiteHeader() {
               ))}
             </nav>
 
-            <div className="flex items-center gap-1">
+            <div className="flex items-center gap-2 sm:gap-1">
               <Link
                 href="/contact"
                 className="hidden rounded-full bg-[var(--text)] px-3.5 py-1.5 text-[0.8rem] font-semibold text-[var(--background)] sm:block"
@@ -154,7 +145,7 @@ export function SiteHeader() {
               <button
                 type="button"
                 onClick={toggleTheme}
-                className="theme-toggle"
+                className="header-action flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line)] transition-colors hover:border-[var(--muted)] sm:h-9 sm:w-9"
                 aria-label="Ganti tema terang atau gelap"
                 title="Ganti tema"
               >
@@ -177,14 +168,26 @@ export function SiteHeader() {
               <button
                 type="button"
                 onClick={() => setMenuOpen((open) => !open)}
-                className="flex h-9 w-9 items-center justify-center rounded-full border border-[var(--line)] text-sm sm:hidden"
-                aria-label={
-                  menuOpen ? "Tutup navigasi" : "Buka navigasi"
-                }
+                className="header-action flex h-11 w-11 items-center justify-center rounded-full border border-[var(--line)] transition-colors hover:border-[var(--muted)] sm:hidden"
+                aria-label={menuOpen ? "Tutup navigasi" : "Buka navigasi"}
                 aria-controls="mobile-navigation"
                 aria-expanded={menuOpen}
               >
-                {menuOpen ? "×" : "≡"}
+                <svg
+                  className="h-5 w-5 sm:h-[1.05rem] sm:w-[1.05rem]"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeLinecap="round"
+                  strokeWidth={1.7}
+                  aria-hidden="true"
+                >
+                  {menuOpen ? (
+                    <path d="M6.6 6.6l10.8 10.8M17.4 6.6L6.6 17.4" />
+                  ) : (
+                    <path d="M4 7.5h16M4 12h16M4 16.5h16" />
+                  )}
+                </svg>
               </button>
             </div>
           </div>
@@ -206,17 +209,7 @@ export function SiteHeader() {
         }`}
         aria-hidden={!menuOpen}
         aria-label="Navigasi mobile"
-        aria-modal={menuOpen ? true : undefined}
-        role="dialog"
       >
-        <div className="mobile-menu-heading">
-          <div>
-            <p className="eyebrow">Navigate</p>
-            <p>Haqqi AnnaZili</p>
-          </div>
-          <span>{String(navigation.length).padStart(2, "0")} pages</span>
-        </div>
-
         <nav className="mobile-menu-links" aria-label="Navigasi mobile utama">
           {navigation.map((item, index) => {
             const active = isActive(item.href);

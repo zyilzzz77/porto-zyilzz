@@ -50,10 +50,12 @@ export function RouteTransition({ children }: RouteTransitionProps) {
     const revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          entry.target.classList.toggle(
-            "is-scroll-visible",
-            entry.isIntersecting,
-          );
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("is-scroll-visible");
+          revealObserver.unobserve(entry.target);
         });
       },
       {

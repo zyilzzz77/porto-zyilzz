@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ExperienceCard } from "@/components/cards/experience-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { experiences } from "@/data/portfolio";
-import { Typewriter } from "@/components/ui/typewriter";
+import { WordRotator } from "@/components/ui/word-rotator";
 import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -64,7 +64,7 @@ export default function ExperiencePage() {
               Perjalanan yang
               <span className="text-[var(--muted)]">
                 {" "}
-                <Typewriter
+                <WordRotator
                   words={[
                     "terus bertumbuh.",
                     "tak pernah final.",
@@ -72,7 +72,6 @@ export default function ExperiencePage() {
                     "penuh rasa ingin tahu.",
                   ]}
                   className="text-[var(--text)]"
-                  startWithFirstWord
                 />
               </span>
             </h1>

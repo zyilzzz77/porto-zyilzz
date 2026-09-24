@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { CertificateGallery } from "@/components/certificates/certificate-gallery";
 import { JsonLd } from "@/components/seo/json-ld";
 import { certificates } from "@/data/portfolio";
-import { Typewriter } from "@/components/ui/typewriter";
+import { WordRotator } from "@/components/ui/word-rotator";
 import { getContentUpdatedAt } from "@/lib/content-meta";
 import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
@@ -106,7 +106,7 @@ export default function CertificatesPage() {
             Bukti belajar,
             <span className="text-[var(--muted)]">
               {" "}
-              <Typewriter
+              <WordRotator
                 words={[
                   "bukan garis akhir.",
                   "tapi pijakan.",
@@ -114,7 +114,6 @@ export default function CertificatesPage() {
                   "tapi jejak.",
                 ]}
                 className="text-[var(--text)]"
-                startWithFirstWord
               />
             </span>
           </h1>

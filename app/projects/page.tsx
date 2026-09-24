@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { ProjectCard } from "@/components/cards/project-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { projects } from "@/data/portfolio";
-import { Typewriter } from "@/components/ui/typewriter";
+import { WordRotator } from "@/components/ui/word-rotator";
 import { getContentUpdatedAt } from "@/lib/content-meta";
 import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
@@ -91,10 +91,14 @@ export default function ProjectsPage() {
             <span className="text-[var(--muted)]">
               {" "}
               &{" "}
-              <Typewriter
-                words={["experiments.", "production.", "learning.", "shipped."]}
+              <WordRotator
+                words={[
+                  "experiments.",
+                  "production.",
+                  "learning.",
+                  "shipped.",
+                ]}
                 className="text-[var(--text)]"
-                startWithFirstWord
               />
             </span>
           </h1>
