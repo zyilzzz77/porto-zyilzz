@@ -29,13 +29,16 @@ pnpm build
 5. Tambahkan environment variable berikut:
 
    ```text
-   NEXT_PUBLIC_SITE_URL=https://zyilzz.my.id
+   NEXT_PUBLIC_SITE_URL=https://me.lydev.id
    ```
 
    Tanpa variabel tersebut, proyek memakai `VERCEL_PROJECT_PRODUCTION_URL`,
-   lalu jatuh ke `https://zyilzz.my.id` saat production build. Nilai ini
+   lalu jatuh ke `https://me.lydev.id` saat production build. Nilai ini
    penting agar canonical dan sitemap tidak menunjuk ke URL preview deployment.
 6. Deploy.
+7. Tambahkan domain `me.lydev.id` di menu **Domains** Vercel, lalu arahkan
+   `zyilzz.my.id` dan `www.zyilzz.my.id` ke proyek yang sama agar keduanya
+   di-redirect permanen (301) ke `https://me.lydev.id` oleh `next.config.ts`.
 
 ## SEO dan indexing
 
@@ -46,11 +49,11 @@ pnpm build
   (ChatGPT, Perplexity, Gemini). Isinya diambil langsung dari
   `data/portfolio.ts`, jadi tidak perlu diperbarui manual.
 - Canonical dan sitemap memakai `NEXT_PUBLIC_SITE_URL`. Isi variabel ini di
-  Vercel dengan `https://zyilzz.my.id`.
+  Vercel dengan `https://me.lydev.id`.
 - `lastModified` pada sitemap dihitung otomatis dari tanggal berjalan dengan
   revalidasi 24 jam. Schema `dateModified` juga ikut otomatis.
 - Setelah website online dan bisa diakses publik, daftarkan domain ke Google
-  Search Console lalu submit `https://zyilzz.my.id/sitemap.xml`.
+  Search Console lalu submit `https://me.lydev.id/sitemap.xml`.
 - Gunakan URL Inspection untuk meminta indexing halaman `/` dan
   `/experience/smkn-69-jakarta`.
 - Jika Search Console memberi verification token, tambahkan:

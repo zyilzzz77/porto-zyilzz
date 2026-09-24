@@ -1,5 +1,5 @@
 const LOCAL_SITE_URL = "http://localhost:3000";
-const PRODUCTION_SITE_URL = "https://zyilzz.my.id";
+const PRODUCTION_SITE_URL = "https://me.lydev.id";
 
 function withProtocol(value: string) {
   if (/^https?:\/\//i.test(value)) {
