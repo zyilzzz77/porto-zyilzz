@@ -2,6 +2,17 @@
 
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import {
+  clearActiveDonation,
+  isFinalDonationStatus,
+  setActiveDonation,
+  updateActiveDonationStatus,
+  useActiveDonation,
+} from "@/components/donate/active-donation";
+import {
+  DonatePaymentModal,
+  type PaymentPhase,
+} from "@/components/donate/donate-payment-modal";
 
 const PRESET_AMOUNTS = [10_000, 25_000, 50_000, 100_000];
 
@@ -10,29 +21,11 @@ const MAX_DONATION_MESSAGE_LENGTH = 140;
 
 const POLL_INTERVAL_MS = 5_000;
 
-const FINAL_STATUSES = new Set([
-  "PAID",
-  "FAILED",
-  "EXPIRED",
-  "CANCELLED",
-  "REFUNDED",
-]);
-
 const rupiahFormatter = new Intl.NumberFormat("id-ID", {
   style: "currency",
   currency: "IDR",
   maximumFractionDigits: 0,
 });
-
-type CreatedDonation = {
-  orderId: string;
-  status: string;
-  amount: number;
-  fee: number | null;
-  providerAmount: number | null;
-  checkoutUrl: string;
-  expiresAt: string | null;
-};
 
 type DonationFormProps = {
   minimumAmount: number;
@@ -53,9 +46,14 @@ export function DonateForm({
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [donation, setDonation] = useState<CreatedDonation | null>(null);
-  const [status, setStatus] = useState<string | null>(null);
   const [paymentTabBlocked, setPaymentTabBlocked] = useState(false);
+  const [isModalDismissed, setIsModalDismissed] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
+
+  // Order aktif hidup di external store (localStorage) supaya popup bisa
+  // dipulihkan setelah reload tanpa setState di dalam effect.
+  const donation = useActiveDonation();
+  const status = donation?.status ?? null;
 
   const hasCustomAmount = customAmount.trim() !== "";
   const activeAmount = hasCustomAmount
@@ -73,16 +71,17 @@ export function DonateForm({
     donorName.trim().length >= 2 && !amountError && !isSubmitting;
 
   useEffect(() => {
-    if (!donation || FINAL_STATUSES.has(status ?? "")) {
+    if (!donation || isFinalDonationStatus(donation.status)) {
       return;
     }
 
     let cancelled = false;
+    const orderId = donation.orderId;
 
     const poll = async () => {
       try {
         const response = await fetch(
-          `/api/donate/status?order=${encodeURIComponent(donation.orderId)}`,
+          `/api/donate/status?order=${encodeURIComponent(orderId)}`,
           { cache: "no-store" },
         );
 
@@ -96,7 +95,7 @@ export function DonateForm({
           return;
         }
 
-        setStatus(payload.status);
+        updateActiveDonationStatus(orderId, payload.status);
 
         if (payload.status === "PAID") {
           router.refresh();
@@ -113,7 +112,7 @@ export function DonateForm({
       cancelled = true;
       window.clearInterval(interval);
     };
-  }, [donation, status, router]);
+  }, [donation, router]);
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -125,13 +124,9 @@ export function DonateForm({
 
     setIsSubmitting(true);
     setErrorMessage(null);
-    setStatus(null);
-    setDonation(null);
+    setNotice(null);
     setPaymentTabBlocked(false);
-
-    // Tab dibuka di dalam gesture klik, sebelum await, supaya tidak diblokir
-    // popup blocker. Location-nya diisi setelah checkoutUrl diterima.
-    const paymentTab = window.open("about:blank", "_blank");
+    setIsModalDismissed(false);
 
     try {
       const response = await fetch("/api/donate", {
@@ -144,30 +139,66 @@ export function DonateForm({
         }),
       });
 
-      const payload = (await response.json()) as Partial<CreatedDonation> & {
+      const payload = (await response.json()) as {
+        orderId?: string;
+        status?: string;
+        amount?: number;
+        fee?: number | null;
+        providerAmount?: number | null;
+        checkoutUrl?: string;
+        expiresAt?: string | null;
         error?: string;
+        code?: string;
       };
 
-      if (!response.ok || !payload.checkoutUrl) {
-        paymentTab?.close();
-        setErrorMessage(
+      if (!response.ok) {
+        const serverMessage =
           typeof payload.error === "string"
             ? payload.error
-            : "Gagal membuat pembayaran.",
-        );
+            : "Gagal membuat pembayaran.";
+
+        setErrorMessage(serverMessage);
+
+        // Batas order pending tercapai: tampilkan lagi order yang belum
+        // diselesaikan supaya user bisa langsung melunasinya.
+        if (payload.code === "PENDING_LIMIT") {
+          setNotice(serverMessage);
+          setIsModalDismissed(false);
+        }
+
         return;
       }
 
+      if (
+        !payload.orderId ||
+        !payload.checkoutUrl ||
+        typeof payload.amount !== "number"
+      ) {
+        setErrorMessage("Gagal membuat pembayaran.");
+        return;
+      }
+
+      // Popup "memproses" sudah tampil saat menunggu response. Tab checkout
+      // baru dibuka di sini, begitu link pembayarannya tersedia.
+      const paymentTab = window.open(payload.checkoutUrl, "_blank");
+
       if (paymentTab) {
         paymentTab.opener = null;
-        paymentTab.location.href = payload.checkoutUrl;
       } else {
+        // Diblokir popup blocker: modal menyediakan tombol buka manual.
         setPaymentTabBlocked(true);
       }
 
-      setDonation(payload as CreatedDonation);
+      setActiveDonation({
+        orderId: payload.orderId,
+        status: payload.status ?? "PENDING",
+        amount: payload.amount,
+        fee: payload.fee ?? null,
+        providerAmount: payload.providerAmount ?? null,
+        checkoutUrl: payload.checkoutUrl,
+        expiresAt: payload.expiresAt ?? null,
+      });
     } catch {
-      paymentTab?.close();
       setErrorMessage("Gagal menghubungi server. Coba lagi sebentar lagi.");
     } finally {
       setIsSubmitting(false);
@@ -175,13 +206,24 @@ export function DonateForm({
   }
 
   function resetForm() {
-    setDonation(null);
-    setStatus(null);
+    clearActiveDonation();
     setErrorMessage(null);
+    setNotice(null);
     setPaymentTabBlocked(false);
+    setIsModalDismissed(false);
   }
 
   const isPaid = status === "PAID";
+
+  const phase: PaymentPhase | null = isSubmitting
+    ? "processing"
+    : donation
+      ? isPaid
+        ? "paid"
+        : "pending"
+      : null;
+
+  const showModal = phase !== null && !isModalDismissed;
 
   return (
     <form className="donate-form" onSubmit={handleSubmit} noValidate>
@@ -251,11 +293,11 @@ export function DonateForm({
       </fieldset>
 
       <div>
-        <label className="donate-label" htmlFor="donor-message">
+        <label className="donate-label" htmlFor="donate-message">
           Pesan <span className="text-[var(--muted)]">(opsional)</span>
         </label>
         <input
-          id="donor-message"
+          id="donate-message"
           className="donate-input"
           type="text"
           value={message}
@@ -281,71 +323,47 @@ export function DonateForm({
         </p>
       ) : null}
 
-      {donation ? (
+      {donation && isModalDismissed ? (
         <div className="donate-payment-panel" aria-live="polite">
           {isPaid ? (
             <div className="donate-success">
               <p className="eyebrow">Terima kasih</p>
-              <p className="mt-3 text-lg font-semibold">
+              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
                 Donasi {rupiahFormatter.format(donation.amount)} kamu sudah
                 tercatat.
-              </p>
-              <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                Nama kamu sudah masuk ke leaderboard. Terima kasih sudah
-                mendukung.
               </p>
             </div>
           ) : (
             <>
-              <p className="donate-label">
-                {paymentTabBlocked
-                  ? "Halaman pembayaran siap dibuka"
-                  : "Halaman pembayaran terbuka di tab baru"}
-              </p>
+              <p className="donate-label">Pembayaran sedang diproses</p>
               <p className="donate-hint mt-1">
-                Bayar{" "}
-                <span className="text-[var(--text)]">
-                  {rupiahFormatter.format(
-                    donation.providerAmount ?? donation.amount,
-                  )}
-                </span>
-                {donation.fee
-                  ? ` (termasuk biaya layanan ${rupiahFormatter.format(donation.fee)})`
-                  : null}{" "}
-                lewat QRIS di halaman LYDEV Pay.
-                {paymentTabBlocked
-                  ? " Browser memblokir tab otomatis, jadi buka lewat tombol di bawah."
-                  : " Selesaikan pembayaran di tab itu; halaman ini otomatis mendeteksi begitu lunas."}
-              </p>
-
-              <a
-                href={donation.checkoutUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="button button-primary w-full"
-                aria-label="Buka halaman pembayaran LYDEV Pay di tab baru"
-              >
-                Buka halaman pembayaran <span aria-hidden="true">↗</span>
-              </a>
-
-              <p className="donate-hint">
                 Status:{" "}
                 <span className="text-[var(--text)]">
                   {status ?? donation.status}
                 </span>
-                {status === "PENDING" ? " — menunggu pembayaran." : null}
               </p>
-
               <button
                 type="button"
-                onClick={resetForm}
-                className="donate-hint mt-1 underline underline-offset-4 transition hover:text-[var(--text)]"
+                className="button button-primary w-full"
+                onClick={() => setIsModalDismissed(false)}
               >
-                Donasi lagi
+                Lihat pembayaran
               </button>
             </>
           )}
         </div>
+      ) : null}
+
+      {showModal && phase ? (
+        <DonatePaymentModal
+          phase={phase}
+          donation={donation}
+          status={status}
+          paymentTabBlocked={paymentTabBlocked}
+          notice={notice}
+          onClose={() => setIsModalDismissed(true)}
+          onDonateAgain={resetForm}
+        />
       ) : null}
     </form>
   );

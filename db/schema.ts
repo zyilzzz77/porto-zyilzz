@@ -32,6 +32,12 @@ export const donations = pgTable(
     providerAmount: integer("provider_amount"),
     status: text("status").$type<DonationStatus>().notNull().default("PENDING"),
     source: text("source").notNull().default("web"),
+    // Identitas pembuat order dipakai untuk membatasi jumlah pembayaran
+    // pending (anti-abuse). Kombinasi session cookie + IP supaya limit tidak
+    // bisa diakali hanya dengan menghapus cookie atau ganti koneksi.
+    sessionId: text("session_id"),
+    clientIp: text("client_ip"),
+    expiresAt: timestamp("expires_at", { withTimezone: true }),
     createdAt: timestamp("created_at", { withTimezone: true })
       .notNull()
       .defaultNow(),
@@ -40,6 +46,8 @@ export const donations = pgTable(
   (table) => [
     uniqueIndex("donations_order_id_unique").on(table.orderId),
     index("donations_status_paid_at_idx").on(table.status, table.paidAt),
+    index("donations_session_id_idx").on(table.sessionId),
+    index("donations_client_ip_idx").on(table.clientIp),
   ],
 );
 

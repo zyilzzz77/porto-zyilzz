@@ -14,6 +14,13 @@ const LYPAY_CLIENT_HEADERS = {
 export const MIN_DONATION_AMOUNT = 10_000;
 export const MAX_DONATION_AMOUNT = 10_000_000;
 
+/**
+ * Jumlah pembayaran pending (CREATED/PENDING dan belum kedaluwarsa) yang boleh
+ * dimiliki satu sesi/IP sekaligus. Lewat dari ini, order lama harus diselesaikan
+ * atau kedaluwarsa dulu sebelum membuat yang baru — mencegah orang spam order.
+ */
+export const MAX_ACTIVE_PENDING_ORDERS = 2;
+
 export const MAX_DONOR_NAME_LENGTH = 50;
 export const MAX_DONATION_MESSAGE_LENGTH = 140;
 
