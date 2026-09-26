@@ -2,6 +2,15 @@ import crypto from "node:crypto";
 
 const LYPAY_BASE_URL = "https://pay.lydev.id";
 
+/**
+ * Header identitas klien. Sebagian proteksi di depan LYDEV Pay menilai request
+ * dari header ini, dan mengirimnya juga praktik yang baik untuk API server-to-server.
+ */
+const LYPAY_CLIENT_HEADERS = {
+  Accept: "application/json",
+  "User-Agent": "porto-zyilzz/1.0 (+https://me.lydev.id)",
+};
+
 export const MIN_DONATION_AMOUNT = 10_000;
 export const MAX_DONATION_AMOUNT = 10_000_000;
 
@@ -120,6 +129,7 @@ export async function createPayment({
   const response = await fetch(`${LYPAY_BASE_URL}/api/v1/payments`, {
     method: "POST",
     headers: {
+      ...LYPAY_CLIENT_HEADERS,
       Authorization: `Bearer ${getApiKey()}`,
       "Idempotency-Key": idempotencyKey,
       "Content-Type": "application/json",
@@ -141,6 +151,7 @@ export async function getPayment(orderId: string) {
     `${LYPAY_BASE_URL}/api/v1/payments/${encodeURIComponent(orderId)}`,
     {
       headers: {
+        ...LYPAY_CLIENT_HEADERS,
         Authorization: `Bearer ${getApiKey()}`,
       },
       // Endpoint ini dipakai untuk polling status, jadi hasilnya tidak boleh
