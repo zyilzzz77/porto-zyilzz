@@ -19,6 +19,7 @@ const routes = [
     changeFrequency: "monthly" as const,
   },
   { path: "/contact", priority: 0.6, changeFrequency: "yearly" as const },
+  { path: "/donate", priority: 0.5, changeFrequency: "monthly" as const },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

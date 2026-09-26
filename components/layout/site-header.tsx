@@ -142,6 +142,13 @@ export function SiteHeader() {
               >
                 Contact
               </Link>
+              <Link
+                href="/donate"
+                className="hidden items-center gap-1.5 rounded-full border border-[var(--line)] px-3.5 py-1.5 text-[0.8rem] font-semibold text-[var(--muted)] transition-colors hover:border-[var(--muted)] hover:text-[var(--text)] sm:flex"
+              >
+                <span aria-hidden="true">♡</span>
+                Donate
+              </Link>
               <button
                 type="button"
                 onClick={toggleTheme}
@@ -233,6 +240,21 @@ export function SiteHeader() {
               </Link>
             );
           })}
+          <Link
+            href="/donate"
+            onClick={() => setMenuOpen(false)}
+            tabIndex={menuOpen ? 0 : -1}
+            aria-current={isActive("/donate") ? "page" : undefined}
+            className={isActive("/donate") ? "is-active" : ""}
+          >
+            <span className="mobile-menu-index" aria-hidden="true">
+              ♡
+            </span>
+            <span>Donate</span>
+            <span className="mobile-menu-arrow" aria-hidden="true">
+              ↗
+            </span>
+          </Link>
         </nav>
 
         <div className="mobile-menu-footer">
