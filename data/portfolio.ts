@@ -139,6 +139,17 @@ export const technologies = [
 
 export const projects: Project[] = [
   {
+    slug: "lydev-pay",
+    title: "pay.lydev.id",
+    description:
+      "Payment gateway QRIS yang saya bangun sendiri agar pembayaran bisa diterima dengan cepat dan praktis; menyediakan endpoint REST yang sederhana untuk membuat transaksi, memeriksa status, dan menerima notifikasi webhook, plus workspace untuk mengelola project serta kunci API.",
+    category: "Payment Gateway",
+    status: "Live",
+    tags: ["QRIS Payment", "REST API", "Webhook", "Merchant Dashboard"],
+    image: "/projects/lydev-pay.jpg",
+    href: "https://pay.lydev.id/",
+  },
+  {
     slug: "exisel-web-id",
     title: "exisel.web.id",
     description:

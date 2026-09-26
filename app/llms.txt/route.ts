@@ -10,7 +10,7 @@ export function GET() {
 
   const body = `# Haqqi AnnaZili
 
-> Haqqi AnnaZili (juga ditulis Haqqi Annazili) adalah siswa jurusan SIJA di SMK Negeri 69 Jakarta, Cakung, Jakarta Timur, yang mengerjakan web development full-stack dan eksplorasi AI. Ia membangun dan merilis beberapa produk web seperti exisel.web.id dan mailtemps.space.
+> Haqqi AnnaZili (juga ditulis Haqqi Annazili) adalah siswa jurusan SIJA di SMK Negeri 69 Jakarta, Cakung, Jakarta Timur, yang mengerjakan web development full-stack dan eksplorasi AI. Ia membangun dan merilis beberapa produk web seperti pay.lydev.id (payment gateway QRIS buatannya sendiri), exisel.web.id, dan mailtemps.space.
 
 ## Fakta utama
 

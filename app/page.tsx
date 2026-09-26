@@ -326,7 +326,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Selected work"
             title="Produk yang pernah saya bangun."
-            description="Tiga produk web live: platform ekstrakurikuler sekolah, layanan email sekali pakai, dan media pembelajaran sejarah interaktif."
+            description="Tiga produk web live pilihan: payment gateway QRIS yang saya bangun sendiri, platform ekstrakurikuler sekolah, dan layanan email sekali pakai."
             action={{ href: "/projects", label: "Semua proyek" }}
           />
           <div

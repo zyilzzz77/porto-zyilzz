@@ -10,20 +10,20 @@ import { getSiteUrl } from "@/lib/site-url";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Proyek web Haqqi AnnaZili: exisel.web.id, mailtemps.space, Jejak Bangsa, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+    "Proyek web Haqqi AnnaZili: pay.lydev.id, exisel.web.id, mailtemps.space, Jejak Bangsa, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: pageOpenGraph({
     title: "Projects Haqqi AnnaZili",
     description:
-      "Platform ekstrakurikuler sekolah, layanan temp mail, media pembelajaran sejarah interaktif, arsip media JKT48, implementasi payment gateway QRIS dinamis, dan utility pengunduh video karya Haqqi AnnaZili.",
+      "Payment gateway QRIS, platform ekstrakurikuler sekolah, layanan temp mail, media pembelajaran sejarah interaktif, arsip media JKT48, dan utility pengunduh video karya Haqqi AnnaZili.",
     url: "/projects",
   }),
   twitter: pageTwitter({
     title: "Projects Haqqi AnnaZili",
     description:
-      "Enam produk web karya Haqqi AnnaZili: exisel.web.id, mailtemps.space, Jejak Bangsa, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+      "Tujuh produk web karya Haqqi AnnaZili: pay.lydev.id, exisel.web.id, mailtemps.space, Jejak Bangsa, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
   }),
 };
 
@@ -55,7 +55,7 @@ export default function ProjectsPage() {
     url: pageUrl,
     name: "Proyek web Haqqi AnnaZili",
     description:
-      "Kumpulan proyek web yang dibangun Haqqi AnnaZili, termasuk platform ekstrakurikuler, layanan temp mail, arsip media, dan integrasi pembayaran.",
+      "Kumpulan proyek web yang dibangun Haqqi AnnaZili, termasuk payment gateway QRIS, platform ekstrakurikuler, layanan temp mail, media pembelajaran, arsip media, dan utility web.",
     inLanguage: "id-ID",
     dateModified: getContentUpdatedAt().toISOString(),
     isPartOf: {
@@ -103,14 +103,15 @@ export default function ProjectsPage() {
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Enam produk web yang saya bangun untuk kebutuhan sekolah, email
-            sekali pakai, media pembelajaran sejarah, pengarsipan media,
-            integrasi pembayaran, dan pemrosesan konten digital.
+            Tujuh produk web yang saya bangun untuk kebutuhan pembayaran,
+            sekolah, email sekali pakai, media pembelajaran sejarah,
+            pengarsipan media, dan pemrosesan konten digital.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--muted)]">
             exisel.web.id, mailtemps.space, dan Jejak Bangsa dapat dicoba
-            langsung. Beberapa demo proyek lainnya sedang offline sementara
-            karena masa layanan server belum diperpanjang.
+            langsung. pay.lydev.id adalah workspace pembayaran dengan akses
+            terbatas untuk pemilik, sisanya demo proyek yang sedang offline
+            sementara karena masa layanan server belum diperpanjang.
           </p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
