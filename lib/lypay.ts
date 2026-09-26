@@ -64,15 +64,34 @@ function getApiKey() {
   return apiKey;
 }
 
+/**
+ * Membaca pesan error LYDEV Pay. Body dibaca sebagai teks lebih dulu karena
+ * kegagalan yang datang dari lapisan depan (misalnya WAF) tidak berbentuk JSON,
+ * sehingga isinya tetap tercatat di log server untuk memudahkan penelusuran.
+ */
 async function readErrorMessage(response: Response, fallback: string) {
-  try {
-    const body = (await response.json()) as { error?: unknown };
+  let raw: string;
 
-    if (typeof body?.error === "string" && body.error) {
-      return body.error;
+  try {
+    raw = await response.text();
+  } catch {
+    return fallback;
+  }
+
+  if (!response.ok) {
+    console.error(
+      `LYDEV Pay membalas ${response.status} untuk ${response.url}: ${raw.slice(0, 300) || "(body kosong)"}`,
+    );
+  }
+
+  try {
+    const parsed = JSON.parse(raw) as { error?: unknown };
+
+    if (typeof parsed?.error === "string" && parsed.error) {
+      return parsed.error;
     }
   } catch {
-    // LYDEV juga membalas body teks biasa untuk endpoint gambar QR.
+    // Body bukan JSON, pakai pesan cadangan.
   }
 
   return fallback;
