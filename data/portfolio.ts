@@ -258,6 +258,18 @@ export const experiences: Experience[] = [
 
 export const certificates: Certificate[] = [
   {
+    slug: "berinovasi-dengan-ai-plan-kemenpora",
+    title: "Berinovasi dengan AI (15 Learning Hours)",
+    issuer: "Yayasan Plan International Indonesia · Kemenpora",
+    issuedAt: "30 September 2026",
+    credential: "4bQE4C3nFg",
+    category: "AI & Data",
+    image: "/certificates/berinovasi-dengan-ai-plan-kemenpora-preview.png",
+    file: "/certificates/berinovasi-dengan-ai-plan-kemenpora.pdf",
+    verifyUrl:
+      "https://lms.kitakerja.id/mod/customcert/verify_certificate.php?code=4bQE4C3nFg&qrcode=1",
+  },
+  {
     slug: "bitsmikro-innovative-vibecode",
     title: "Champion Award - Bitsmikro Innovative Vibecode 2026",
     issuer: "Universitas Mikroskil · Bitsmikro",
