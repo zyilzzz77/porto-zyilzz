@@ -258,6 +258,18 @@ export const experiences: Experience[] = [
 
 export const certificates: Certificate[] = [
   {
+    slug: "microsoft-elevate-skill-sprint",
+    title:
+      "Belajar Penerapan Data Science dengan Microsoft Fabric dan Membangun Aplikasi Gen AI dengan Microsoft Azure",
+    issuer: "Microsoft Elevate · Dicoding Indonesia",
+    issuedAt: "30 September 2026",
+    credential: "PREZKU5OM6",
+    category: "AI & Data",
+    image: "/certificates/microsoft-elevate-skill-sprint-preview.png",
+    file: "/certificates/microsoft-elevate-skill-sprint.pdf",
+    verifyUrl: "https://www.dicoding.com/elevate/certificates/PREZKU5OM6",
+  },
+  {
     slug: "berinovasi-dengan-ai-plan-kemenpora",
     title: "Berinovasi dengan AI (15 Learning Hours)",
     issuer: "Yayasan Plan International Indonesia · Kemenpora",
