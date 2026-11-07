@@ -2,15 +2,14 @@ import type { Metadata } from "next";
 import { CertificateGallery } from "@/components/certificates/certificate-gallery";
 import { JsonLd } from "@/components/seo/json-ld";
 import { certificates } from "@/data/portfolio";
-import { WordRotator } from "@/components/ui/word-rotator";
 import { getContentUpdatedAt } from "@/lib/content-meta";
 import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Certificates",
+  title: "Sertifikat",
   description:
-    "Sertifikat course Haqqi AnnaZili di AI, data, cloud, dan programming.",
+    "Kumpulan sertifikat course Haqqi AnnaZili di bidang AI, data, cloud, dan programming, dari Dicoding, Microsoft Elevate, dan lembaga lainnya.",
   alternates: {
     canonical: "/certificates",
   },
@@ -37,13 +36,13 @@ export default function CertificatesPage() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Home",
+        name: "Beranda",
         item: siteUrl.toString(),
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Certificates",
+        name: "Sertifikat",
         item: pageUrl,
       },
     ],
@@ -100,26 +99,15 @@ export default function CertificatesPage() {
       <div className="content-wrap">
         <div data-scroll-reveal>
           <p className="eyebrow">
-            Credentials / {certificates.length} certificates
+            Kredensial / {certificates.length} sertifikat
           </p>
           <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
-            Bukti belajar,
-            <span className="text-[var(--muted)]">
-              {" "}
-              <WordRotator
-                words={[
-                  "bukan garis akhir.",
-                  "tapi pijakan.",
-                  "bukan piala.",
-                  "tapi jejak.",
-                ]}
-                className="text-[var(--text)]"
-              />
-            </span>
+            Sertifikat dan course yang sudah saya selesaikan.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Setiap sertifikat mewakili fondasi baru yang saya lanjutkan melalui
-            eksperimen dan proyek nyata.
+            {certificates.length} kredensial dari Dicoding, Microsoft Elevate,
+            dan lembaga lain. Sebagian besar materinya kemudian saya pakai di
+            proyek sendiri.
           </p>
         </div>
         <CertificateGallery certificates={certificates} />

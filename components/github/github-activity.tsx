@@ -104,16 +104,16 @@ export async function GitHubActivity() {
       <div className="github-wrap">
         <div data-scroll-reveal>
           <h2 className="text-4xl font-semibold tracking-[-0.045em]">
-            GitHub Activity
+            Aktivitas GitHub
           </h2>
           <p className="mt-2 text-lg text-[var(--muted)]">
-            {profile.github.handle.replace("@", "")}&apos;s coding journey over
-            the past year
+            Kontribusi {profile.github.handle.replace("@", "")} dalam satu tahun
+            terakhir.
           </p>
           <p className="mt-2 text-lg font-semibold text-[var(--soft)]">
             {activity.total === null
-              ? "Aktivitas sedang dimuat dari GitHub"
-              : `Total: ${activity.total.toLocaleString("en-US")} contributions`}
+              ? null
+              : `${activity.total.toLocaleString("id-ID")} kontribusi tercatat`}
           </p>
         </div>
 
@@ -143,25 +143,26 @@ export async function GitHubActivity() {
                     <span
                       key={day.date}
                       className={`github-day github-level-${day.level}`}
-                      title={`${day.date} - level ${day.level}`}
+                      title={`${day.date}, level ${day.level}`}
                     />
                   ))}
                 </div>
                 <div className="github-legend">
-                  <span>Less</span>
+                  <span>Sedikit</span>
                   {[0, 1, 2, 3, 4].map((level) => (
                     <span
                       key={level}
                       className={`github-day github-level-${level}`}
                     />
                   ))}
-                  <span>More</span>
+                  <span>Banyak</span>
                 </div>
               </div>
             </div>
           ) : (
             <div className="flex min-h-48 items-center justify-center text-sm text-[var(--muted)]">
-              Data kontribusi GitHub akan muncul otomatis saat koneksi tersedia.
+              Grafik kontribusi belum bisa dimuat. Klik untuk membuka profil
+              GitHub.
             </div>
           )}
         </a>

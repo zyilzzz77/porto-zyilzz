@@ -2,28 +2,27 @@ import type { Metadata } from "next";
 import { ProjectCard } from "@/components/cards/project-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { projects } from "@/data/portfolio";
-import { WordRotator } from "@/components/ui/word-rotator";
 import { getContentUpdatedAt } from "@/lib/content-meta";
 import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Projects",
+  title: "Proyek Web",
   description:
-    "Proyek web Haqqi AnnaZili: pay.lydev.id, exisel.web.id, mailtemps.space, Jejak Bangsa, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+    "Tujuh proyek web karya Haqqi AnnaZili: payment gateway QRIS, platform ekstrakurikuler, temp mail, media pembelajaran sejarah, arsip media, dan utility web.",
   alternates: {
     canonical: "/projects",
   },
   openGraph: pageOpenGraph({
-    title: "Projects Haqqi AnnaZili",
+    title: "Proyek Web Haqqi AnnaZili",
     description:
-      "Payment gateway QRIS, platform ekstrakurikuler sekolah, layanan temp mail, media pembelajaran sejarah interaktif, arsip media JKT48, dan utility pengunduh video karya Haqqi AnnaZili.",
+      "Payment gateway QRIS, platform ekstrakurikuler sekolah, layanan temp mail, media pembelajaran sejarah interaktif, arsip media JKT48, dan utility pengunduh video.",
     url: "/projects",
   }),
   twitter: pageTwitter({
-    title: "Projects Haqqi AnnaZili",
+    title: "Proyek Web Haqqi AnnaZili",
     description:
-      "Tujuh produk web karya Haqqi AnnaZili: pay.lydev.id, exisel.web.id, mailtemps.space, Jejak Bangsa, archivejkt48.app, bikinqrisdinamis.app, dan inversave.space.",
+      "Tujuh produk web karya Haqqi AnnaZili, dari payment gateway QRIS sampai media pembelajaran sejarah.",
   }),
 };
 
@@ -37,13 +36,13 @@ export default function ProjectsPage() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Home",
+        name: "Beranda",
         item: siteUrl.toString(),
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Projects",
+        name: "Proyek",
         item: pageUrl,
       },
     ],
@@ -84,34 +83,19 @@ export default function ProjectsPage() {
       <div className="content-wrap">
         <div data-scroll-reveal>
           <p className="eyebrow">
-            Archive / {String(projects.length).padStart(2, "0")} projects
+            Arsip / {String(projects.length).padStart(2, "0")} proyek
           </p>
           <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
-            Projects
-            <span className="text-[var(--muted)]">
-              {" "}
-              &{" "}
-              <WordRotator
-                words={[
-                  "experiments.",
-                  "production.",
-                  "learning.",
-                  "shipped.",
-                ]}
-                className="text-[var(--text)]"
-              />
-            </span>
+            Proyek web yang saya bangun sendiri.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Tujuh produk web yang saya bangun untuk kebutuhan pembayaran,
-            sekolah, email sekali pakai, media pembelajaran sejarah,
-            pengarsipan media, dan pemrosesan konten digital.
+            Tujuh produk web untuk pembayaran, sekolah, email sekali pakai,
+            media pembelajaran, arsip media, dan pemrosesan konten.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            exisel.web.id, mailtemps.space, dan Jejak Bangsa dapat dicoba
-            langsung. pay.lydev.id adalah workspace pembayaran dengan akses
-            terbatas untuk pemilik, sisanya demo proyek yang sedang offline
-            sementara karena masa layanan server belum diperpanjang.
+            exisel.web.id, mailtemps.space, dan Jejak Bangsa bisa dicoba
+            langsung. pay.lydev.id butuh akses pemilik, sementara tiga lainnya
+            offline sementara karena masa layanan server belum diperpanjang.
           </p>
         </div>
         <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">

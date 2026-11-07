@@ -12,6 +12,13 @@ const statusClass = {
   "Temporarily Offline": "bg-zinc-400",
 };
 
+const statusLabel = {
+  Live: "Aktif",
+  Building: "Dikerjakan",
+  Exploration: "Eksplorasi",
+  "Temporarily Offline": "Offline sementara",
+};
+
 export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
   return (
     <article className="card group" data-scroll-reveal>
@@ -46,7 +53,7 @@ export function ProjectCard({ project, index = 0 }: ProjectCardProps) {
             <span
               className={`h-1.5 w-1.5 rounded-full ${statusClass[project.status]}`}
             />
-            {project.status}
+            {statusLabel[project.status]}
           </span>
         </div>
         <p className="mt-4 leading-7 text-[var(--muted)]">

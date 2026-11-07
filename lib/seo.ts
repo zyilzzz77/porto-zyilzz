@@ -7,7 +7,7 @@ export const ogImage = {
   width: 1200,
   height: 630,
   type: "image/jpeg",
-  alt: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
+  alt: "Haqqi AnnaZili, IT support dan web developer di Jakarta",
 };
 
 type OpenGraphInput = {

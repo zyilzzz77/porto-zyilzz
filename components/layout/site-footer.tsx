@@ -7,7 +7,9 @@ export function SiteFooter() {
   return (
     <footer className="border-t border-[var(--line)] py-8">
       <div className="content-wrap flex flex-col gap-4 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
-        <p>© {currentYear} Haqqi AnnaZili. Built with intention.</p>
+        <p>
+          © {currentYear} Haqqi AnnaZili. Dibuat dan dirawat sendiri di Jakarta.
+        </p>
         <div className="flex gap-5">
           <a
             href={profile.instagram.url}
@@ -26,13 +28,13 @@ export function SiteFooter() {
             GitHub
           </a>
           <Link href="/projects" className="hover:text-[var(--text)]">
-            Projects
+            Proyek
           </Link>
           <Link href="/certificates" className="hover:text-[var(--text)]">
-            Certificates
+            Sertifikat
           </Link>
           <Link href="/contact" className="hover:text-[var(--text)]">
-            Contact
+            Kontak
           </Link>
         </div>
       </div>

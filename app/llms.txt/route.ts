@@ -1,3 +1,4 @@
+import { creativeWorks } from "@/data/creative";
 import { certificates, profile, projects } from "@/data/portfolio";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -10,7 +11,7 @@ export function GET() {
 
   const body = `# Haqqi AnnaZili
 
-> Haqqi AnnaZili (juga ditulis Haqqi Annazili) adalah siswa jurusan SIJA di SMK Negeri 69 Jakarta, Cakung, Jakarta Timur, yang mengerjakan web development full-stack dan eksplorasi AI. Ia membangun dan merilis beberapa produk web seperti pay.lydev.id (payment gateway QRIS buatannya sendiri), exisel.web.id, dan mailtemps.space.
+> Haqqi AnnaZili (juga ditulis Haqqi Annazili) adalah siswa konsentrasi SIJA di SMK Negeri 69 Jakarta, Cakung, Jakarta Timur, yang bergerak di IT support, web development full-stack, dan eksplorasi AI. Ia membangun dan merilis beberapa produk web seperti pay.lydev.id (payment gateway QRIS buatannya sendiri), exisel.web.id, dan mailtemps.space.
 
 ## Fakta utama
 
@@ -19,14 +20,15 @@ export function GET() {
 - Peran: ${profile.role}
 - Sekolah: SMK Negeri 69 Jakarta (SMKN 69 Jakarta), konsentrasi keahlian SIJA (Sistem Informasi Jaringan dan Aplikasi), sejak 2025
 - Domisili: ${profile.location}
-- Fokus: web development, programming, jaringan, dan AI
+- Fokus: IT support, web development, programming, jaringan, dan AI
 - Teknologi: React, Next.js, TypeScript, Node.js, Python, Tailwind CSS, PostgreSQL, MongoDB, AWS
 - Kontak: ${profile.email}
 
 ## Halaman utama
 
-- [Portfolio](${url("/")}): profil, proyek pilihan, sertifikat, dan ringkasan perjalanan belajar.
+- [Portofolio](${url("/")}): profil, proyek pilihan, sertifikat, dan ringkasan perjalanan belajar.
 - [Proyek](${url("/projects")}): daftar proyek web yang dibangun.
+- [Kreatif](${url("/creative")}): karya fotografi, potret siswa, dan hasil editing foto serta video di SMKN 69 Jakarta.
 - [Perjalanan](${url("/experience")}): riwayat pendidikan dan pembelajaran.
 - [Sertifikat](${url("/certificates")}): kredensial course yang sudah diselesaikan.
 - [SMKN 69 Jakarta](${url("/experience/smkn-69-jakarta")}): profil sekolah, lokasi, jurusan SIJA, dan keterkaitannya dengan Haqqi AnnaZili.
@@ -45,6 +47,17 @@ ${projects
   )
   .join("\n")}
 
+## Karya kreatif
+
+${creativeWorks
+  .map(
+    (work) =>
+      `- ${work.title} (${work.category}, ${work.year}, ${work.location}): ${work.description}${
+        work.tools?.length ? ` Alat: ${work.tools.join(", ")}.` : ""
+      }${work.instagramUrl ? ` Instagram: ${work.instagramUrl}` : ""}`,
+  )
+  .join("\n")}
+
 ## Sertifikat
 
 ${certificates
@@ -52,7 +65,7 @@ ${certificates
     (certificate) =>
       `- ${certificate.title} dari ${certificate.issuer} (${certificate.issuedAt})${
         certificate.verifyUrl
-          ? ` — verifikasi: ${certificate.verifyUrl}`
+          ? `, verifikasi: ${certificate.verifyUrl}`
           : ""
       }`,
   )

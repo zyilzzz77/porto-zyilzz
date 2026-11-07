@@ -3,10 +3,10 @@ import type { MetadataRoute } from "next";
 export default function manifest(): MetadataRoute.Manifest {
   return {
     id: "/",
-    name: "Haqqi AnnaZili — Portfolio",
+    name: "Haqqi AnnaZili Portfolio",
     short_name: "Haqqi AnnaZili",
     description:
-      "Portfolio Haqqi AnnaZili, siswa SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
+      "Portofolio Haqqi AnnaZili, IT support dan web developer di Jakarta.",
     start_url: "/",
     scope: "/",
     display: "standalone",

@@ -128,7 +128,7 @@ export function DonatePaymentModal({
                 {status ?? "PENDING"}
               </span>
               {(status ?? "PENDING") === "PENDING"
-                ? " — menunggu pembayaran."
+                ? " · menunggu pembayaran."
                 : null}
             </p>
 
@@ -155,8 +155,8 @@ export function DonatePaymentModal({
               <span className="donate-modal-amount">
                 {rupiahFormatter.format(donation.amount)}
               </span>{" "}
-              kamu sudah tercatat dan masuk ke leaderboard. Terima kasih sudah
-              mendukung.
+              Anda sudah tercatat dan masuk ke peringkat donatur. Terima kasih
+              sudah mendukung.
             </p>
             <button
               type="button"

@@ -238,13 +238,14 @@ export function DonateForm({
           value={donorName}
           onChange={(event) => setDonorName(event.target.value)}
           maxLength={MAX_DONOR_NAME_LENGTH}
-          placeholder="Nama atau nickname kamu"
+          placeholder="Nama atau nama panggilan"
           autoComplete="nickname"
           disabled={isSubmitting}
           required
         />
         <p className="donate-hint">
-          Muncul di leaderboard. Maksimal {MAX_DONOR_NAME_LENGTH} karakter.
+          Muncul di peringkat donatur. Maksimal {MAX_DONOR_NAME_LENGTH}{" "}
+          karakter.
         </p>
       </div>
 
@@ -329,7 +330,7 @@ export function DonateForm({
             <div className="donate-success">
               <p className="eyebrow">Terima kasih</p>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                Donasi {rupiahFormatter.format(donation.amount)} kamu sudah
+                Donasi {rupiahFormatter.format(donation.amount)} Anda sudah
                 tercatat.
               </p>
             </div>

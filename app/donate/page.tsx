@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { desc, eq, sql } from "drizzle-orm";
 import { DonateForm } from "@/components/donate/donate-form";
 import { JsonLd } from "@/components/seo/json-ld";
-import { WordRotator } from "@/components/ui/word-rotator";
 import { getDb } from "@/db/postgres";
 import { donations } from "@/db/schema";
 import { getContentUpdatedAt } from "@/lib/content-meta";
@@ -18,20 +17,20 @@ import { getSiteUrl } from "@/lib/site-url";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Donate",
+  title: "Donasi",
   description:
-    "Dukung pengembangan website dan proyek belajar Haqqi AnnaZili lewat donasi QRIS, plus lihat leaderboard donatur.",
+    "Dukung pengembangan website dan proyek belajar Haqqi AnnaZili lewat donasi QRIS, plus lihat peringkat donatur.",
   alternates: {
     canonical: "/donate",
   },
   openGraph: pageOpenGraph({
-    title: "Donate untuk Haqqi AnnaZili",
+    title: "Donasi untuk Haqqi AnnaZili",
     description:
       "Donasi QRIS untuk mendukung development website, server, dan biaya belajar Haqqi AnnaZili.",
     url: "/donate",
   }),
   twitter: pageTwitter({
-    title: "Donate untuk Haqqi AnnaZili",
+    title: "Donasi untuk Haqqi AnnaZili",
     description:
       "Donasi QRIS untuk mendukung development website, server, dan biaya belajar Haqqi AnnaZili.",
   }),
@@ -41,10 +40,10 @@ const donationPurposes = [
   {
     title: "Server & domain",
     description:
-      "Biaya hosting dan domain supaya project yang saya buat tetap bisa diakses.",
+      "Biaya hosting dan domain supaya proyek yang saya buat tetap bisa diakses.",
   },
   {
-    title: "API & AI tools",
+    title: "API & alat AI",
     description:
       "Kredit API dan tools AI untuk eksperimen machine learning dan generative AI.",
   },
@@ -111,13 +110,13 @@ export default async function DonatePage() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Home",
+        name: "Beranda",
         item: siteUrl.toString(),
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Donate",
+        name: "Donasi",
         item: pageUrl,
       },
     ],
@@ -129,7 +128,7 @@ export default async function DonatePage() {
     url: pageUrl,
     name: "Donate untuk Haqqi AnnaZili",
     description:
-      "Halaman dukungan dana untuk development website dan proyek belajar Haqqi AnnaZili, dengan donasi QRIS dan leaderboard donatur.",
+      "Halaman dukungan dana untuk development website dan proyek belajar Haqqi AnnaZili, dengan donasi QRIS dan peringkat donatur.",
     inLanguage: "id-ID",
     dateModified: getContentUpdatedAt().toISOString(),
     isPartOf: {
@@ -145,20 +144,17 @@ export default async function DonatePage() {
       <JsonLd data={[breadcrumbJsonLd, webPageJsonLd]} />
       <div className="content-wrap">
         <div data-scroll-reveal>
-          <p className="eyebrow">Donate</p>
+          <p className="eyebrow">Donasi</p>
           <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
-            Kalau portfolionya membantu,
+            Kalau portofolio ini berguna,
             <span className="text-[var(--muted)]">
               {" "}
-              <WordRotator
-                words={["boleh dibalas.", "balik lagi.", "boleh dibayar."]}
-                className="text-[var(--text)]"
-              />
+              Anda bisa ikut menutup biayanya.
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Semua project di portfolio ini saya kerjakan sendiri, jadi donasi
-            ini langsung dipakai untuk server, API, dan biaya belajar.
+            Server, domain, dan kredit API saya bayar sendiri. Donasi masuk ke
+            tiga pos yang sama, dan semuanya terlihat di halaman ini.
           </p>
         </div>
 
@@ -169,8 +165,8 @@ export default async function DonatePage() {
             </h2>
             <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
               Isi nama dan nominal, lalu tekan konfirmasi. Halaman pembayaran
-              QRIS dibuka di tab baru, dan leaderboard di halaman ini ikut
-              diperbarui begitu pembayaran selesai.
+              QRIS dibuka di tab baru, dan peringkat donatur di halaman ini
+              ikut diperbarui begitu pembayaran selesai.
             </p>
 
             <div className="mt-7">
@@ -192,9 +188,11 @@ export default async function DonatePage() {
                   id="leaderboard-heading"
                   className="text-xl font-semibold tracking-[-0.03em]"
                 >
-                  Leaderboard
+                  Peringkat donatur
                 </h2>
-                <span className="eyebrow">Top {leaderboard.length || 10}</span>
+                <span className="eyebrow">
+                  {leaderboard.length || 10} teratas
+                </span>
               </div>
 
               {leaderboard.length > 0 ? (
@@ -219,8 +217,8 @@ export default async function DonatePage() {
               ) : (
                 <p className="mt-4 text-sm leading-6 text-[var(--muted)]">
                   {unavailable
-                    ? "Leaderboard belum aktif karena database belum terhubung."
-                    : "Belum ada donasi yang tercatat. Kamu bisa jadi yang pertama."}
+                    ? "Peringkat belum aktif karena database belum terhubung."
+                    : "Belum ada donasi yang tercatat. Anda bisa menjadi donatur pertama."}
                 </p>
               )}
             </section>
@@ -254,7 +252,7 @@ export default async function DonatePage() {
             ) : null}
 
             <section className="donate-card" data-scroll-reveal>
-              <h2 className="eyebrow">Dana saya dipakai untuk</h2>
+              <h2 className="eyebrow">Donasi dipakai untuk</h2>
               <ul className="mt-5 space-y-4">
                 {donationPurposes.map((purpose) => (
                   <li key={purpose.title}>
@@ -273,10 +271,10 @@ export default async function DonatePage() {
           className="mt-12 border-t border-[var(--line)] pt-6 text-sm leading-6 text-[var(--muted)]"
           data-scroll-reveal
         >
-          Pembayaran diproses lewat QRIS. Nama yang kamu isi maksimal{" "}
+          Pembayaran diproses lewat QRIS. Nama yang Anda isi maksimal{" "}
           {MAX_DONOR_NAME_LENGTH} karakter dan pesan maksimal{" "}
           {MAX_DONATION_MESSAGE_LENGTH} karakter, keduanya tampil di halaman
-          ini. Status donasi hanya berubah menjadi lunas setelah pembayaran
+          ini. Status donasi baru berubah menjadi lunas setelah pembayaran
           dikonfirmasi penyedia QRIS.
         </p>
       </div>

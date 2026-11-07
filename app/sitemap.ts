@@ -1,4 +1,5 @@
 import type { MetadataRoute } from "next";
+import { creativeWorks } from "@/data/creative";
 import { getContentUpdatedAt } from "@/lib/content-meta";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -12,6 +13,7 @@ const routes = [
     changeFrequency: "monthly" as const,
   },
   { path: "/projects", priority: 0.8, changeFrequency: "monthly" as const },
+  { path: "/creative", priority: 0.8, changeFrequency: "monthly" as const },
   { path: "/experience", priority: 0.8, changeFrequency: "monthly" as const },
   {
     path: "/certificates",
@@ -25,6 +27,10 @@ const routes = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const siteUrl = getSiteUrl();
   const lastModified = getContentUpdatedAt();
+  const creativeImages = [
+    "/creative/creative-banner.jpg",
+    ...creativeWorks.flatMap((work) => work.images.map((image) => image.src)),
+  ].map((image) => new URL(image, siteUrl).toString());
 
   return routes.map((route) => ({
     url: new URL(route.path, siteUrl).toString(),
@@ -41,5 +47,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
           ],
         }
       : {}),
+    ...(route.path === "/creative" ? { images: creativeImages } : {}),
   }));
 }

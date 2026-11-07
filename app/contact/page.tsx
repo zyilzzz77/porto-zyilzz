@@ -5,22 +5,22 @@ import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Contact",
+  title: "Kontak",
   description:
-    "Hubungi Haqqi AnnaZili melalui email atau WhatsApp untuk kolaborasi, peluang, dan percakapan seputar teknologi.",
+    "Hubungi Haqqi AnnaZili lewat email atau WhatsApp untuk kolaborasi proyek, pertanyaan teknis, atau tawaran kerja.",
   alternates: {
     canonical: "/contact",
   },
   openGraph: pageOpenGraph({
     title: "Hubungi Haqqi AnnaZili",
     description:
-      "Kontak resmi Haqqi AnnaZili untuk kolaborasi dan percakapan seputar teknologi.",
+      "Kontak resmi Haqqi AnnaZili untuk kolaborasi proyek dan pertanyaan teknis.",
     url: "/contact",
   }),
   twitter: pageTwitter({
     title: "Hubungi Haqqi AnnaZili",
     description:
-      "Kontak resmi Haqqi AnnaZili untuk kolaborasi dan percakapan seputar teknologi.",
+      "Kontak resmi Haqqi AnnaZili untuk kolaborasi proyek dan pertanyaan teknis.",
   }),
 };
 
@@ -33,19 +33,19 @@ export default function ContactPage() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Home",
+        name: "Beranda",
         item: siteUrl.toString(),
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Contact",
+        name: "Kontak",
         item: new URL("/contact", siteUrl).toString(),
       },
     ],
   };
   const whatsappUrl = `${profile.whatsapp.url}?text=${encodeURIComponent(
-    "Halo Haqqi, saya melihat portfolio Anda dan ingin berdiskusi.",
+    "Halo Haqqi, saya menemukan portofolio Anda dan ingin berdiskusi.",
   )}`;
 
   return (
@@ -53,14 +53,14 @@ export default function ContactPage() {
       <JsonLd data={breadcrumbJsonLd} />
       <div className="content-wrap">
         <div className="cta-panel" data-scroll-reveal>
-          <p className="eyebrow">Contact</p>
+          <p className="eyebrow">Kontak</p>
           <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
-            Mari mengubah ide
-            <span className="text-[var(--muted)]"> menjadi sesuatu.</span>
+            Kirim pesan,
+            <span className="text-[var(--muted)]"> saya balas.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Terbuka untuk kolaborasi, proyek belajar, peluang, atau sekadar
-            bertukar ide tentang teknologi dan AI.
+            Untuk kolaborasi proyek, pertanyaan teknis, atau tawaran kerja.
+            Email saya cek setiap hari, WhatsApp untuk hal yang mendesak.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">

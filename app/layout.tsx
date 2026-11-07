@@ -35,11 +35,11 @@ export function generateMetadata(): Metadata {
     metadataBase: siteUrl,
     title: {
       default:
-        "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
+        "Haqqi AnnaZili | IT Support & Web Developer di Jakarta",
       template: "%s | Haqqi AnnaZili",
     },
     description:
-      "Portfolio Haqqi AnnaZili, siswa SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI melalui proyek dan sertifikat di Jakarta.",
+      "Portofolio Haqqi AnnaZili, siswa SIJA SMKN 69 Jakarta yang bergerak di IT support dan pengembangan web.",
     applicationName: "Haqqi AnnaZili Portfolio",
     authors: [{ name: "Haqqi AnnaZili", url: new URL("/", siteUrl) }],
     creator: "Haqqi AnnaZili",
@@ -82,9 +82,9 @@ export function generateMetadata(): Metadata {
       shortcut: "/favicon.svg",
     },
     openGraph: {
-      title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
+      title: "Haqqi AnnaZili | IT Support & Web Developer di Jakarta",
       description:
-        "Portfolio Haqqi AnnaZili, siswa SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI melalui proyek dan sertifikat.",
+        "IT support yang serba bisa, dengan pengalaman membangun produk web dan bereksperimen dengan AI.",
       type: "website",
       locale: "id_ID",
       url: siteUrl,
@@ -93,9 +93,9 @@ export function generateMetadata(): Metadata {
     },
     twitter: {
       card: "summary_large_image",
-      title: "Haqqi AnnaZili — SIJA Student & Web Developer | SMKN 69 Jakarta",
+      title: "Haqqi AnnaZili | IT Support & Web Developer di Jakarta",
       description:
-        "Portfolio Haqqi AnnaZili, siswa SIJA di SMKN 69 Jakarta yang menekuni web development, programming, dan AI.",
+        "IT support yang serba bisa, dengan pengalaman membangun produk web dan bereksperimen dengan AI.",
       images: [ogImage.url],
     },
     other: {
@@ -118,9 +118,9 @@ export default function RootLayout({
     "@id": new URL("/#website", siteUrl).toString(),
     url: siteUrl.toString(),
     name: "Haqqi AnnaZili Portfolio",
-    alternateName: ["Portfolio Haqqi AnnaZili", "Haqqi AnnaZili"],
+    alternateName: ["Portofolio Haqqi AnnaZili", "Haqqi AnnaZili"],
     description:
-      "Portfolio pribadi Haqqi AnnaZili tentang pengembangan web, AI, proyek, sertifikat, dan perjalanan di SMKN 69 Jakarta.",
+      "Portofolio pribadi Haqqi AnnaZili tentang pengembangan web, AI, proyek, sertifikat, dan perjalanan di SMKN 69 Jakarta.",
     inLanguage: ["id-ID", "en"],
     copyrightHolder: { "@id": personId },
     publisher: { "@id": personId },

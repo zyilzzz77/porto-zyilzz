@@ -149,13 +149,13 @@ export default function Smkn69JakartaPage() {
       {
         "@type": "ListItem",
         position: 1,
-        name: "Home",
+        name: "Beranda",
         item: siteUrl.toString(),
       },
       {
         "@type": "ListItem",
         position: 2,
-        name: "Journey",
+        name: "Perjalanan",
         item: new URL("/experience", siteUrl).toString(),
       },
       {
@@ -190,7 +190,7 @@ export default function Smkn69JakartaPage() {
           className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--muted)] hover:text-[var(--text)]"
           data-scroll-reveal
         >
-          <span aria-hidden="true">←</span> Kembali ke Journey
+          <span aria-hidden="true">←</span> Kembali ke Perjalanan
         </Link>
 
         <div className="school-hero">
@@ -207,9 +207,9 @@ export default function Smkn69JakartaPage() {
                 />
               </span>
               <div>
-                <p className="eyebrow">Education / Current chapter</p>
+                <p className="eyebrow">Pendidikan / Tahap berjalan</p>
                 <p className="mt-2 font-mono text-xs text-[var(--muted)]">
-                  2025 — Sekarang
+                  2025 sampai sekarang
                 </p>
               </div>
             </div>
@@ -219,9 +219,8 @@ export default function Smkn69JakartaPage() {
               <span className="text-[var(--muted)]"> Jakarta.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              Tempat saya membangun fondasi di bidang pemrograman, jaringan,
-              sistem, dan pengembangan aplikasi melalui konsentrasi keahlian
-              SIJA.
+              Saya belajar pemrograman, jaringan, sistem, dan pengembangan
+              aplikasi di sini lewat konsentrasi keahlian SIJA.
             </p>
 
             <div className="school-tags">
@@ -276,9 +275,8 @@ export default function Smkn69JakartaPage() {
             <div className="mt-6 space-y-5 leading-8 text-[var(--muted)]">
               <p>
                 SMK Negeri 69 Jakarta adalah sekolah menengah kejuruan negeri
-                yang berada di bawah Pemerintah Provinsi DKI Jakarta. Sekolah
-                ini termasuk salah satu dari sepuluh sekolah baru yang dibangun
-                oleh Pemerintah DKI Jakarta dan mulai berdiri pada tahun 2019.
+                di bawah Pemerintah Provinsi DKI Jakarta. Sekolah ini berdiri
+                pada 2019 dan kini berakreditasi A.
               </p>
               <p>
                 SIJA atau Sistem Informasi Jaringan dan Aplikasi merupakan
@@ -314,7 +312,7 @@ export default function Smkn69JakartaPage() {
 
         <div className="school-personal-story" data-scroll-reveal>
           <div>
-            <p className="eyebrow">My learning path</p>
+            <p className="eyebrow">Jalur belajar saya</p>
             <h2 className="mt-4 max-w-2xl text-balance text-3xl font-semibold tracking-[-0.04em] sm:text-5xl">
               Peran SMKN 69 dalam perjalanan saya.
             </h2>
@@ -328,9 +326,9 @@ export default function Smkn69JakartaPage() {
               development dan AI yang saya lanjutkan secara mandiri.
             </p>
             <div className="school-focus-grid">
-              <span>Programming fundamentals</span>
-              <span>Networks & systems</span>
-              <span>Application development</span>
+              <span>Dasar pemrograman</span>
+              <span>Jaringan &amp; sistem</span>
+              <span>Pengembangan aplikasi</span>
             </div>
           </div>
         </div>

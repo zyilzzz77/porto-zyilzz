@@ -3,13 +3,13 @@ import { hardSkills, softSkills } from "@/data/portfolio";
 
 const groups = [
   {
-    label: "Hard Skills",
+    label: "Hard skill",
     description:
       "Kemampuan teknis yang saya pakai untuk membangun produk, dari antarmuka sampai deployment.",
     items: hardSkills,
   },
   {
-    label: "Soft Skills",
+    label: "Soft skill",
     description:
       "Cara saya bekerja saat mengerjakan proyek: menyusun prioritas, belajar cepat, dan menjaga komunikasi.",
     items: softSkills,
@@ -24,9 +24,9 @@ export function SkillsSection() {
     >
       <div className="content-wrap">
         <SectionHeading
-          eyebrow="Skills"
-          title="Hard skill untuk membangun, soft skill untuk berkolaborasi."
-          description="Kombinasi kemampuan teknis dan interpersonal yang saya asah lewat proyek sekolah, proyek pribadi, dan course."
+          eyebrow="Keahlian"
+          title="Yang saya pakai untuk membangun, dan cara saya bekerja."
+          description="Kemampuan teknis saya asah lewat proyek sekolah dan proyek pribadi. Kemampuan interpersonal saya latih saat mengerjakan keduanya dalam tim."
         />
         <div
           className="mt-10 grid gap-4 sm:grid-cols-2"

@@ -10,11 +10,12 @@ type Theme = "dark" | "light";
 const themeStorageKey = "haqqi-portfolio-theme";
 
 const navigation = [
-  { href: "/", label: "Home" },
-  { href: "/projects", label: "Projects" },
-  { href: "/experience", label: "Journey" },
-  { href: "/certificates", label: "Certificates" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Beranda" },
+  { href: "/projects", label: "Proyek" },
+  { href: "/creative", label: "Kreatif" },
+  { href: "/experience", label: "Perjalanan" },
+  { href: "/certificates", label: "Sertifikat" },
+  { href: "/contact", label: "Kontak" },
 ];
 
 export function SiteHeader() {
@@ -140,14 +141,14 @@ export function SiteHeader() {
                 href="/contact"
                 className="hidden rounded-full bg-[var(--text)] px-3.5 py-1.5 text-[0.8rem] font-semibold text-[var(--background)] sm:block"
               >
-                Contact
+                Kontak
               </Link>
               <Link
                 href="/donate"
                 className="hidden items-center gap-1.5 rounded-full border border-[var(--line)] px-3.5 py-1.5 text-[0.8rem] font-semibold text-[var(--muted)] transition-colors hover:border-[var(--muted)] hover:text-[var(--text)] sm:flex"
               >
                 <span aria-hidden="true">♡</span>
-                Donate
+                Donasi
               </Link>
               <button
                 type="button"
@@ -250,7 +251,7 @@ export function SiteHeader() {
             <span className="mobile-menu-index" aria-hidden="true">
               ♡
             </span>
-            <span>Donate</span>
+            <span>Donasi</span>
             <span className="mobile-menu-arrow" aria-hidden="true">
               ↗
             </span>

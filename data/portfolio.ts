@@ -21,6 +21,7 @@ export const profile = {
 };
 
 export const hardSkills = [
+  "IT Support",
   "Web Development",
   "Frontend Development",
   "Backend & API",
@@ -142,7 +143,7 @@ export const projects: Project[] = [
     slug: "lydev-pay",
     title: "pay.lydev.id",
     description:
-      "Payment gateway QRIS yang saya bangun sendiri agar pembayaran bisa diterima dengan cepat dan praktis; menyediakan endpoint REST yang sederhana untuk membuat transaksi, memeriksa status, dan menerima notifikasi webhook, plus workspace untuk mengelola project serta kunci API.",
+      "Payment gateway QRIS dengan REST API untuk membuat transaksi, memeriksa status, dan menerima webhook, plus dashboard untuk mengelola project dan kunci API.",
     category: "Payment Gateway",
     status: "Live",
     tags: ["QRIS Payment", "REST API", "Webhook", "Merchant Dashboard"],
@@ -186,7 +187,7 @@ export const projects: Project[] = [
     slug: "archivejkt48-app",
     title: "archivejkt48.app",
     description:
-      "Platform arsip digital yang saya rancang untuk mengorganisasi dan menyimpan koleksi foto serta video member JKT48 dari berbagai generasi dalam satu pengalaman penelusuran yang terstruktur.",
+      "Arsip foto dan video JKT48 lintas generasi dengan pencarian dan filter. Dibangun untuk merapikan koleksi yang tersebar di banyak folder.",
     category: "Digital Archive",
     status: "Temporarily Offline",
     tags: ["Media Archive", "Search & Filtering", "Responsive Web"],
@@ -197,7 +198,7 @@ export const projects: Project[] = [
     slug: "bikinqrisdinamis-app",
     title: "bikinqrisdinamis.app",
     description:
-      "Aplikasi web eksperimental untuk mengimplementasikan alur pembayaran berbasis QRIS dinamis, mulai dari pembuatan transaksi hingga pengelolaan status pembayaran melalui integrasi payment gateway.",
+      "Eksperimen alur QRIS dinamis: membuat transaksi, menampilkan kode pembayaran, lalu memantau statusnya lewat webhook.",
     category: "Payment Integration",
     status: "Temporarily Offline",
     tags: ["Dynamic QRIS", "Payment Gateway", "Transaction Flow"],
@@ -208,7 +209,7 @@ export const projects: Project[] = [
     slug: "inversave-space",
     title: "inversave.space",
     description:
-      "Web utility untuk memproses tautan dan mengunduh video dari berbagai platform media sosial melalui alur yang sederhana, cepat, dan responsif.",
+      "Alat untuk mengunduh video dari beberapa platform media sosial lewat satu alur: tempel tautan, pilih format, unduh.",
     category: "Media Utility",
     status: "Temporarily Offline",
     tags: ["Media Processing", "Social Platforms", "Download Workflow"],
@@ -220,13 +221,13 @@ export const projects: Project[] = [
 export const experiences: Experience[] = [
   {
     period: "2025 - Sekarang",
-    title: "Student - SIJA",
+    title: "Siswa SIJA",
     organization: "SMKN 69 Jakarta",
     logo: "/logos/smkn-69-jakarta.png",
     logoAlt: "Logo SMK Negeri 69 Jakarta",
     href: "/experience/smkn-69-jakarta",
     description:
-      "Mempelajari Sistem Informatika, Jaringan, dan Aplikasi dengan fokus yang semakin kuat pada software development.",
+      "Mempelajari Sistem Informasi Jaringan dan Aplikasi, dengan porsi praktik yang besar pada pemrograman dan pengembangan aplikasi.",
     highlights: [
       "Mengembangkan fondasi pemrograman dan sistem",
       "Aktif mengerjakan tugas berbasis proyek",
@@ -234,8 +235,8 @@ export const experiences: Experience[] = [
   },
   {
     period: "2026 - Sekarang",
-    title: "Independent Developer",
-    organization: "Personal Projects",
+    title: "Developer Independen",
+    organization: "Proyek pribadi",
     description:
       "Membangun produk web dan bot sambil memperdalam arsitektur aplikasi, pengalaman pengguna, dan deployment.",
     highlights: [
@@ -245,7 +246,7 @@ export const experiences: Experience[] = [
   },
   {
     period: "2026",
-    title: "AI & Data Learning Track",
+    title: "Jalur Belajar AI & Data",
     organization: "Dicoding · Microsoft · AWS · IOE",
     description:
       "Jalur belajar terstruktur yang mencakup Python, machine learning, cloud, data science, dan generative AI.",

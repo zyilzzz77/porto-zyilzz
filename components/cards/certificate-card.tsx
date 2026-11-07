@@ -37,6 +37,7 @@ export function CertificateCard({
             target="_blank"
             rel="noreferrer"
             className="text-sm font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+            aria-label={`Buka sertifikat ${certificate.title}`}
           >
             Lihat <span aria-hidden="true">↗</span>
           </a>

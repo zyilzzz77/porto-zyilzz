@@ -43,3 +43,6 @@ tsconfig.tsbuildinfo
 /outputs/
 /work/
 .env*.local
+
+# local agent artifacts
+**/.commandcode/

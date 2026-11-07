@@ -32,3 +32,31 @@ export type Certificate = {
   file?: string;
   verifyUrl?: string;
 };
+
+export type CreativeCategory = "Photography" | "Editing";
+
+export type CreativeImage = {
+  src: string;
+  alt: string;
+  width: number;
+  height: number;
+  /** Label opsional, misalnya "Original" dan "Hasil editing". */
+  label?: string;
+};
+
+export type CreativeWork = {
+  slug: string;
+  title: string;
+  category: CreativeCategory;
+  description: string;
+  year: string;
+  location: string;
+  role: string;
+  images: CreativeImage[];
+  /** Path gambar utama untuk kartu preview di halaman lain. */
+  cover?: string;
+  instagramUrl?: string;
+  tools?: string[];
+  /** true = slot contoh, belum ada file foto. Hilangkan setelah foto asli diisi. */
+  placeholder?: boolean;
+};
