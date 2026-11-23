@@ -22,24 +22,29 @@ export function CertificateCard({
           className="certificate-image"
         />
       </a>
-      <div className="p-6">
-        <div className="flex items-center justify-between gap-3 text-xs text-[var(--muted)]">
-          <span>{certificate.issuer}</span>
-          <span>{certificate.issuedAt}</span>
+      <div className="p-5 sm:p-6">
+        <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 text-xs text-[var(--muted)]">
+          <span className="min-w-0">{certificate.issuer}</span>
+          <span className="shrink-0">{certificate.issuedAt}</span>
         </div>
-        <h3 className="mt-4 text-lg font-semibold leading-6 tracking-[-0.02em]">
+        <h3 className="mt-4 text-base font-semibold leading-6 tracking-[-0.02em] sm:text-lg">
           {certificate.title}
         </h3>
-        <div className="mt-5 flex items-center justify-between gap-3">
-          <span className="skill-chip">{certificate.category}</span>
+        <div className="mt-5 flex flex-wrap items-center justify-between gap-3">
+          <span className="skill-chip">
+            {certificate.category === "Programming"
+              ? "Pemrograman"
+              : certificate.category}
+          </span>
           <a
             href={destination}
             target="_blank"
             rel="noreferrer"
-            className="text-sm font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+            className="inline-flex min-h-11 items-center text-sm font-semibold text-[var(--soft)] hover:text-[var(--text)]"
             aria-label={`Buka sertifikat ${certificate.title}`}
           >
-            Lihat <span aria-hidden="true">↗</span>
+            Lihat <span className="sr-only">sertifikat {certificate.title}</span>{" "}
+            <span aria-hidden="true">↗</span>
           </a>
         </div>
       </div>

@@ -5,9 +5,9 @@ import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Kontak",
+  title: "Kontak & Kolaborasi Proyek",
   description:
-    "Hubungi Haqqi AnnaZili lewat email atau WhatsApp untuk kolaborasi proyek, pertanyaan teknis, atau tawaran kerja.",
+    "Hubungi Haqqi AnnaZili melalui email atau WhatsApp untuk kolaborasi proyek, pertanyaan teknis, atau peluang kerja.",
   alternates: {
     canonical: "/contact",
   },
@@ -44,23 +44,41 @@ export default function ContactPage() {
       },
     ],
   };
+  const pageUrl = new URL("/contact", siteUrl).toString();
+  const contactPageJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    "@id": `${pageUrl}#webpage`,
+    url: pageUrl,
+    name: "Kontak Haqqi AnnaZili",
+    description:
+      "Halaman kontak resmi Haqqi AnnaZili untuk kolaborasi proyek, pertanyaan teknis, dan peluang kerja.",
+    inLanguage: "id-ID",
+    isPartOf: {
+      "@id": new URL("/#website", siteUrl).toString(),
+    },
+    mainEntity: {
+      "@id": new URL("/#person", siteUrl).toString(),
+    },
+  };
   const whatsappUrl = `${profile.whatsapp.url}?text=${encodeURIComponent(
     "Halo Haqqi, saya menemukan portofolio Anda dan ingin berdiskusi.",
   )}`;
 
   return (
     <section className="section-pad flex min-h-[82vh] items-center pt-36">
-      <JsonLd data={breadcrumbJsonLd} />
+      <JsonLd data={[breadcrumbJsonLd, contactPageJsonLd]} />
       <div className="content-wrap">
         <div className="cta-panel" data-scroll-reveal>
           <p className="eyebrow">Kontak</p>
           <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
             Kirim pesan,
-            <span className="text-[var(--muted)]"> saya balas.</span>
+            <span className="text-[var(--muted)]"> saya akan membalas.</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
             Untuk kolaborasi proyek, pertanyaan teknis, atau tawaran kerja.
-            Email saya cek setiap hari, WhatsApp untuk hal yang mendesak.
+            Email saya periksa setiap hari, sedangkan WhatsApp untuk keperluan
+            mendesak.
           </p>
 
           <div className="mt-9 flex flex-wrap gap-3">
@@ -90,22 +108,22 @@ export default function ContactPage() {
           </div>
 
           <div className="mt-12 grid gap-6 border-t border-[var(--line)] pt-6 sm:grid-cols-2">
-            <div>
+            <div className="min-w-0">
               <p className="text-sm text-[var(--muted)]">Email</p>
               <a
                 href={`mailto:${profile.email}`}
-                className="mt-2 inline-block text-lg font-semibold hover:text-[var(--accent)]"
+                className="mt-2 inline-block break-all text-base font-semibold hover:text-[var(--accent)] sm:text-lg"
               >
                 {profile.email}
               </a>
             </div>
-            <div>
+            <div className="min-w-0">
               <p className="text-sm text-[var(--muted)]">WhatsApp</p>
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="mt-2 inline-block text-lg font-semibold hover:text-[#25d366]"
+                className="mt-2 inline-block text-base font-semibold hover:text-[#25d366] sm:text-lg"
               >
                 {profile.whatsapp.display}
               </a>

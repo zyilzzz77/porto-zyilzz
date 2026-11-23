@@ -5,6 +5,12 @@ import { CertificateCard } from "@/components/cards/certificate-card";
 import type { Certificate } from "@/types";
 
 const filters = ["Semua", "AI & Data", "Cloud", "Programming"] as const;
+const filterLabels: Record<(typeof filters)[number], string> = {
+  Semua: "Semua",
+  "AI & Data": "AI & Data",
+  Cloud: "Cloud",
+  Programming: "Pemrograman",
+};
 
 export function CertificateGallery({
   certificates,
@@ -37,16 +43,20 @@ export function CertificateGallery({
             type="button"
             key={filter}
             onClick={() => setActiveFilter(filter)}
-            className={`rounded-full border px-4 py-2 text-sm transition ${
+            aria-pressed={activeFilter === filter}
+            className={`min-h-11 rounded-full border px-4 py-2 text-sm transition ${
               activeFilter === filter
                 ? "border-[var(--accent)] bg-[var(--accent)] text-[var(--accent-ink)]"
                 : "border-[var(--line)] text-[var(--muted)] hover:text-[var(--text)]"
             }`}
           >
-            {filter}
+            {filterLabels[filter]}
           </button>
         ))}
       </div>
+      <p className="sr-only" aria-live="polite">
+        {visible.length} sertifikat ditampilkan
+      </p>
       <div className="mt-8 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
         {visible.map((certificate) => (
           <CertificateCard

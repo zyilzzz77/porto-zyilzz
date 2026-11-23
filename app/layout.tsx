@@ -6,6 +6,7 @@ import { SiteHeader } from "@/components/layout/site-header";
 import { JsonLd } from "@/components/seo/json-ld";
 import { AmbientSky } from "@/components/ui/ambient-sky";
 import { RouteTransition } from "@/components/ui/route-transition";
+import { personJsonLd, schemaIds } from "@/lib/schema";
 import { ogImage, siteName } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -45,18 +46,6 @@ export function generateMetadata(): Metadata {
     creator: "Haqqi AnnaZili",
     publisher: "Haqqi AnnaZili",
     category: "technology",
-    keywords: [
-      "Haqqi AnnaZili",
-      "Haqqi AnnaZili portfolio",
-      "Haqqi AnnaZili SMKN 69 Jakarta",
-      "Haqqi AnnaZili SIJA",
-      "SIJA SMKN 69 Jakarta",
-      "Sistem Informasi Jaringan dan Aplikasi",
-      "SMKN 69 Jakarta",
-      "SMK Negeri 69 Jakarta",
-      "web developer Jakarta",
-      "portfolio developer Indonesia",
-    ],
     robots: {
       index: true,
       follow: true,
@@ -110,18 +99,17 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const siteUrl = getSiteUrl();
-  const personId = new URL("/#person", siteUrl).toString();
+  const { siteRoot, personId, websiteId } = schemaIds();
   const websiteJsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "@id": new URL("/#website", siteUrl).toString(),
-    url: siteUrl.toString(),
+    "@id": websiteId,
+    url: siteRoot,
     name: "Haqqi AnnaZili Portfolio",
     alternateName: ["Portofolio Haqqi AnnaZili", "Haqqi AnnaZili"],
     description:
       "Portofolio pribadi Haqqi AnnaZili tentang pengembangan web, AI, proyek, sertifikat, dan perjalanan di SMKN 69 Jakarta.",
-    inLanguage: ["id-ID", "en"],
+    inLanguage: "id-ID",
     copyrightHolder: { "@id": personId },
     publisher: { "@id": personId },
     about: { "@id": personId },
@@ -135,10 +123,16 @@ export default function RootLayout({
       suppressHydrationWarning
     >
       <body>
+        <link rel="preconnect" href="https://cdn.jsdelivr.net" crossOrigin="" />
+        <link
+          rel="preconnect"
+          href="https://cdn.simpleicons.org"
+          crossOrigin=""
+        />
         <Script id="theme-initialization" strategy="beforeInteractive">
           {themeInitializationScript}
         </Script>
-        <JsonLd data={websiteJsonLd} />
+        <JsonLd data={[personJsonLd(), websiteJsonLd]} />
         <AmbientSky />
         <div className="site-shell">
           <SiteHeader />

@@ -181,7 +181,7 @@ export function CreativeSections({ works }: { works: CreativeWork[] }) {
                       href={work.instagramUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="creative-entry-link"
+                      className="creative-entry-link inline-flex min-h-11 items-center"
                     >
                       Lihat di Instagram <span aria-hidden="true">↗</span>
                     </a>
@@ -276,7 +276,7 @@ export function CreativeSections({ works }: { works: CreativeWork[] }) {
                       href={activeWork.instagramUrl}
                       target="_blank"
                       rel="noreferrer"
-                      className="creative-entry-link"
+                      className="creative-entry-link inline-flex min-h-11 items-center"
                     >
                       Instagram <span aria-hidden="true">↗</span>
                     </a>

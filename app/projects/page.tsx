@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { ProjectCard } from "@/components/cards/project-card";
 import { JsonLd } from "@/components/seo/json-ld";
 import { projects } from "@/data/portfolio";
@@ -6,23 +7,22 @@ import { getContentUpdatedAt } from "@/lib/content-meta";
 import { pageOpenGraph, pageTwitter } from "@/lib/seo";
 import { getSiteUrl } from "@/lib/site-url";
 
+const projectsDescription = `${projects.length} proyek web dan lab server Haqqi AnnaZili, meliputi media pembelajaran, payment gateway QRIS, layanan email sementara, dan konfigurasi Debian di VirtualBox.`;
+
 export const metadata: Metadata = {
-  title: "Proyek Web",
-  description:
-    "Tujuh proyek web karya Haqqi AnnaZili: payment gateway QRIS, platform ekstrakurikuler, temp mail, media pembelajaran sejarah, arsip media, dan utility web.",
+  title: "Proyek Web & Lab Server",
+  description: projectsDescription,
   alternates: {
     canonical: "/projects",
   },
   openGraph: pageOpenGraph({
-    title: "Proyek Web Haqqi AnnaZili",
-    description:
-      "Payment gateway QRIS, platform ekstrakurikuler sekolah, layanan temp mail, media pembelajaran sejarah interaktif, arsip media JKT48, dan utility pengunduh video.",
+    title: "Proyek Web & Lab Server Haqqi AnnaZili",
+    description: projectsDescription,
     url: "/projects",
   }),
   twitter: pageTwitter({
-    title: "Proyek Web Haqqi AnnaZili",
-    description:
-      "Tujuh produk web karya Haqqi AnnaZili, dari payment gateway QRIS sampai media pembelajaran sejarah.",
+    title: "Proyek Web & Lab Server Haqqi AnnaZili",
+    description: projectsDescription,
   }),
 };
 
@@ -52,9 +52,8 @@ export default function ProjectsPage() {
     "@type": "CollectionPage",
     "@id": `${pageUrl}#webpage`,
     url: pageUrl,
-    name: "Proyek web Haqqi AnnaZili",
-    description:
-      "Kumpulan proyek web yang dibangun Haqqi AnnaZili, termasuk payment gateway QRIS, platform ekstrakurikuler, layanan temp mail, media pembelajaran, arsip media, dan utility web.",
+    name: "Proyek web dan lab server Haqqi AnnaZili",
+    description: projectsDescription,
     inLanguage: "id-ID",
     dateModified: getContentUpdatedAt().toISOString(),
     isPartOf: {
@@ -66,6 +65,7 @@ export default function ProjectsPage() {
     mainEntity: {
       "@type": "ItemList",
       "@id": `${pageUrl}#itemlist`,
+      name: "Proyek web dan lab server Haqqi AnnaZili",
       numberOfItems: projects.length,
       itemListElement: projects.map((project, index) => ({
         "@type": "ListItem",
@@ -86,19 +86,49 @@ export default function ProjectsPage() {
             Arsip / {String(projects.length).padStart(2, "0")} proyek
           </p>
           <h1 className="mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
-            Proyek web yang saya bangun sendiri.
+            Proyek web dan lab server yang saya kerjakan.
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-            Tujuh produk web untuk pembayaran, sekolah, email sekali pakai,
-            media pembelajaran, arsip media, dan pemrosesan konten.
+            Kumpulan {projects.length} proyek untuk pembelajaran sejarah,
+            pembayaran, sekolah, email sekali pakai, arsip media, pemrosesan
+            konten, dan praktik konfigurasi web server Debian di VirtualBox.
           </p>
           <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--muted)]">
-            exisel.web.id, mailtemps.space, dan Jejak Bangsa bisa dicoba
-            langsung. pay.lydev.id butuh akses pemilik, sementara tiga lainnya
-            offline sementara karena masa layanan server belum diperpanjang.
+            Ular Tangga Sejarah, exisel.web.id, mailtemps.space, dan Jejak
+            Bangsa dapat dicoba langsung. pay.lydev.id memerlukan akses
+            pemilik. Lab Debian menggunakan mesin virtual tanpa tautan demo
+            publik, sedangkan tiga proyek berstatus tidak aktif menunggu
+            perpanjangan masa aktif server.
           </p>
+          <p className="mt-4 max-w-2xl text-sm leading-6 text-[var(--muted)]">
+            Proyek ini menopang pembelajaran di{" "}
+            <Link
+              href="/experience/smkn-69-jakarta"
+              className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+            >
+              SMKN 69 Jakarta
+            </Link>
+            , dan kredensial terkait tersedia di{" "}
+            <Link
+              href="/certificates"
+              className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+            >
+              halaman sertifikat
+            </Link>
+            . Untuk kolaborasi, silakan{" "}
+            <Link
+              href="/contact"
+              className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+            >
+              hubungi saya
+            </Link>
+            .
+          </p>
+          <h2 className="mt-12 text-2xl font-semibold tracking-[-0.03em] sm:text-3xl">
+            Semua proyek
+          </h2>
         </div>
-        <div className="mt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-6 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
             <ProjectCard key={project.slug} project={project} index={index} />
           ))}

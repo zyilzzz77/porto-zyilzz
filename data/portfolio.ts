@@ -4,8 +4,8 @@ export const profile = {
   name: "Haqqi AnnaZili",
   alternateNames: ["Haqqi Annazili", "Haqqi Anna Zili"],
   location: "Jakarta, Indonesia",
-  role: "Developer & AI Explorer",
-  email: "enzilaja@gmail.com",
+  role: "IT Support & Web Developer",
+  email: "lily@lydev.id",
   whatsapp: {
     display: "+62 838-7274-9541",
     url: "https://wa.me/6283872749541",
@@ -30,19 +30,21 @@ export const hardSkills = [
   "Database (SQL & NoSQL)",
   "Cloud & Deployment",
   "Computer Networking",
+  "Cisco IOS & Packet Tracer",
+  "Linux Server (Debian)",
   "Machine Learning",
   "Generative AI",
   "Automation",
 ];
 
 export const softSkills = [
-  "Problem Solving",
+  "Pemecahan Masalah",
   "Berpikir Kritis",
   "Cepat Belajar",
   "Manajemen Waktu",
   "Kerja Sama Tim",
   "Komunikasi",
-  "Teliti & Rapi",
+  "Teliti dan Rapi",
   "Adaptif",
 ];
 
@@ -140,13 +142,29 @@ export const technologies = [
 
 export const projects: Project[] = [
   {
+    slug: "ular-tangga-sejarah-pendudukan-jepang",
+    title: "Ular Tangga Sejarah: Pendudukan Jepang",
+    description:
+      "Media pembelajaran sejarah interaktif bertema masa pendudukan Jepang di Indonesia (1942-1945). Permainan ular tangga tiga dimensi untuk 2-4 pemain ini memadukan kartu soal berbatas waktu, tangga perjuangan, dan ular penindasan yang membawa pion menuju Proklamasi 17 Agustus 1945.",
+    category: "Platform Pembelajaran",
+    status: "Live",
+    tags: [
+      "Media Pembelajaran Interaktif",
+      "Papan Permainan 3D",
+      "Kuis Sejarah",
+      "Dadu Real-Time",
+    ],
+    image: "/projects/ular-tangga-sejarah-jepang.png",
+    href: "https://ulartanggapenjajahanjepanghusanzili.vercel.app/",
+  },
+  {
     slug: "lydev-pay",
     title: "pay.lydev.id",
     description:
-      "Payment gateway QRIS dengan REST API untuk membuat transaksi, memeriksa status, dan menerima webhook, plus dashboard untuk mengelola project dan kunci API.",
+      "Payment gateway QRIS dengan REST API untuk membuat transaksi, memeriksa status, dan menerima webhook, serta dashboard untuk mengelola project dan kunci API.",
     category: "Payment Gateway",
     status: "Live",
-    tags: ["QRIS Payment", "REST API", "Webhook", "Merchant Dashboard"],
+    tags: ["Pembayaran QRIS", "REST API", "Webhook", "Dasbor Merchant"],
     image: "/projects/lydev-pay.jpg",
     href: "https://pay.lydev.id/",
   },
@@ -154,10 +172,15 @@ export const projects: Project[] = [
     slug: "exisel-web-id",
     title: "exisel.web.id",
     description:
-      "Website ekstrakurikuler terpadu yang membantu siswa menemukan informasi ekskul, bertanya melalui ExsiBot, melakukan absensi dengan barcode, dan mendaftar kegiatan dalam satu platform.",
-    category: "School Platform",
+      "Platform ekstrakurikuler terpadu yang membantu siswa menemukan informasi ekstrakurikuler, bertanya melalui ExsiBot, melakukan absensi dengan barcode, dan mendaftar kegiatan dalam satu tempat.",
+    category: "Platform Sekolah",
     status: "Live",
-    tags: ["Extracurricular Directory", "ExsiBot", "Barcode Attendance", "Registration"],
+    tags: [
+      "Direktori Ekstrakurikuler",
+      "ExsiBot",
+      "Absensi Barcode",
+      "Pendaftaran",
+    ],
     image: "/projects/exisel-web-id.png",
     href: "https://exisel.web.id/",
   },
@@ -165,10 +188,15 @@ export const projects: Project[] = [
     slug: "mailtemps-space",
     title: "mailtemps.space",
     description:
-      "Layanan temp mail gratis yang membuat alamat email sekali pakai tanpa registrasi; inbox sementara menerima email verifikasi, tidak memuat pelacak jarak jauh, dan otomatis kedaluwarsa.",
-    category: "Web Utility",
+      "Layanan email sementara gratis yang membuat alamat email sekali pakai tanpa registrasi. Kotak masuk sementara dapat menerima email verifikasi, tidak memuat pelacak pihak ketiga, dan kedaluwarsa secara otomatis.",
+    category: "Utilitas Web",
     status: "Live",
-    tags: ["Temp Mail", "Disposable Email", "Receive-Only Inbox", "Auto Expiry"],
+    tags: [
+      "Email Sementara",
+      "Email Sekali Pakai",
+      "Kotak Masuk Terima Saja",
+      "Kedaluwarsa Otomatis",
+    ],
     image: "/projects/mailtemps-space.png",
     href: "https://mailtemps.space/",
   },
@@ -176,45 +204,61 @@ export const projects: Project[] = [
     slug: "jejak-bangsa",
     title: "Jejak Bangsa",
     description:
-      "Media pembelajaran sejarah interaktif tentang Pergerakan Nasional Indonesia 1900-1928, lengkap dengan materi singkat, kumpulan video, e-book 15 halaman, dan kuis 10 soal yang dinilai otomatis.",
-    category: "Learning Platform",
+      "Media pembelajaran sejarah interaktif tentang Pergerakan Nasional Indonesia 1900-1928, dilengkapi materi ringkas, kumpulan video, e-book 15 halaman, dan kuis 10 soal yang dinilai secara otomatis.",
+    category: "Platform Pembelajaran",
     status: "Live",
-    tags: ["Interactive Learning", "History Material", "E-book", "Auto-Graded Quiz"],
+    tags: [
+      "Media Pembelajaran Interaktif",
+      "Materi Sejarah",
+      "E-book",
+      "Kuis Nilai Otomatis",
+    ],
     image: "/projects/web-mapel-namsel.png",
     href: "https://web-mapel-namsel.vercel.app/",
+  },
+  {
+    slug: "lab-web-server-debian-virtualbox",
+    title: "Lab Web Server Debian di VirtualBox",
+    description:
+      "Praktik konfigurasi web server Debian pada mesin virtual VirtualBox untuk memperdalam administrasi server Linux dan pengelolaan layanan web dalam lingkungan virtual.",
+    category: "Administrasi Server",
+    status: "Exploration",
+    tags: ["Debian", "VirtualBox", "Web Server", "Linux"],
+    availabilityNote:
+      "Lab menggunakan mesin virtual dan tidak menyediakan tautan demo publik.",
   },
   {
     slug: "archivejkt48-app",
     title: "archivejkt48.app",
     description:
-      "Arsip foto dan video JKT48 lintas generasi dengan pencarian dan filter. Dibangun untuk merapikan koleksi yang tersebar di banyak folder.",
-    category: "Digital Archive",
+      "Arsip foto dan video JKT48 lintas generasi dengan fitur pencarian dan filter. Dirancang untuk merapikan koleksi yang tersebar di banyak folder.",
+    category: "Arsip Digital",
     status: "Temporarily Offline",
-    tags: ["Media Archive", "Search & Filtering", "Responsive Web"],
+    tags: ["Arsip Media", "Pencarian & Filter", "Web Responsif"],
     availabilityNote:
-      "Demo sedang tidak tersedia karena masa layanan server belum diperpanjang.",
+      "Demo belum tersedia karena masa aktif server belum diperpanjang.",
   },
   {
     slug: "bikinqrisdinamis-app",
     title: "bikinqrisdinamis.app",
     description:
-      "Eksperimen alur QRIS dinamis: membuat transaksi, menampilkan kode pembayaran, lalu memantau statusnya lewat webhook.",
-    category: "Payment Integration",
+      "Eksperimen alur QRIS dinamis: membuat transaksi, menampilkan kode pembayaran, lalu memantau statusnya melalui webhook.",
+    category: "Integrasi Pembayaran",
     status: "Temporarily Offline",
-    tags: ["Dynamic QRIS", "Payment Gateway", "Transaction Flow"],
+    tags: ["QRIS Dinamis", "Payment Gateway", "Alur Transaksi"],
     availabilityNote:
-      "Demo sedang tidak tersedia karena masa layanan server belum diperpanjang.",
+      "Demo belum tersedia karena masa aktif server belum diperpanjang.",
   },
   {
     slug: "inversave-space",
     title: "inversave.space",
     description:
-      "Alat untuk mengunduh video dari beberapa platform media sosial lewat satu alur: tempel tautan, pilih format, unduh.",
-    category: "Media Utility",
+      "Alat untuk mengunduh video dari beberapa platform media sosial melalui satu alur kerja: tempelkan tautan, pilih format, lalu unduh.",
+    category: "Utilitas Media",
     status: "Temporarily Offline",
-    tags: ["Media Processing", "Social Platforms", "Download Workflow"],
+    tags: ["Pemrosesan Media", "Platform Media Sosial", "Alur Unduh"],
     availabilityNote:
-      "Demo sedang tidak tersedia karena masa layanan server belum diperpanjang.",
+      "Demo belum tersedia karena masa aktif server belum diperpanjang.",
   },
 ];
 
@@ -238,10 +282,29 @@ export const experiences: Experience[] = [
     title: "Developer Independen",
     organization: "Proyek pribadi",
     description:
-      "Membangun produk web dan bot sambil memperdalam arsitektur aplikasi, pengalaman pengguna, dan deployment.",
+      "Mengembangkan produk web dan bot sambil memperdalam arsitektur aplikasi, pengalaman pengguna, dan deployment.",
     highlights: [
       "Mengembangkan proyek end-to-end dari ide hingga prototipe",
       "Bereksperimen dengan otomasi, integrasi API, dan AI",
+    ],
+  },
+  {
+    period: "2026",
+    title: "Jaringan Komputer & IT Support",
+    organization: "Praktik mandiri · SMKN 69 Jakarta",
+    description:
+      "Menyusun topologi jaringan pada Cisco Packet Tracer, mengonfigurasi access point dan switch, mengelola web server di Debian, serta menangani konfigurasi perangkat melalui Cisco IOS dan perbaikan laptop, mulai dari pemasangan ulang sistem hingga pengecekan perangkat keras.",
+    highlights: [
+      "Merancang topologi jaringan dan menyimulasikannya di Cisco Packet Tracer",
+      "Mengonfigurasi access point, switch, dan perangkat melalui Cisco IOS",
+      "Mengelola web server pada sistem operasi Debian",
+      "Memperbaiki laptop: instalasi sistem, pembersihan, dan pengecekan perangkat keras",
+    ],
+    imageSlots: [
+      "Topologi jaringan di Cisco Packet Tracer",
+      "Konfigurasi access point",
+      "Konfigurasi switch",
+      "Perbaikan laptop",
     ],
   },
   {
@@ -251,7 +314,7 @@ export const experiences: Experience[] = [
     description:
       "Jalur belajar terstruktur yang mencakup Python, machine learning, cloud, data science, dan generative AI.",
     highlights: [
-      "Menyelesaikan enam kredensial course",
+      "Menyelesaikan enam kredensial pelatihan",
       "Menerapkan pembelajaran melalui notebook dan proyek mandiri",
     ],
   },

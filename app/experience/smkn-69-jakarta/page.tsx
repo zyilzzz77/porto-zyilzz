@@ -46,8 +46,9 @@ export const metadata: Metadata = {
 };
 
 const officialWebsite = "https://www.smkn69jkt.sch.id/";
-const governmentProfile =
-  "https://referensi.data.kemendikdasmen.go.id/tabs.php?npsn=69992321";
+const officialProfile = "https://www.smkn69jkt.sch.id/profil";
+const sijaProfile =
+  "https://www.smkn69jkt.sch.id/sistem-informasi-jaringan-dan-aplikasi";
 const mapsUrl =
   "https://www.google.com/maps/search/?api=1&query=-6.2065161,106.9260421";
 const schoolAddress =
@@ -83,7 +84,7 @@ export default function Smkn69JakartaPage() {
   const schoolId = `${pageUrl}#school`;
   const schoolJsonLd = {
     "@context": "https://schema.org",
-    "@type": "School",
+    "@type": ["EducationalOrganization", "School"],
     "@id": schoolId,
     name: "SMK Negeri 69 Jakarta",
     alternateName: [
@@ -93,7 +94,7 @@ export default function Smkn69JakartaPage() {
       "SMKN 69",
     ],
     url: officialWebsite,
-    sameAs: [officialWebsite, governmentProfile],
+    sameAs: [officialProfile, sijaProfile, mapsUrl],
     identifier: {
       "@type": "PropertyValue",
       propertyID: "NPSN",
@@ -106,8 +107,9 @@ export default function Smkn69JakartaPage() {
     ).toString(),
     address: {
       "@type": "PostalAddress",
-      streetAddress: "Jl. KRT. Radjiman Widyodiningrat No. 32",
-      addressLocality: "Jatinegara",
+      streetAddress:
+        "Jl. KRT. Radjiman Widyodiningrat No. 32, Jatinegara, Cakung",
+      addressLocality: "Jakarta Timur",
       addressRegion: "DKI Jakarta",
       postalCode: "13930",
       addressCountry: "ID",
@@ -133,6 +135,9 @@ export default function Smkn69JakartaPage() {
       "@id": new URL("/#website", siteUrl).toString(),
     },
     about: {
+      "@id": schoolId,
+    },
+    mainEntity: {
       "@id": schoolId,
     },
     author: {
@@ -169,6 +174,7 @@ export default function Smkn69JakartaPage() {
   const faqJsonLd = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "@id": `${pageUrl}#faq`,
     mainEntity: schoolFaqs.map((faq) => ({
       "@type": "Question",
       name: faq.question,
@@ -209,7 +215,7 @@ export default function Smkn69JakartaPage() {
               <div>
                 <p className="eyebrow">Pendidikan / Tahap berjalan</p>
                 <p className="mt-2 font-mono text-xs text-[var(--muted)]">
-                  2025 sampai sekarang
+                  2025 hingga sekarang
                 </p>
               </div>
             </div>
@@ -219,8 +225,8 @@ export default function Smkn69JakartaPage() {
               <span className="text-[var(--muted)]"> Jakarta.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-[var(--muted)]">
-              Saya belajar pemrograman, jaringan, sistem, dan pengembangan
-              aplikasi di sini lewat konsentrasi keahlian SIJA.
+              Saya mempelajari pemrograman, jaringan, sistem, dan pengembangan
+              aplikasi di sini melalui konsentrasi keahlian SIJA.
             </p>
 
             <div className="school-tags">
@@ -281,8 +287,8 @@ export default function Smkn69JakartaPage() {
               <p>
                 SIJA atau Sistem Informasi Jaringan dan Aplikasi merupakan
                 konsentrasi keahlian empat tahun yang mempelajari teknologi
-                komputer, jaringan, sistem informasi, serta proses membuat dan
-                mengembangkan aplikasi.
+                komputer, jaringan, sistem informasi, serta proses
+                pengembangan aplikasi.
               </p>
             </div>
           </article>
@@ -319,11 +325,26 @@ export default function Smkn69JakartaPage() {
           </div>
           <div>
             <p className="leading-8 text-[var(--muted)]">
-              Sebagai siswa SIJA, saya menggunakan masa belajar ini untuk
+              Sebagai siswa SIJA, saya memanfaatkan masa belajar ini untuk
               memperkuat dasar pemrograman, memahami cara sistem dan jaringan
               bekerja, serta membangun aplikasi melalui tugas dan proyek.
-              Pengalaman ini menjadi fondasi untuk eksplorasi full-stack
-              development dan AI yang saya lanjutkan secara mandiri.
+              Pengalaman ini menjadi fondasi untuk eksplorasi pengembangan
+              full-stack dan AI yang saya lanjutkan secara mandiri. Hasil
+              penerapannya dapat dilihat pada{" "}
+              <Link
+                href="/projects"
+                className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+              >
+                halaman proyek
+              </Link>{" "}
+              dan{" "}
+              <Link
+                href="/certificates"
+                className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+              >
+                kumpulan sertifikat
+              </Link>
+              .
             </p>
             <div className="school-focus-grid">
               <span>Dasar pemrograman</span>
@@ -358,8 +379,11 @@ export default function Smkn69JakartaPage() {
           <a href={officialWebsite} target="_blank" rel="noreferrer">
             Website SMKN 69 Jakarta ↗
           </a>
-          <a href={governmentProfile} target="_blank" rel="noreferrer">
-            Data Kemendikdasmen ↗
+          <a href={officialProfile} target="_blank" rel="noreferrer">
+            Profil sekolah ↗
+          </a>
+          <a href={sijaProfile} target="_blank" rel="noreferrer">
+            Konsentrasi SIJA ↗
           </a>
         </div>
       </div>

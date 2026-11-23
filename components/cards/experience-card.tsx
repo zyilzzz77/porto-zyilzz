@@ -48,7 +48,7 @@ export function ExperienceCard({
           <span className="journey-index" aria-hidden="true">
             {number}
           </span>
-          <time className="font-mono text-[0.68rem] text-[var(--muted)]">
+          <time className="shrink-0 text-right font-mono text-[0.68rem] text-[var(--muted)]">
             {experience.period}
           </time>
         </div>
@@ -94,6 +94,33 @@ export function ExperienceCard({
             </li>
           ))}
         </ul>
+
+        {experience.images?.length ? (
+          <div className="experience-gallery">
+            {experience.images.map((image) => (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                key={image.src}
+                src={image.src}
+                alt={image.alt}
+                width={image.width}
+                height={image.height}
+                loading="lazy"
+                decoding="async"
+              />
+            ))}
+          </div>
+        ) : null}
+
+        {experience.imageSlots?.length ? (
+          <div className="experience-gallery">
+            {experience.imageSlots.map((label) => (
+              <div className="experience-gallery-placeholder" key={label}>
+                <span>{label}</span>
+              </div>
+            ))}
+          </div>
+        ) : null}
 
         {experience.href && (
           <Link href={experience.href} className="journey-detail-link">

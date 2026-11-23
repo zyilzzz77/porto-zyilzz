@@ -22,6 +22,7 @@ type TwitterInput = {
   title: string;
   description: string;
   images?: string[];
+  imageAlt?: string;
 };
 
 export function pageOpenGraph({
@@ -46,11 +47,12 @@ export function pageTwitter({
   title,
   description,
   images = [ogImage.url],
+  imageAlt,
 }: TwitterInput) {
   return {
     card: "summary_large_image" as const,
     title,
     description,
-    images,
+    images: images.map((url) => ({ url, alt: imageAlt ?? title })),
   };
 }

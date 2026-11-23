@@ -19,6 +19,9 @@ export type Experience = {
   href?: string;
   description: string;
   highlights: string[];
+  images?: CreativeImage[];
+  /** Label slot foto yang belum tersedia. Hapus setelah gambar asli diisi. */
+  imageSlots?: string[];
 };
 
 export type Certificate = {

@@ -114,6 +114,14 @@ export function RouteTransition({ children }: RouteTransitionProps) {
 
     registerRevealElements();
 
+    const revealFailSafe = window.setTimeout(() => {
+      document
+        .querySelectorAll<HTMLElement>(
+          ".scroll-reveal:not(.is-scroll-visible)",
+        )
+        .forEach((element) => element.classList.add("is-scroll-visible"));
+    }, 2000);
+
     const mutationObserver = new MutationObserver(registerRevealElements);
     const main = document.querySelector("main");
 
@@ -125,6 +133,7 @@ export function RouteTransition({ children }: RouteTransitionProps) {
     }
 
     return () => {
+      window.clearTimeout(revealFailSafe);
       mutationObserver.disconnect();
       revealObserver.disconnect();
 

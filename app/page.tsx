@@ -14,13 +14,12 @@ import { creativeWorks } from "@/data/creative";
 import {
   certificates,
   experiences,
-  hardSkills,
   profile,
   projects,
 } from "@/data/portfolio";
 import { getContentUpdatedAt } from "@/lib/content-meta";
+import { schemaIds } from "@/lib/schema";
 import { pageOpenGraph, pageTwitter } from "@/lib/seo";
-import { getSiteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
   title: {
@@ -43,7 +42,7 @@ export const metadata: Metadata = {
   openGraph: pageOpenGraph({
     title: "Haqqi AnnaZili | IT Support & Web Developer di Jakarta",
     description:
-      "IT support yang serba bisa: menangani perangkat, jaringan, dan troubleshooting, lalu membangun sendiri produk web saat dibutuhkan.",
+      "IT support dengan kemampuan pengembangan web: menangani perangkat, jaringan, dan troubleshooting, serta membangun solusi digital saat dibutuhkan.",
     url: "/",
   }),
   twitter: pageTwitter({
@@ -54,64 +53,20 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  const siteUrl = getSiteUrl();
-  const personId = new URL("/#person", siteUrl).toString();
-  const credentials = certificates.filter((certificate) => certificate.verifyUrl);
-  const personJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Person",
-    "@id": personId,
-    name: profile.name,
-    alternateName: profile.alternateNames,
-    url: siteUrl.toString(),
-    mainEntityOfPage: siteUrl.toString(),
-    image: new URL("/og.jpg", siteUrl).toString(),
-    jobTitle: "IT Support & Web Developer",
-    description:
-      "Haqqi AnnaZili adalah siswa SIJA di SMKN 69 Jakarta yang bergerak di IT support dan membangun produk web.",
-    sameAs: [profile.github.url, profile.instagram.url],
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Jakarta",
-      addressCountry: "ID",
-    },
-    affiliation: {
-      "@type": "EducationalOrganization",
-      name: "SMK Negeri 69 Jakarta",
-      alternateName: "SMKN 69 Jakarta",
-      url: "https://www.smkn69jkt.sch.id/",
-    },
-    knowsLanguage: ["id", "en"],
-    knowsAbout: [
-      ...hardSkills,
-      "Programming",
-      "Artificial Intelligence",
-      "Next.js",
-      "React",
-    ],
-    award: certificates[0].title,
-    hasCredential: credentials.map((certificate) => ({
-      "@type": "EducationalOccupationalCredential",
-      name: certificate.title,
-      url: certificate.verifyUrl,
-      recognizedBy: {
-        "@type": "Organization",
-        name: certificate.issuer,
-      },
-    })),
-  };
+  const { siteRoot, personId, profilePageId, websiteId } = schemaIds();
+  const featuredProjects = projects.slice(0, 3);
   const profilePageJsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfilePage",
-    "@id": new URL("/#profile-page", siteUrl).toString(),
-    url: siteUrl.toString(),
+    "@type": ["WebPage", "ProfilePage"],
+    "@id": profilePageId,
+    url: siteRoot,
     name: "Portofolio Haqqi AnnaZili",
     description:
       "Profil, proyek, sertifikat, dan perjalanan belajar Haqqi AnnaZili.",
     dateModified: getContentUpdatedAt().toISOString(),
     inLanguage: "id-ID",
     isPartOf: {
-      "@id": new URL("/#website", siteUrl).toString(),
+      "@id": websiteId,
     },
     mainEntity: {
       "@id": personId,
@@ -120,9 +75,10 @@ export default function Home() {
   const projectListJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "@id": new URL("/#projects", siteUrl).toString(),
-    name: "Proyek web Haqqi AnnaZili",
-    itemListElement: projects.map((project, index) => ({
+    "@id": `${siteRoot}/#featured-projects`,
+    name: "Proyek pilihan Haqqi AnnaZili",
+    numberOfItems: featuredProjects.length,
+    itemListElement: featuredProjects.map((project, index) => ({
       "@type": "ListItem",
       position: index + 1,
       name: project.title,
@@ -133,7 +89,7 @@ export default function Home() {
 
   return (
     <>
-      <JsonLd data={[personJsonLd, profilePageJsonLd, projectListJsonLd]} />
+      <JsonLd data={[profilePageJsonLd, projectListJsonLd]} />
       <section className="hero-section section-pad">
         <div className="content-wrap relative">
           <a
@@ -158,37 +114,27 @@ export default function Home() {
             <HeroHeading />
           </div>
           <p
-            className="mt-5 max-w-2xl text-lg leading-8 text-[var(--muted)] sm:text-xl"
+            className="mt-4 max-w-[38rem] text-base leading-[1.55] text-[var(--muted)]"
             data-scroll-reveal
           >
-            Saya menangani perangkat, jaringan, dan troubleshooting
-            sehari-hari. Kalau masalahnya butuh solusi yang belum ada, saya
-            bangun sendiri: produk web, API pembayaran, sampai eksperimen AI.
-          </p>
-          <p
-            className="mt-3 max-w-2xl text-sm leading-7 text-[var(--muted)]"
-            data-scroll-reveal
-          >
-            Siswa konsentrasi keahlian SIJA di{" "}
-            <Link
-              href="/experience/smkn-69-jakarta"
-              className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
-            >
-              SMKN 69 Jakarta
-            </Link>
-            . Belajar lewat proyek nyata, bukan hanya tugas kelas.
+            Haqqi AnnaZili adalah IT support dan web developer di Jakarta,
+            Indonesia. Ia siswa konsentrasi keahlian SIJA (Sistem Informasi
+            Jaringan dan Aplikasi) di SMK Negeri 69 Jakarta sejak 2025 dan telah
+            membangun {projects.length} proyek web, termasuk pay.lydev.id dan
+            exisel.web.id. Fokusnya IT support, jaringan komputer, dan
+            pengembangan web.
           </p>
 
-          <div className="mt-6 flex flex-wrap gap-3" data-scroll-reveal>
+          <div className="mt-5 flex flex-wrap gap-3" data-scroll-reveal>
+            <Link href="/contact" className="button button-primary">
+              Hubungi saya <span aria-hidden="true">↗</span>
+            </Link>
             <a
               href={`mailto:${profile.email}?subject=Permintaan Resume / CV`}
               className="button button-secondary"
             >
               Minta CV <span aria-hidden="true">↗</span>
             </a>
-            <Link href="/contact" className="button button-primary">
-              Hubungi saya <span aria-hidden="true">↗</span>
-            </Link>
           </div>
 
           <div
@@ -250,15 +196,34 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-pad pt-0" aria-label="Tentang Haqqi AnnaZili">
+      <section className="section-pad pt-0">
+        <div className="content-wrap">
+          <SectionHeading
+            eyebrow="Proyek pilihan"
+            title="Produk yang pernah saya bangun."
+            description="Tiga proyek yang paling sering saya kembangkan kembali: media pembelajaran sejarah berbasis permainan, payment gateway QRIS, dan platform ekstrakurikuler sekolah."
+            action={{ href: "/projects", label: "Semua proyek" }}
+          />
+          <div
+            className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
+            data-scroll-reveal-stagger
+          >
+            {projects.slice(0, 3).map((project, index) => (
+              <ProjectCard key={project.slug} project={project} index={index} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section-pad" aria-label="Tentang Haqqi AnnaZili">
         <div className="content-wrap">
           <SectionHeading
             eyebrow="Tentang"
             title="Menangani masalah, lalu membangun solusinya."
-            description="Saya menempuh empat tahun di konsentrasi SIJA SMKN 69 Jakarta. Sebagian besar yang saya tahu soal perangkat, jaringan, dan sistem datang dari menangani masalah nyata, bukan hanya dari buku."
+            description="Saya menempuh program empat tahun di konsentrasi SIJA SMKN 69 Jakarta, mulai 2025. Sebagian besar pengetahuan saya tentang perangkat, jaringan, dan sistem berasal dari penanganan masalah nyata, bukan hanya dari buku."
           />
           <div
-            className="mt-8 grid gap-4 sm:grid-cols-3"
+            className="mt-8 grid gap-4 md:grid-cols-3"
             data-scroll-reveal-stagger
           >
             <div className="card p-6" data-scroll-reveal>
@@ -272,14 +237,15 @@ export default function Home() {
                 >
                   SMKN 69 Jakarta
                 </Link>
-                . Empat tahun, dengan porsi praktik yang besar.
+                . Program empat tahun, saya mulai 2025, dengan porsi praktik
+                yang besar.
               </p>
             </div>
             <div className="card p-6" data-scroll-reveal>
               <h3 className="text-base font-semibold">Bidang yang ditekuni</h3>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                IT support, networking, web development, dan AI. Dipraktikkan
-                lewat{" "}
+                IT support, jaringan komputer, pengembangan web, dan AI.
+                Diterapkan melalui{" "}
                 <Link
                   href="/projects"
                   className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
@@ -291,23 +257,23 @@ export default function Home() {
                   href="/certificates"
                   className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
                 >
-                  sertifikat course
+                  sertifikat pelatihan
                 </Link>
-                , bukan hanya catatan kelas.
+                , bukan sekadar catatan kelas.
               </p>
             </div>
             <div className="card p-6" data-scroll-reveal>
               <h3 className="text-base font-semibold">Perjalanan belajar</h3>
               <p className="mt-2 text-sm leading-6 text-[var(--muted)]">
-                Progres saya catat di{" "}
+                Perkembangan saya terdokumentasi di{" "}
                 <Link
                   href="/experience"
                   className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
                 >
                   halaman perjalanan
                 </Link>
-                , termasuk sekolah dan jalur belajar AI. Untuk kolaborasi,
-                langsung ke{" "}
+                , termasuk pendidikan dan jalur belajar AI. Untuk kolaborasi,
+                silakan menuju{" "}
                 <Link
                   href="/contact"
                   className="font-semibold text-[var(--soft)] hover:text-[var(--text)]"
@@ -326,28 +292,9 @@ export default function Home() {
       <section className="section-pad">
         <div className="content-wrap">
           <SectionHeading
-            eyebrow="Proyek pilihan"
-            title="Produk yang pernah saya bangun."
-            description="Tiga proyek yang paling sering saya buka lagi: payment gateway QRIS, platform ekstrakurikuler sekolah, dan layanan email sekali pakai."
-            action={{ href: "/projects", label: "Semua proyek" }}
-          />
-          <div
-            className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3"
-            data-scroll-reveal-stagger
-          >
-            {projects.slice(0, 3).map((project, index) => (
-              <ProjectCard key={project.slug} project={project} index={index} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section-pad">
-        <div className="content-wrap">
-          <SectionHeading
             eyebrow="Karya visual"
             title="Fotografi & editing."
-            description="Dokumentasi kegiatan sekolah, potret siswa, dan foto jalanan Jakarta. Beberapa karya menampilkan versi asli dan hasil editingnya."
+            description="Dokumentasi kegiatan sekolah, potret siswa, dan fotografi jalanan Jakarta. Beberapa karya menampilkan versi asli dan hasil editingnya."
             action={{ href: "/creative", label: "Lihat karya visual" }}
           />
           <div className="creative-grid mt-10" data-scroll-reveal-stagger>
@@ -363,7 +310,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Perjalanan"
             title="Belajar dengan cara membangun."
-            description="Setiap fase mengubah cara saya melihat masalah: dari baris kode, cara sistem bekerja, sampai dampaknya bagi pengguna."
+            description="Setiap tahap mengubah cara saya memandang masalah: dari baris kode, cara sistem bekerja, hingga dampaknya bagi pengguna."
             action={{ href: "/experience", label: "Lihat perjalanan" }}
           />
           <div className="journey-grid" data-scroll-reveal-stagger>
@@ -384,7 +331,7 @@ export default function Home() {
           <SectionHeading
             eyebrow="Sertifikat"
             title="Pembelajaran yang tervalidasi."
-            description="Course yang sudah selesai dan bisa diverifikasi, dari pemrograman dan cloud sampai machine learning dan generative AI."
+            description={`${certificates.filter((certificate) => certificate.verifyUrl).length} dari ${certificates.length} sertifikat memiliki tautan verifikasi penerbit, mulai dari pemrograman dan cloud hingga machine learning dan generative AI.`}
             action={{ href: "/certificates", label: "Semua sertifikat" }}
           />
           <div
@@ -409,8 +356,8 @@ export default function Home() {
               Punya ide yang layak diwujudkan?
             </h2>
             <p className="mt-5 max-w-xl text-lg text-[var(--muted)]">
-              Saya terbuka untuk proyek freelance, kolaborasi belajar, dan
-              percakapan soal teknologi.
+              Saya terbuka untuk proyek freelance, kolaborasi, dan diskusi
+              seputar teknologi.
             </p>
             <Link href="/contact" className="button button-primary mt-8">
               Mulai percakapan <span aria-hidden="true">↗</span>

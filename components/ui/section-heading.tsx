@@ -33,7 +33,7 @@ export function SectionHeading({
       {action && (
         <Link
           href={action.href}
-          className="shrink-0 text-sm font-semibold text-[var(--soft)] hover:text-[var(--text)]"
+          className="inline-flex min-h-11 shrink-0 items-center text-sm font-semibold text-[var(--soft)] hover:text-[var(--text)]"
         >
           {action.label} <span aria-hidden="true">↗</span>
         </Link>

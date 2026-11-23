@@ -17,7 +17,7 @@ export const creativeWorks: CreativeWork[] = [
     title: "Dokumentasi Kegiatan Sekolah",
     category: "Photography",
     description:
-      "Liputan acara Peringatan Maulid Nabi di SMKN 69 Jakarta: penampilan rebana, pidato di mimbar, barisan siswi, sampai layar OBS yang dipakai untuk siaran. Empat foto ini dipilih dari liputan lapangan lalu dirapikan warnanya.",
+      "Liputan acara Peringatan Maulid Nabi di SMKN 69 Jakarta, mencakup penampilan rebana, pidato di mimbar, barisan siswi, hingga layar OBS yang digunakan untuk siaran. Empat foto ini dipilih dari hasil liputan lapangan kemudian disesuaikan warnanya.",
     year: "2026",
     location: "SMKN 69 Jakarta",
     role: "Fotografer",
@@ -54,7 +54,7 @@ export const creativeWorks: CreativeWork[] = [
     title: "Rekap Dokumentasi Gladi TKA",
     category: "Editing",
     description:
-      "Foto mentah dari lab komputer SMKN 69 Jakarta diolah menjadi poster rekap dokumentasi Gladi Tes Kemampuan Akademik. Prosesnya mencakup seleksi foto, penyusunan layout polaroid, penyesuaian warna, dan penataan tipografi.",
+      "Foto mentah dari laboratorium komputer SMKN 69 Jakarta diolah menjadi poster rekap dokumentasi Gladi Tes Kemampuan Akademik. Prosesnya mencakup seleksi foto, penyusunan tata letak polaroid, penyesuaian warna, dan penataan tipografi.",
     year: "2026",
     location: "SMKN 69 Jakarta",
     role: "Fotografer & Editor",
@@ -69,7 +69,7 @@ export const creativeWorks: CreativeWork[] = [
       },
       {
         src: "/creative/recap-gladi-tka-poster.webp",
-        alt: "Poster Recap Dokumentasi Gladi Tes Kemampuan Akademik SMKN 69 Jakarta berisi kolase foto siswa di lab komputer",
+        alt: "Poster Rekap Dokumentasi Gladi Tes Kemampuan Akademik SMKN 69 Jakarta berisi kolase foto siswa di lab komputer",
         width: 1080,
         height: 1440,
         label: "Hasil editing",
@@ -78,10 +78,10 @@ export const creativeWorks: CreativeWork[] = [
   },
   {
     slug: "street-photography",
-    title: "Street Photography",
+    title: "Fotografi Jalanan",
     category: "Photography",
     description:
-      "Street photography di Jakarta: suasana Stasiun Jakarta, gedung Jasindo di Kota Tua, dan Galeri MRT di balik pepohonan. Empat frame yang merekam ritme kota dari pagi sampai siang.",
+      "Fotografi jalanan di Jakarta: suasana Stasiun Jakarta, gedung Jasindo di Kota Tua, dan Galeri MRT di balik pepohonan. Empat bingkai yang merekam ritme kota dari pagi hingga siang.",
     year: "2026",
     location: "Jakarta",
     role: "Fotografer",

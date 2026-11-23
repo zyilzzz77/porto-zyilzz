@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { creativeWorks } from "@/data/creative";
+import { certificates, projects } from "@/data/portfolio";
 import { getContentUpdatedAt } from "@/lib/content-meta";
 import { getSiteUrl } from "@/lib/site-url";
 
@@ -21,7 +22,6 @@ const routes = [
     changeFrequency: "monthly" as const,
   },
   { path: "/contact", priority: 0.6, changeFrequency: "yearly" as const },
-  { path: "/donate", priority: 0.5, changeFrequency: "monthly" as const },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -31,6 +31,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/creative/creative-banner.jpg",
     ...creativeWorks.flatMap((work) => work.images.map((image) => image.src)),
   ].map((image) => new URL(image, siteUrl).toString());
+  const projectImages = projects
+    .flatMap((project) => (project.image ? [project.image] : []))
+    .map((image) => new URL(image, siteUrl).toString());
+  const certificateImages = certificates.map((certificate) =>
+    new URL(certificate.image, siteUrl).toString(),
+  );
 
   return routes.map((route) => ({
     url: new URL(route.path, siteUrl).toString(),
@@ -48,5 +54,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
         }
       : {}),
     ...(route.path === "/creative" ? { images: creativeImages } : {}),
+    ...(route.path === "/projects" ? { images: projectImages } : {}),
+    ...(route.path === "/certificates" ? { images: certificateImages } : {}),
   }));
 }

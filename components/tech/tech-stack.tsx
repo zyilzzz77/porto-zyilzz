@@ -59,19 +59,15 @@ function CanvaIcon({ className }: SkillIconProps) {
 
 function CapCutIcon({ className }: SkillIconProps) {
   return (
-    <svg
+    // eslint-disable-next-line @next/next/no-img-element
+    <img
       className={className}
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.7}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-    >
-      <path d="M3 8.5h18v10.5a1.5 1.5 0 0 1-1.5 1.5h-15A1.5 1.5 0 0 1 3 19V8.5Z" />
-      <path d="M3 8.5l1.8-3.5h4.3L7.3 8.5M10.7 8.5l1.8-3.5h4.3l-1.8 3.5" />
-    </svg>
+      src="/logos/capcut.png"
+      alt=""
+      width={28}
+      height={28}
+      loading="lazy"
+    />
   );
 }
 
@@ -86,7 +82,7 @@ export function TechStack() {
   return (
     <div className="mt-8">
       <p className="mb-3 font-mono text-[0.7rem] uppercase tracking-[0.16em] text-[var(--muted)]">
-        Keahlian saya
+        Teknologi yang saya pelajari dan gunakan
       </p>
       <div className="flex flex-wrap gap-2">
         {technologies.map((technology) => (

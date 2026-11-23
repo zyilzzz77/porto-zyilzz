@@ -12,17 +12,17 @@ const creativeFaqs = [
   {
     question: "Apakah Anda menerima jasa dokumentasi sekolah?",
     answer:
-      "Ya. Saya menerima dokumentasi kegiatan sekolah, acara, dan potret siswa di Jakarta, terutama di lingkungan SMKN 69 Jakarta. Kebutuhan bisa didiskusikan lewat halaman kontak.",
+      "Ya. Saya menerima dokumentasi kegiatan sekolah, acara, dan potret siswa di Jakarta, terutama di lingkungan SMKN 69 Jakarta. Kebutuhan dapat didiskusikan melalui halaman kontak.",
   },
   {
     question: "Apa saja yang termasuk dalam layanan editing foto dan video?",
     answer:
-      "Editing mencakup seleksi file, perbaikan warna dan pencahayaan untuk foto, serta penyusunan clip, pemotongan timeline, dan perapian hasil akhir untuk video. Hasil dikirim sebagai file atau dipublikasikan lewat Instagram.",
+      "Editing mencakup seleksi berkas, perbaikan warna dan pencahayaan untuk foto, serta penyusunan klip, pemotongan timeline, dan perapian hasil akhir untuk video. Hasil dikirim sebagai berkas atau dipublikasikan melalui Instagram.",
   },
   {
     question: "Di mana biasanya pengambilan foto dilakukan?",
     answer:
-      "Sebagian besar di SMKN 69 Jakarta, Cakung, Jakarta Timur. Untuk lokasi lain di Jakarta, jadwal dan kebutuhan teknis dibicarakan lebih dulu.",
+      "Sebagian besar di SMKN 69 Jakarta, Cakung, Jakarta Timur. Untuk lokasi lain di Jakarta, jadwal dan kebutuhan teknis dibicarakan terlebih dahulu.",
   },
   {
     question: "Alat apa yang dipakai untuk memotret dan mengedit?",
@@ -34,7 +34,7 @@ const creativeFaqs = [
 export const metadata: Metadata = {
   title: "Fotografi & Editing Jakarta",
   description:
-    "Karya fotografi dan editing Haqqi AnnaZili di SMKN 69 Jakarta dan Jakarta: dokumentasi kegiatan sekolah, potret siswa, dan foto jalanan.",
+    "Karya fotografi dan editing Haqqi AnnaZili di SMKN 69 Jakarta dan Jakarta: dokumentasi kegiatan sekolah, potret siswa, dan fotografi jalanan.",
   alternates: {
     canonical: "/creative",
   },
@@ -80,6 +80,15 @@ export default function CreativePage() {
   const imageObjects = creativeWorks.flatMap((work) =>
     work.images.map((image, imageIndex) => {
       const imageUrl = new URL(image.src, siteUrl).toString();
+      const extension = image.src.split(".").pop()?.toLowerCase();
+      const encodingFormat =
+        extension === "jpg" || extension === "jpeg"
+          ? "image/jpeg"
+          : extension === "png"
+            ? "image/png"
+            : extension === "avif"
+              ? "image/avif"
+              : "image/webp";
 
       return {
         "@type": "ImageObject",
@@ -87,11 +96,11 @@ export default function CreativePage() {
         contentUrl: imageUrl,
         url: imageUrl,
         name: image.label ? `${work.title}: ${image.label}` : work.title,
-        description: work.description,
+        description: image.alt,
         caption: image.alt,
         width: image.width,
         height: image.height,
-        encodingFormat: "image/webp",
+        encodingFormat,
         creator: { "@id": personId },
         copyrightHolder: { "@id": personId },
         creditText: "Haqqi AnnaZili",
@@ -134,7 +143,7 @@ export default function CreativePage() {
     url: pageUrl,
     name: "Fotografi & editing Haqqi AnnaZili",
     description:
-      "Kumpulan karya fotografi dan editing Haqqi AnnaZili di SMKN 69 Jakarta, termasuk dokumentasi kegiatan, potret, dan proses before/after.",
+      "Kumpulan karya fotografi dan editing Haqqi AnnaZili di SMKN 69 Jakarta, termasuk dokumentasi kegiatan, potret, dan proses sebelum/sesudah.",
     inLanguage: "id-ID",
     dateModified: getContentUpdatedAt().toISOString(),
     isPartOf: {
@@ -222,12 +231,12 @@ export default function CreativePage() {
               Kreatif / Arsip visual
             </p>
             <h1 className="creative-hero-title mt-5 max-w-4xl text-balance text-5xl font-semibold tracking-[-0.055em] sm:text-7xl">
-              Fotografi dan editing, dari sekolah sampai jalanan.
+              Fotografi dan editing, dari sekolah hingga jalanan.
             </h1>
             <p className="creative-hero-description mt-6 max-w-2xl text-lg leading-8">
               Saya mendokumentasikan kegiatan sekolah, potret siswa, dan
               jalanan Jakarta. Setiap karya di bawah disertai lokasi, tahun,
-              dan alat yang dipakai.
+              dan alat yang digunakan.
             </p>
           </div>
 
@@ -270,8 +279,8 @@ export default function CreativePage() {
             </div>
             <p className="creative-section-lede">
               Dokumentasi kegiatan sekolah, hasil gladi TKA versi asli dan
-              editing, serta foto jalanan Jakarta. Setiap karya mencantumkan
-              lokasi, tahun, dan alat.
+              hasil editing, serta fotografi jalanan Jakarta. Setiap karya
+              mencantumkan lokasi, tahun, dan alat.
             </p>
           </div>
 
@@ -291,12 +300,12 @@ export default function CreativePage() {
                 id="creative-about-title"
                 className="mt-4 max-w-2xl text-balance text-3xl font-semibold tracking-[-0.04em] sm:text-5xl"
               >
-                Dari liputan lapangan sampai hasil akhir.
+                Dari liputan lapangan hingga hasil akhir.
               </h2>
               <p className="creative-about-copy">
                 Setiap karya dimulai dari perencanaan singkat: menentukan momen
                 yang perlu didokumentasikan, menyiapkan kamera, lalu mengambil
-                gambar dari beberapa sudut. Setelah itu saya menyeleksi file,
+                gambar dari beberapa sudut. Setelah itu saya menyeleksi berkas,
                 merapikan warna dan pencahayaan di Lightroom, dan untuk video
                 menyusun timeline di CapCut.
               </p>
@@ -305,8 +314,8 @@ export default function CreativePage() {
                 <Link href="/experience/smkn-69-jakarta">
                   SMKN 69 Jakarta
                 </Link>
-                . Konteks sekolah dan jurusan SIJA bisa dibaca di halaman
-                perjalanan, sementara proyek web yang saya bangun ada di{" "}
+                . Konteks sekolah dan jurusan SIJA dapat dibaca di halaman
+                perjalanan, sedangkan proyek web yang saya bangun tersedia di{" "}
                 <Link href="/projects">halaman proyek</Link>.
               </p>
               <div className="creative-tools" aria-label="Alat yang digunakan">
@@ -343,7 +352,7 @@ export default function CreativePage() {
                 <div>
                   <h3>Seleksi &amp; editing</h3>
                   <p>
-                    Memilih file terbaik, merapikan warna, lalu menyusun
+                    Memilih berkas terbaik, merapikan warna, lalu menyusun
                     timeline video.
                   </p>
                 </div>
@@ -353,7 +362,7 @@ export default function CreativePage() {
                 <div>
                   <h3>Publikasi</h3>
                   <p>
-                    Mengirim file akhir atau mengunggah hasil editing ke
+                    Mengirim berkas akhir atau mengunggah hasil editing ke
                     Instagram.
                   </p>
                 </div>
@@ -402,8 +411,8 @@ export default function CreativePage() {
             </h2>
             <p className="mt-4 max-w-xl text-lg text-[var(--muted)]">
               Terbuka untuk dokumentasi kegiatan sekolah, potret, serta editing
-              foto dan video di Jakarta. Hasil akhir bisa dikirim sebagai file
-              atau dipublikasikan lewat Instagram.
+              foto dan video di Jakarta. Hasil akhir dapat dikirim sebagai
+              berkas atau dipublikasikan melalui Instagram.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/contact" className="button button-primary">

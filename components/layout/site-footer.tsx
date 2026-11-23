@@ -1,16 +1,25 @@
 import Link from "next/link";
 import { profile } from "@/data/portfolio";
+import { getContentUpdatedAt } from "@/lib/content-meta";
+
+const dateFormatter = new Intl.DateTimeFormat("id-ID", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
 
 export function SiteFooter() {
   const currentYear = new Date().getFullYear();
+  const updatedAt = dateFormatter.format(getContentUpdatedAt());
 
   return (
     <footer className="border-t border-[var(--line)] py-8">
       <div className="content-wrap flex flex-col gap-4 text-sm text-[var(--muted)] sm:flex-row sm:items-center sm:justify-between">
         <p>
-          © {currentYear} Haqqi AnnaZili. Dibuat dan dirawat sendiri di Jakarta.
+          © {currentYear} Haqqi AnnaZili. Dibuat dan dirawat sendiri di
+          Jakarta. Diperbarui {updatedAt}.
         </p>
-        <div className="flex gap-5">
+        <div className="flex flex-wrap gap-x-5 gap-y-2">
           <a
             href={profile.instagram.url}
             target="_blank"

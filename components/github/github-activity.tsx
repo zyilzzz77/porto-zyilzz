@@ -123,7 +123,11 @@ export async function GitHubActivity() {
           rel="noreferrer"
           className="github-panel mt-10 block"
           data-scroll-reveal
-          aria-label={`Buka profil GitHub ${profile.github.handle}`}
+          aria-label={`${
+            activity.total === null
+              ? "Aktivitas"
+              : `${activity.total.toLocaleString("id-ID")} kontribusi`
+          } GitHub ${profile.github.handle} dalam 12 bulan terakhir. Buka profil GitHub.`}
         >
           {activity.days.length > 0 ? (
             <div className="github-scroll">
